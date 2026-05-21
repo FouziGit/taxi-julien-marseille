@@ -1,0 +1,88 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# -----------------------------------------------------------------------------
+# Security headers — applied to every response.
+# Tuned for a static marketing site (no server, no auth, no user data).
+# -----------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Force HTTPS for 2 years incl. subdomains — eligible for HSTS preload list.
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    # Block clickjacking — site can't be embedded in iframes anywhere.
+    X-Frame-Options = "DENY"
+    # Stop MIME-type sniffing — only respect the declared Content-Type.
+    X-Content-Type-Options = "nosniff"
+    # Send the origin (but not full URL) when navigating cross-origin.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Don't let the page access risky platform APIs it doesn't need.
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=()"
+    # Restrict resource loading. unsafe-inline kept on style-src for Tailwind v4
+    # CSS-in-JS, and on script-src for the small inline JSON-LD blocks.
+    # frame-src allows the OpenStreetMap iframe in the Zone section.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; frame-src https://www.openstreetmap.org; connect-src 'self'; base-uri 'self'; form-action 'self' mailto: https://wa.me; frame-ancestors 'none'; upgrade-insecure-requests"
+    # Cross-origin policies — block other origins from embedding our assets.
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+
+# -----------------------------------------------------------------------------
+# Caching policy
+# -----------------------------------------------------------------------------
+
+# Hashed Vite assets (JS, CSS) — immutable, cache for 1 year.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Photos — long cache (1 year), filename change forces invalidation.
+[[headers]]
+  for = "/photos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Favicon — moderate cache.
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# OG image — moderate cache.
+[[headers]]
+  for = "/og-image.*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# sitemap.xml / robots.txt — short cache, content does change.
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# HTML — short cache + revalidate so deploys are seen quickly.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Web manifest — moderate cache.
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+    Content-Type = "application/manifest+json; charset=utf-8"
+
+# -----------------------------------------------------------------------------
+# Redirects — SPA fallback (covers any unmatched route).
+# -----------------------------------------------------------------------------
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

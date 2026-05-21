@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a0c"/>
+      <stop offset="100%" stop-color="#1c1d22"/>
+    </linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#c5c7cc"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="120" r="320" fill="#ffffff" opacity="0.04"/>
+  <circle cx="150" cy="520" r="220" fill="#ffffff" opacity="0.03"/>
+
+  <text x="80" y="180" font-family="'Inter',system-ui,sans-serif" font-size="20" font-weight="700" fill="#8a8e96" letter-spacing="4">— TAXI JULIEN</text>
+
+  <text x="80" y="280" font-family="'Space Grotesk',system-ui,sans-serif" font-size="84" font-weight="600" fill="url(#silver)">Taxi Marseille,</text>
+  <text x="80" y="360" font-family="'Space Grotesk',system-ui,sans-serif" font-size="84" font-weight="600" fill="#f5f5f7">sans compromis.</text>
+
+  <line x1="80" y1="410" x2="280" y2="410" stroke="#2a2c33" stroke-width="2"/>
+
+  <text x="80" y="465" font-family="'Inter',system-ui,sans-serif" font-size="28" font-weight="500" fill="#c5c7cc">24h/24 · 7j/7 · Mercedes Classe V</text>
+
+  <rect x="80" y="510" width="380" height="72" rx="36" fill="#ffffff"/>
+  <text x="270" y="558" text-anchor="middle" font-family="'Inter',system-ui,sans-serif" font-size="28" font-weight="700" fill="#0a0a0c">06 35 58 24 72</text>
+</svg>

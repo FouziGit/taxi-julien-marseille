@@ -1,0 +1,21 @@
+{
+  "name": "Taxi Julien — Marseille 24h/24",
+  "short_name": "Taxi Julien",
+  "description": "Taxi premium Marseille & PACA. Aéroport, gare, port, longue distance, transport médical conventionné. Mercedes Classe V 1-7 passagers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#0a0a0c",
+  "orientation": "portrait-primary",
+  "lang": "fr-FR",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["transportation", "travel", "lifestyle"]
+}
