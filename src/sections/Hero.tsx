@@ -145,6 +145,7 @@ export default function Hero() {
                 <Pic
                   src="/photos/v8.jpg"
                   srcSm="/photos/v8-sm.jpg"
+                  withAvif
                   alt="Mercedes Classe V Taxi Julien à l'aéroport Marseille Provence Terminal 1"
                   eager
                   fetchPriority="high"

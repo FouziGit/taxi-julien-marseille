@@ -63,8 +63,11 @@ export default function Blog({ onPickDestination }: Props) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative rounded-3xl overflow-hidden bg-[var(--color-charcoal)] hairline flex flex-col cursor-pointer mag-btn"
+                className="group relative rounded-3xl overflow-hidden bg-[var(--color-charcoal)] hairline flex flex-col cursor-pointer mag-btn focus-within:ring-2 focus-within:ring-white/40 focus-within:ring-offset-2 focus-within:ring-offset-[var(--color-ink)]"
                 onClick={() => setOpen(a)}
+                tabIndex={-1}
+                aria-label={`Lire l'article : ${a.title}`}
+                role="article"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-graphite)]">
                   <Pic
@@ -93,10 +96,15 @@ export default function Blog({ onPickDestination }: Props) {
                   <p className="mt-3 text-[14px] text-[var(--color-silver-deep)] leading-relaxed flex-1 line-clamp-3">
                     {a.excerpt}
                   </p>
-                  <div className="mt-5 flex items-center gap-1.5 text-[13px] font-semibold text-[var(--color-cream)] group-hover:gap-3 transition-all">
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); setOpen(a) }}
+                    aria-label={`Ouvrir l'article : ${a.title}`}
+                    className="mt-5 flex items-center gap-1.5 text-[13px] font-semibold text-[var(--color-cream)] group-hover:gap-3 transition-all bg-transparent border-0 p-0 cursor-pointer text-left focus:outline-none focus-visible:underline"
+                  >
                     <span>Lire l'article</span>
                     <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
-                  </div>
+                  </button>
                 </div>
               </motion.article>
             ))}

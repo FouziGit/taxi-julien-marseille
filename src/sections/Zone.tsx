@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { transportHubs, varCorridor, provenceArea, hospitals } from '../data/taxi'
 import {
   PlaneIcon,
@@ -24,6 +24,25 @@ const hubs: { key: HubKey; label: string; Icon: typeof PlaneIcon; items: readonl
 export default function Zone() {
   const [activeHub, setActiveHub] = useState<HubKey>('airports')
   const active = hubs.find(h => h.key === activeHub)!
+
+  // Defer the OpenStreetMap iframe until the map is near the viewport.
+  // Saves ~150 KB JS + DNS lookup + map tile fetches during initial page load.
+  const mapWrapRef = useRef<HTMLDivElement | null>(null)
+  const [mapVisible, setMapVisible] = useState(false)
+  useEffect(() => {
+    if (!mapWrapRef.current || mapVisible) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some(e => e.isIntersecting)) {
+          setMapVisible(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '300px' } // start loading shortly before it enters viewport
+    )
+    io.observe(mapWrapRef.current)
+    return () => io.disconnect()
+  }, [mapVisible])
 
   return (
     <section id="zone" className="py-20 sm:py-28 bg-[var(--color-graphite)]" aria-labelledby="zone-heading">
@@ -100,19 +119,34 @@ export default function Zone() {
         {/* Map + Provence */}
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-3">
           <motion.div
+            ref={mapWrapRef}
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6 }}
             className="relative rounded-3xl overflow-hidden hairline bg-[var(--color-charcoal)] aspect-[4/3] sm:aspect-[16/10]"
           >
-            <iframe
-              title="Zone d'intervention Taxi Julien à Marseille"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=4.50%2C42.85%2C7.20%2C44.30&layer=mapnik&marker=43.2722%2C5.3956"
-              loading="lazy"
-              className="w-full h-full border-0 grayscale-[20%] contrast-[0.95]"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            {mapVisible ? (
+              <iframe
+                title="Zone d'intervention Taxi Julien — Marseille, Provence et Côte d'Azur"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=4.50%2C42.85%2C7.20%2C44.30&layer=mapnik&marker=43.2722%2C5.3956"
+                loading="lazy"
+                className="w-full h-full border-0 grayscale-[20%] contrast-[0.95]"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              // Lightweight placeholder until the section enters the viewport.
+              // Avoids loading the OSM iframe and its tile fetches at page load.
+              <div
+                className="w-full h-full grid place-items-center bg-gradient-to-br from-[var(--color-graphite)] via-[var(--color-charcoal)] to-[var(--color-ink)]"
+                aria-hidden="true"
+              >
+                <div className="text-[var(--color-silver-deep)] flex flex-col items-center gap-2">
+                  <PinIcon className="w-8 h-8"/>
+                  <span className="text-[12px] uppercase tracking-[0.2em] font-bold">Carte en cours de chargement…</span>
+                </div>
+              </div>
+            )}
             <div className="pointer-events-none absolute inset-0 bg-[var(--color-ink)]/10"/>
             <div className="absolute bottom-3 left-3 right-3 px-3 py-2 rounded-lg bg-[var(--color-ink)]/85 backdrop-blur hairline-strong text-[12.5px] sm:text-sm text-[var(--color-cream)] flex items-center gap-2">
               <PinIcon className="w-4 h-4"/>

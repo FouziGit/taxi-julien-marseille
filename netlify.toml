@@ -22,7 +22,7 @@
     # Restrict resource loading. unsafe-inline kept on style-src for Tailwind v4
     # CSS-in-JS, and on script-src for the small inline JSON-LD blocks.
     # frame-src allows the OpenStreetMap iframe in the Zone section.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; frame-src https://www.openstreetmap.org; connect-src 'self'; base-uri 'self'; form-action 'self' mailto: https://wa.me; frame-ancestors 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; frame-src https://www.openstreetmap.org; connect-src 'self'; base-uri 'self'; form-action 'self' mailto: https://wa.me; frame-ancestors 'none'; upgrade-insecure-requests"
     # Cross-origin policies — block other origins from embedding our assets.
     Cross-Origin-Opener-Policy = "same-origin"
     Cross-Origin-Resource-Policy = "same-origin"
@@ -40,6 +40,12 @@
 # Photos — long cache (1 year), filename change forces invalidation.
 [[headers]]
   for = "/photos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Self-hosted fonts — long cache.
+[[headers]]
+  for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 

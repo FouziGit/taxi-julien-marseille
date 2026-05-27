@@ -9,21 +9,34 @@ type Props = {
   eager?: boolean
   /** Fetchpriority hint — set to "high" for hero LCP image */
   fetchPriority?: 'high' | 'low' | 'auto'
+  /** Set if AVIF is available next to the JPEG. Only used for the hero — most
+   *  destination photos ship as WebP + JPEG to keep the build size manageable. */
+  withAvif?: boolean
 } & Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'fetchPriority'>
 
-const webp = (p: string) => p.replace(/\.(jpe?g|png)$/i, '.webp')
+const ext = (p: string, e: string) => p.replace(/\.(jpe?g|png)$/i, e)
+const webp = (p: string) => ext(p, '.webp')
+const avif = (p: string) => ext(p, '.avif')
 
 /**
- * Responsive <picture> with WebP preferred + JPEG fallback.
- * - WebP cuts ~46% off the JPEG weight in our build.
- * - Mobile gets a smaller `srcSm` if provided, desktop gets `src`.
- * - Old browsers / WebP-unsupported clients fall back to the JPEG `<img>`.
+ * Responsive <picture> with format negotiation (AVIF → WebP → JPEG).
+ *
+ * Why this matters
+ * - AVIF cuts ~55% off JPEG weight in our tests; WebP cuts ~45%.
+ * - Browsers pick the first <source> they can decode, so order matters.
+ * - The final <img src=...> is the JPEG fallback for very old clients.
+ *
+ * Why split desktop / mobile sources
+ * - Desktop loads a higher-res 1200-1400px image; mobile loads a 700px one.
+ * - The `media="(min-width: 768px)"` source wins on desktop, then we fall
+ *   through to the unprefixed source on mobile.
  */
 export default function Pic({
   src,
   srcSm,
   eager,
   fetchPriority,
+  withAvif,
   alt = '',
   className,
   ...rest
@@ -31,13 +44,19 @@ export default function Pic({
   const small = srcSm ?? src
   return (
     <picture>
-      {/* Desktop WebP */}
+      {/* AVIF — only for hero where the .avif files were generated. */}
+      {withAvif && (
+        <>
+          <source type="image/avif" media="(min-width: 768px)" srcSet={avif(src)} />
+          <source type="image/avif" srcSet={avif(small)} />
+        </>
+      )}
+      {/* WebP — generated for every photo via cwebp during the asset pipeline. */}
       <source type="image/webp" media="(min-width: 768px)" srcSet={webp(src)} />
-      {/* Mobile WebP */}
       <source type="image/webp" srcSet={webp(small)} />
-      {/* Desktop JPEG fallback */}
+      {/* Desktop JPEG — last fallback for browsers without WebP support. */}
       <source type="image/jpeg" media="(min-width: 768px)" srcSet={src} />
-      {/* Mobile JPEG fallback (rendered if no other source matches) */}
+      {/* Mobile JPEG — the <img> renders here on legacy mobile clients. */}
       <img
         src={small}
         alt={alt}

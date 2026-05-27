@@ -46,23 +46,13 @@
     <meta name="apple-mobile-web-app-title" content="Taxi Julien" />
     <meta name="format-detection" content="telephone=yes" />
 
-    <!-- LCP image preload — hero shows v8 first. WebP preferred. -->
-    <link rel="preload" as="image" href="/photos/v8-sm.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high" />
-    <link rel="preload" as="image" href="/photos/v8.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high" />
+    <!-- LCP image preload — hero AVIF preferred (~50% smaller than JPEG) -->
+    <link rel="preload" as="image" href="/photos/v8-sm.avif" type="image/avif" media="(max-width: 767px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/photos/v8.avif" type="image/avif" media="(min-width: 768px)" fetchpriority="high" />
 
-    <!-- Fonts — non-blocking (preload + onload swap), eliminates render-block -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" />
-    </noscript>
+    <!-- Self-hosted fonts — preload the two Latin woff2 files used above the fold -->
+    <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="font" href="/fonts/spacegrotesk-latin.woff2" type="font/woff2" crossorigin />
 
     <!-- JSON-LD: LocalBusiness / TaxiService -->
     <script type="application/ld+json">
