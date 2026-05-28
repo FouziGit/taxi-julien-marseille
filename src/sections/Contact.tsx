@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { contact, business } from '../data/taxi'
 import { PhoneIcon, WhatsAppIcon, MailIcon, ClockIcon, PinIcon } from '../components/Icons'
 
@@ -10,7 +10,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 sm:py-28 bg-[var(--color-ink)]" aria-labelledby="contact-heading">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -43,7 +43,7 @@ export default function Contact() {
               href={waUrl}
               target="_blank"
               rel="noopener"
-              className="flex items-center justify-center gap-3 h-16 rounded-2xl bg-[var(--color-whatsapp)] text-white font-semibold text-lg mag-btn"
+              className="flex items-center justify-center gap-3 h-16 rounded-2xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-lg mag-btn"
               aria-label="WhatsApp"
             >
               <WhatsAppIcon className="w-5 h-5"/>
@@ -76,7 +76,7 @@ export default function Contact() {
               <div className="text-[11px] text-[var(--color-mute)] mt-0.5 italic">a little english 😉</div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'motion/react'
+import { m, AnimatePresence } from 'motion/react'
 import { useMemo, useState } from 'react'
 import { destinations, departures, type Destination } from '../data/taxi'
 import { ChevronIcon, PinIcon, ClockIcon, CardIcon } from '../components/Icons'
@@ -49,7 +49,7 @@ export default function Destinations({ onPick }: Props) {
   return (
     <section id="destinations" className="py-20 sm:py-28 bg-[var(--color-ink)]" aria-labelledby="dest-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -63,11 +63,11 @@ export default function Destinations({ onPick }: Props) {
           <p className="mt-4 text-[var(--color-silver-deep)] text-[15px] sm:text-base max-w-xl mx-auto">
             Sélectionnez un départ et une destination — on s'occupe du reste.
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-4 lg:gap-6">
           {/* LEFT: selectors + CTA */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
@@ -147,7 +147,7 @@ export default function Destinations({ onPick }: Props) {
                 <span className="flex items-center gap-1.5">
                   <ClockIcon className="w-4 h-4 text-[var(--color-silver-deep)]"/>
                   <AnimatePresence mode="wait">
-                    <motion.span
+                    <m.span
                       key={dest.id + '-d'}
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -155,14 +155,14 @@ export default function Destinations({ onPick }: Props) {
                       transition={{ duration: 0.2 }}
                     >
                       {dest.duration}
-                    </motion.span>
+                    </m.span>
                   </AnimatePresence>
                 </span>
               )}
               <span className="flex items-center gap-1.5 ml-auto">
                 <CardIcon className="w-4 h-4 text-[var(--color-silver-deep)]"/>
                 <AnimatePresence mode="wait">
-                  <motion.span
+                  <m.span
                     key={dest.id + '-p'}
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -171,7 +171,7 @@ export default function Destinations({ onPick }: Props) {
                     className="font-display font-semibold text-[var(--color-cream)] tabular-nums"
                   >
                     {priceLabel}
-                  </motion.span>
+                  </m.span>
                 </AnimatePresence>
               </span>
             </div>
@@ -184,10 +184,10 @@ export default function Destinations({ onPick }: Props) {
               Réserver ce trajet
               <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
             </button>
-          </motion.div>
+          </m.div>
 
           {/* RIGHT: photo preview */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.15 }}
@@ -195,7 +195,7 @@ export default function Destinations({ onPick }: Props) {
             className="relative rounded-3xl overflow-hidden hairline bg-[var(--color-charcoal)] aspect-[5/4] sm:aspect-[16/11] lg:aspect-auto lg:min-h-[420px]"
           >
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={dest.id}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -217,13 +217,13 @@ export default function Destinations({ onPick }: Props) {
                 ) : null}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,10,12,0.6)_100%)]"/>
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/95 via-[var(--color-ink)]/30 to-transparent"/>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
 
             {/* Texts */}
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
               <AnimatePresence mode="wait">
-                <motion.div
+                <m.div
                   key={dest.id + '-text'}
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -239,7 +239,7 @@ export default function Destinations({ onPick }: Props) {
                   {dest.tagline && (
                     <p className="mt-2 text-[var(--color-silver-2)] text-[14px] sm:text-[15px]">{dest.tagline}</p>
                   )}
-                </motion.div>
+                </m.div>
               </AnimatePresence>
             </div>
 
@@ -248,7 +248,7 @@ export default function Destinations({ onPick }: Props) {
               <PinIcon className="w-3 h-3"/>
               {dest.shortName ?? dest.name}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

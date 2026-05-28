@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'motion/react'
+import { m, AnimatePresence } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { articles, type Article, type ArticleBlock, destinations } from '../data/taxi'
 import { ClockIcon, ChevronIcon, PinIcon } from '../components/Icons'
@@ -38,7 +38,7 @@ export default function Blog({ onPickDestination }: Props) {
         aria-labelledby="blog-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -53,11 +53,11 @@ export default function Blog({ onPickDestination }: Props) {
               Nos guides locaux pour visiter Marseille, la Provence et la Côte d'Azur —
               écrits par quelqu'un qui y vit, pas par un algorithme.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {articles.map((a, i) => (
-              <motion.article
+              <m.article
                 key={a.slug}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ export default function Blog({ onPickDestination }: Props) {
                     <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
                   </button>
                 </div>
-              </motion.article>
+              </m.article>
             ))}
           </div>
         </div>
@@ -142,7 +142,7 @@ function ArticleModal({
     : undefined
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -153,7 +153,7 @@ function ArticleModal({
       aria-modal="true"
       aria-labelledby={`article-title-${article.slug}`}
     >
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -244,8 +244,8 @@ function ArticleModal({
             </div>
           )}
         </article>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   )
 }
 

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { transportHubs, varCorridor, provenceArea, hospitals } from '../data/taxi'
 import {
@@ -47,7 +47,7 @@ export default function Zone() {
   return (
     <section id="zone" className="py-20 sm:py-28 bg-[var(--color-graphite)]" aria-labelledby="zone-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -61,7 +61,7 @@ export default function Zone() {
           <p className="mt-4 text-[var(--color-silver-deep)] max-w-xl mx-auto text-[15px] sm:text-base">
             Aéroports, gares, ports, stations de ski, et l'intégralité de la côte de Marseille à Saint-Tropez.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* HUB tabs */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-3">
@@ -77,7 +77,7 @@ export default function Zone() {
                     ? 'bg-white text-[var(--color-ink)]'
                     : 'bg-[var(--color-charcoal)] hairline text-[var(--color-cream)] hover:bg-[var(--color-line-soft)]'
                 }`}
-                aria-pressed={isActive}
+                aria-current={isActive ? 'true' : undefined}
               >
                 <h.Icon className="w-5 h-5 shrink-0"/>
                 <div className="min-w-0">
@@ -92,7 +92,7 @@ export default function Zone() {
         </div>
 
         {/* Active hub content */}
-        <motion.div
+        <m.div
           key={activeHub}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -114,11 +114,11 @@ export default function Zone() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </m.div>
 
         {/* Map + Provence */}
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-3">
-          <motion.div
+          <m.div
             ref={mapWrapRef}
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -152,9 +152,9 @@ export default function Zone() {
               <PinIcon className="w-4 h-4"/>
               Marseille → Saint-Tropez · Provence · Stations de ski
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
@@ -171,11 +171,11 @@ export default function Zone() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Var corridor — visual route */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -197,7 +197,7 @@ export default function Zone() {
           <div className="relative">
             <ul className="relative flex flex-wrap gap-x-2 gap-y-2.5 items-center">
               {varCorridor.map((city, i) => (
-                <motion.li
+                <m.li
                   key={city}
                   initial={{ opacity: 0, y: 6 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -214,11 +214,11 @@ export default function Zone() {
                   {i < varCorridor.length - 1 && (
                     <span className="text-[var(--color-line)] select-none" aria-hidden>—</span>
                   )}
-                </motion.li>
+                </m.li>
               ))}
             </ul>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

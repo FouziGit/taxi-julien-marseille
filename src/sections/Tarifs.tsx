@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { useState } from 'react'
 import { pricing, paymentMethods, fareTables, contact } from '../data/taxi'
 import { CardIcon, CheckIcon, PinIcon, WhatsAppIcon } from '../components/Icons'
@@ -19,7 +19,7 @@ export default function Tarifs() {
   return (
     <section id="tarifs" className="py-20 sm:py-28 bg-[var(--color-graphite)]" aria-labelledby="tarifs-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -35,7 +35,7 @@ export default function Tarifs() {
             communiqués à la réservation. <strong className="text-[var(--color-cream)] font-semibold">Tarif Jour</strong> 7h–19h.
             <strong className="text-[var(--color-cream)] font-semibold"> Tarif Nuit</strong> 19h–7h, dimanches et jours fériés.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* TAB BAR */}
         <div className="flex flex-wrap gap-2 justify-center mb-5">
@@ -51,7 +51,7 @@ export default function Tarifs() {
                     ? 'bg-white text-[var(--color-ink)]'
                     : 'bg-[var(--color-charcoal)] hairline text-[var(--color-cream)] hover:bg-white/[0.06]'
                 }`}
-                aria-pressed={isActive}
+                aria-current={isActive ? 'true' : undefined}
               >
                 {tabLabel[k]}
               </button>
@@ -60,7 +60,7 @@ export default function Tarifs() {
         </div>
 
         {/* ACTIVE TABLE */}
-        <motion.div
+        <m.div
           key={active}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -142,17 +142,17 @@ export default function Tarifs() {
               href={`https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappBaseText + ' Je voudrais un devis personnalisé.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-full bg-[var(--color-whatsapp)] text-white font-semibold text-[13.5px] mag-btn shrink-0"
+              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-full bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-[13.5px] mag-btn shrink-0"
             >
               <WhatsAppIcon className="w-4 h-4"/>
               Demander un devis
             </a>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Detailed compteur + suppléments */}
         <div className="grid lg:grid-cols-2 gap-3 sm:gap-4 mt-3 sm:mt-4">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
@@ -173,9 +173,9 @@ export default function Tarifs() {
                 ))}
               </tbody>
             </table>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
@@ -196,7 +196,7 @@ export default function Tarifs() {
                 ))}
               </tbody>
             </table>
-          </motion.div>
+          </m.div>
         </div>
 
         <div className="mt-3 sm:mt-4 grid sm:grid-cols-2 gap-3 sm:gap-4">

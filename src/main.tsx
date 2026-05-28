@@ -1,16 +1,19 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { MotionConfig } from 'motion/react'
+import { LazyMotion, MotionConfig, domAnimation } from 'motion/react'
 import './index.css'
 import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* MotionConfig — `reducedMotion="user"` honors the OS-level
-        prefers-reduced-motion media query for every motion.* component
-        in the tree (skips transforms, opacity stays). a11y win. */}
-    <MotionConfig reducedMotion="user">
-      <App />
-    </MotionConfig>
+    {/* LazyMotion + domAnimation tree-shakes ~20KB gzipped of unused features.
+     * Pair with `m.*` instead of `motion.*` in components — the lite renderer
+     * only ships transform/opacity/style animations, which is everything we use. */}
+    <LazyMotion features={domAnimation} strict>
+      {/* reducedMotion="user" respects the OS-level prefers-reduced-motion. */}
+      <MotionConfig reducedMotion="user">
+        <App />
+      </MotionConfig>
+    </LazyMotion>
   </StrictMode>,
 )

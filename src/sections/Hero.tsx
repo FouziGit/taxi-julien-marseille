@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'motion/react'
+import { m, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import { contact, trustBadges } from '../data/taxi'
 import { PhoneIcon, WhatsAppIcon, StarIcon } from '../components/Icons'
@@ -18,7 +18,7 @@ export default function Hero() {
   const photoScale = useTransform(scrollYProgress, [0, 1], [1, 1.08])
 
   const split = (txt: string) => txt.split(' ').map((w, i) => (
-    <motion.span
+    <m.span
       key={i}
       className="inline-block mr-[0.22em]"
       initial={{ y: '60%', opacity: 0 }}
@@ -26,7 +26,7 @@ export default function Hero() {
       transition={{ delay: 0.1 + i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
       {w}
-    </motion.span>
+    </m.span>
   ))
 
   return (
@@ -38,7 +38,7 @@ export default function Hero() {
     >
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-12 md:pb-20">
         {/* Eyebrow */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -50,7 +50,7 @@ export default function Hero() {
           </span>
           <span className="text-[var(--color-mute)]">·</span>
           <span>Marseille — Provence — Côte d'Azur</span>
-        </motion.div>
+        </m.div>
 
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-14 items-center mt-5">
           {/* LEFT */}
@@ -63,18 +63,18 @@ export default function Hero() {
               <span className="block silver-text">{split(headline2)}</span>
             </h1>
 
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.5 }}
               className="mt-5 text-[var(--color-silver-2)] text-base sm:text-lg max-w-xl leading-relaxed"
             >
               Mercedes Classe V jusqu'à 7 passagers. Aéroport, gare, port, longue distance, transport médical conventionné. Réservation immédiate, 24h/24.
-            </motion.p>
+            </m.p>
 
             {/* CTAs */}
             <div className="mt-7 grid sm:grid-cols-2 gap-3 max-w-2xl">
-              <motion.a
+              <m.a
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.45 }}
@@ -87,16 +87,16 @@ export default function Hero() {
                   <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)] font-bold">Appeler maintenant</span>
                   <span className="text-xl mt-1 tracking-tight">{contact.phoneDisplay}</span>
                 </span>
-              </motion.a>
+              </m.a>
 
-              <motion.a
+              <m.a
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.45 }}
                 href={waUrl}
                 target="_blank"
                 rel="noopener"
-                className="group flex items-center justify-center gap-3 h-16 rounded-2xl bg-[var(--color-whatsapp)] text-white font-semibold text-lg mag-btn"
+                className="group flex items-center justify-center gap-3 h-16 rounded-2xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-lg mag-btn"
                 aria-label="Contacter sur WhatsApp"
               >
                 <WhatsAppIcon className="w-5 h-5"/>
@@ -104,11 +104,11 @@ export default function Hero() {
                   <span className="text-[10px] uppercase tracking-[0.18em] opacity-80 font-bold">WhatsApp</span>
                   <span className="text-base mt-1">Réponse en quelques min</span>
                 </span>
-              </motion.a>
+              </m.a>
             </div>
 
             {/* Trust micro-row */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.0, duration: 0.6 }}
@@ -127,18 +127,18 @@ export default function Hero() {
               <span className="text-[10px] text-[var(--color-mute)] italic ml-auto sm:ml-0" title="On fera de notre mieux par téléphone, l'anglais c'est pas évident — préférez WhatsApp pour écrire 😉">
                 a little english 😉
               </span>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* RIGHT — real Mercedes photo with parallax + reveal */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="relative order-first lg:order-last"
           >
             <div className="relative rounded-[28px] overflow-hidden hairline aspect-[5/4] sm:aspect-[16/11] bg-[var(--color-graphite)]">
-              <motion.div
+              <m.div
                 style={{ y: photoY, scale: photoScale }}
                 className="absolute inset-0"
               >
@@ -153,11 +153,11 @@ export default function Hero() {
                   height={900}
                   className="w-full h-full object-cover reveal"
                 />
-              </motion.div>
+              </m.div>
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/60 via-transparent to-transparent"/>
 
               {/* Compact pill on mobile, full spec card on desktop */}
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1, duration: 0.5 }}
@@ -190,9 +190,9 @@ export default function Hero() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
 

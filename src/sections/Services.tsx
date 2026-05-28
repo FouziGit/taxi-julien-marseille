@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { services } from '../data/taxi'
 import { ServiceIcon } from '../components/Icons'
 
@@ -6,7 +6,7 @@ export default function Services() {
   return (
     <section id="services" className="py-20 sm:py-28 bg-[var(--color-ink)]" aria-labelledby="serv-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -22,11 +22,11 @@ export default function Services() {
           <p className="text-[var(--color-silver-deep)] max-w-md text-[15px]">
             Aéroport, gare, port, médical, événementiel, longue distance — toute la région PACA, 24h/24.
           </p>
-        </motion.div>
+        </m.div>
 
         <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {services.map((s, i) => (
-            <motion.li
+            <m.li
               key={s.id}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export default function Services() {
               </div>
               <h3 className="font-display font-semibold text-[17px] mt-5 text-[var(--color-cream)] tracking-tight">{s.title}</h3>
               <p className="mt-2 text-[14px] text-[var(--color-silver-deep)] leading-relaxed">{s.description}</p>
-            </motion.li>
+            </m.li>
           ))}
         </ul>
       </div>

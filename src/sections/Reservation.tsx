@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { contact } from '../data/taxi'
 import { PhoneIcon, WhatsAppIcon, MailIcon, CheckIcon } from '../components/Icons'
 
@@ -91,7 +91,7 @@ export default function Reservation({ prefill, setPrefill, formRef, dateRef }: P
   return (
     <section id="reservation" className="py-20 sm:py-28 bg-[var(--color-graphite)]" aria-labelledby="resa-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -105,10 +105,10 @@ export default function Reservation({ prefill, setPrefill, formRef, dateRef }: P
           <p className="mt-4 text-[var(--color-silver-deep)] text-[15px] sm:text-base">
             Réponse confirmée en quelques minutes par téléphone, WhatsApp ou email.
           </p>
-        </motion.div>
+        </m.div>
 
         {submitted ? (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             className="rounded-3xl bg-[var(--color-charcoal)] hairline-strong p-8 text-center"
@@ -131,7 +131,7 @@ export default function Reservation({ prefill, setPrefill, formRef, dateRef }: P
                 href={`https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappBaseText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl bg-[var(--color-whatsapp)] text-white font-semibold mag-btn"
+                className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold mag-btn"
               >
                 <WhatsAppIcon className="w-4 h-4"/> WhatsApp
               </a>
@@ -146,7 +146,7 @@ export default function Reservation({ prefill, setPrefill, formRef, dateRef }: P
                 Nouvelle demande
               </button>
             </div>
-          </motion.div>
+          </m.div>
         ) : (
           <form
             ref={formRef}
@@ -242,7 +242,7 @@ export default function Reservation({ prefill, setPrefill, formRef, dateRef }: P
               <button
                 type="button"
                 onClick={onWhatsApp}
-                className="inline-flex items-center justify-center gap-2 h-14 rounded-xl bg-[var(--color-whatsapp)] text-white font-semibold text-base mag-btn"
+                className="inline-flex items-center justify-center gap-2 h-14 rounded-xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-base mag-btn"
               >
                 <WhatsAppIcon className="w-5 h-5"/>
                 Envoyer sur WhatsApp

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { m, AnimatePresence } from 'motion/react'
 import { faq } from '../data/taxi'
 import { ChevronIcon } from '../components/Icons'
 
@@ -9,7 +9,7 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-20 sm:py-28 bg-[var(--color-graphite)]" aria-labelledby="faq-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -20,7 +20,7 @@ export default function FAQ() {
           <h2 id="faq-heading" className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold mt-3 text-balance tracking-tight">
             Questions fréquentes.
           </h2>
-        </motion.div>
+        </m.div>
 
         <ul className="space-y-2">
           {faq.map((item, i) => {
@@ -43,7 +43,7 @@ export default function FAQ() {
                 </button>
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <motion.div
+                    <m.div
                       id={`faq-${i}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
@@ -54,7 +54,7 @@ export default function FAQ() {
                       <p className="px-5 pb-5 sm:px-6 sm:pb-6 text-[var(--color-silver-2)] text-[14.5px] sm:text-[15px] leading-relaxed">
                         {item.a}
                       </p>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
               </li>

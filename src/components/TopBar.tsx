@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'motion/react'
+import { m, useScroll, useTransform } from 'motion/react'
 import { contact, business } from '../data/taxi'
 import { PhoneIcon } from './Icons'
 
@@ -9,7 +9,7 @@ export default function TopBar() {
   const border = useTransform(scrollY, [0, 80], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.06)'])
 
   return (
-    <motion.header
+    <m.header
       style={{ backdropFilter: useTransform(blur, b => `blur(${b}px)`), background: bg, borderBottom: '1px solid', borderColor: border }}
       className="sticky top-0 z-50"
     >
@@ -66,6 +66,6 @@ export default function TopBar() {
           <PhoneIcon className="w-[18px] h-[18px]"/>
         </a>
       </div>
-    </motion.header>
+    </m.header>
   )
 }

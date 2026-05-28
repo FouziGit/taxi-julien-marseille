@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { testimonials } from '../data/taxi'
 import { StarIcon } from '../components/Icons'
 
@@ -6,7 +6,7 @@ export default function Reviews() {
   return (
     <section id="avis" className="py-20 sm:py-28 bg-[var(--color-ink)]" aria-labelledby="avis-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -28,11 +28,11 @@ export default function Reviews() {
             <span className="font-semibold">5,0/5</span>
             <span className="text-[var(--color-mute)]">· {testimonials.length} avis vérifiés</span>
           </div>
-        </motion.div>
+        </m.div>
 
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
           {testimonials.map((t, i) => (
-            <motion.li
+            <m.li
               key={t.author}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export default function Reviews() {
                 <div className="font-display font-semibold text-[var(--color-cream)] text-[14px] tracking-tight">{t.author}</div>
                 <div className="text-[12px] text-[var(--color-mute)] mt-0.5">{t.context}</div>
               </div>
-            </motion.li>
+            </m.li>
           ))}
         </ul>
       </div>

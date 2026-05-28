@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { useState } from 'react'
 import { gallery } from '../data/taxi'
 import Pic from '../components/Pic'
@@ -11,7 +11,7 @@ export default function Gallery() {
   return (
     <section id="galerie" className="py-20 sm:py-28 bg-[var(--color-graphite)] overflow-hidden" aria-labelledby="gal-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -27,7 +27,7 @@ export default function Gallery() {
           <p className="text-[var(--color-silver-deep)] max-w-md text-[15px]">
             Photos réelles de notre Mercedes Classe V — aéroport, port de croisière, montagne, hôtel, ville.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Filters */}
         <div className="flex flex-wrap gap-2 mb-6">
@@ -60,7 +60,7 @@ export default function Gallery() {
               : 'aspect-square'
 
             return (
-              <motion.figure
+              <m.figure
                 key={p.src}
                 layout
                 initial={{ opacity: 0, y: 14 }}
@@ -84,7 +84,7 @@ export default function Gallery() {
                     {p.context}
                   </span>
                 </figcaption>
-              </motion.figure>
+              </m.figure>
             )
           })}
         </div>

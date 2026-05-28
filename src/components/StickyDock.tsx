@@ -24,7 +24,7 @@ export default function StickyDock() {
         href={waUrl}
         target="_blank"
         rel="noopener"
-        className="flex items-center justify-center gap-2 h-14 rounded-xl bg-[var(--color-whatsapp)] text-white font-bold text-base active:scale-95 transition-transform"
+        className="flex items-center justify-center gap-2 h-14 rounded-xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-bold text-base active:scale-95 transition-transform"
         aria-label="Contacter sur WhatsApp"
       >
         <WhatsAppIcon className="w-5 h-5"/>
