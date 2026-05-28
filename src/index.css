@@ -21,19 +21,32 @@
   src: url('/fonts/inter-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+/* Space Grotesk uses font-display: optional because it's the display font for
+ * the LCP H1 ("Une autre idée du transport."). 'optional' tells the browser:
+ * give the font 100ms to load — if it makes it, use it; otherwise commit to
+ * the system fallback. This eliminates the swap-shift that Lighthouse counts
+ * as a fresh LCP frame. Since the font is self-hosted and preloaded, it
+ * almost always wins the 100ms race on a warm connection. */
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
   font-weight: 500 700;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/spacegrotesk-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  /* size-adjust + fallback metrics chosen so the system 'sans-serif' fallback
+   * has roughly the same em box as Space Grotesk — minimizes shift if 'optional'
+   * decides to commit to the fallback. */
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 @font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
   font-weight: 500 700;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/spacegrotesk-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -116,12 +129,17 @@
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
   }
 
-  /* White text gradient (replaces gold) */
+  /* White text gradient (replaces gold).
+   * - color: var(--color-cream) is the visible color for browsers that don't
+   *   support background-clip:text AND for axe-core contrast computation.
+   * - -webkit-text-fill-color: transparent lets the gradient show through on
+   *   modern browsers — it takes precedence over `color` when supported. */
   .silver-text {
     background: linear-gradient(180deg, #ffffff 0%, #c5c7cc 100%);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: var(--color-cream);
+    -webkit-text-fill-color: transparent;
   }
 
   /* Subtle moving sheen for premium feel */

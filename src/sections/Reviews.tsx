@@ -18,7 +18,7 @@ export default function Reviews() {
             Cinq sur cinq.
           </h2>
           <div className="mt-4 inline-flex items-center gap-2 text-[var(--color-silver-2)]">
-            <span className="flex items-center gap-0.5 text-[var(--color-cream)]" aria-label="5 sur 5 étoiles">
+            <span className="flex items-center gap-0.5 text-[var(--color-cream)]" role="img" aria-label="5 sur 5 étoiles">
               <StarIcon className="w-4 h-4"/>
               <StarIcon className="w-4 h-4"/>
               <StarIcon className="w-4 h-4"/>
@@ -40,7 +40,7 @@ export default function Reviews() {
               transition={{ duration: 0.5, delay: (i % 3) * 0.06, ease: [0.16, 1, 0.3, 1] }}
               className="rounded-2xl bg-[var(--color-graphite)] hairline p-6 hover:bg-[var(--color-charcoal)] transition"
             >
-              <div className="flex items-center gap-0.5 text-[var(--color-cream)]" aria-label="5 étoiles">
+              <div className="flex items-center gap-0.5 text-[var(--color-cream)]" role="img" aria-label={`${t.rating} étoiles`}>
                 {Array.from({ length: t.rating }).map((_, k) => <StarIcon key={k} className="w-3.5 h-3.5"/>)}
               </div>
               <p className="mt-4 text-[var(--color-silver-2)] text-[14.5px] leading-relaxed text-pretty">

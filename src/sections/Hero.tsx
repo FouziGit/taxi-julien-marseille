@@ -17,16 +17,12 @@ export default function Hero() {
   const photoY = useTransform(scrollYProgress, [0, 1], [0, 80])
   const photoScale = useTransform(scrollYProgress, [0, 1], [1, 1.08])
 
+  // H1 words are STATIC — no animation. Previously each word faded in with
+  // staggered delay+duration totaling ~1s, which made Lighthouse measure LCP
+  // at ~1s after first paint instead of at first paint. The cost was 8-12 pts
+  // on the perf score. The decorative reveal isn't worth the LCP hit.
   const split = (txt: string) => txt.split(' ').map((w, i) => (
-    <m.span
-      key={i}
-      className="inline-block mr-[0.22em]"
-      initial={{ y: '60%', opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: 0.1 + i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {w}
-    </m.span>
+    <span key={i} className="inline-block mr-[0.22em]">{w}</span>
   ))
 
   return (
@@ -114,7 +110,7 @@ export default function Hero() {
               transition={{ delay: 1.0, duration: 0.6 }}
               className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12.5px] text-[var(--color-silver-deep)]"
             >
-              <span className="flex items-center gap-1 text-[var(--color-cream)]" aria-label="5 sur 5">
+              <span className="flex items-center gap-1 text-[var(--color-cream)]" role="img" aria-label="5 sur 5">
                 <StarIcon className="w-3.5 h-3.5"/>
                 <StarIcon className="w-3.5 h-3.5"/>
                 <StarIcon className="w-3.5 h-3.5"/>
