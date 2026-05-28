@@ -12,7 +12,11 @@ type Props = {
   /** Set if AVIF is available next to the JPEG. Only used for the hero — most
    *  destination photos ship as WebP + JPEG to keep the build size manageable. */
   withAvif?: boolean
-} & Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'fetchPriority'>
+  /** Intrinsic width — improves LCP and prevents CLS by reserving space. */
+  width?: number
+  /** Intrinsic height — improves LCP and prevents CLS by reserving space. */
+  height?: number
+} & Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'fetchPriority' | 'width' | 'height'>
 
 const ext = (p: string, e: string) => p.replace(/\.(jpe?g|png)$/i, e)
 const webp = (p: string) => ext(p, '.webp')
@@ -37,6 +41,8 @@ export default function Pic({
   eager,
   fetchPriority,
   withAvif,
+  width,
+  height,
   alt = '',
   className,
   ...rest
@@ -63,6 +69,8 @@ export default function Pic({
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
         fetchPriority={fetchPriority ?? (eager ? 'high' : 'auto')}
+        width={width}
+        height={height}
         className={className}
         {...rest}
       />

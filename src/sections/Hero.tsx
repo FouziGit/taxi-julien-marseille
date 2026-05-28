@@ -149,6 +149,8 @@ export default function Hero() {
                   alt="Mercedes Classe V Taxi Julien à l'aéroport Marseille Provence Terminal 1"
                   eager
                   fetchPriority="high"
+                  width={1200}
+                  height={900}
                   className="w-full h-full object-cover reveal"
                 />
               </motion.div>

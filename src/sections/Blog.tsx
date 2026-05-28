@@ -65,9 +65,7 @@ export default function Blog({ onPickDestination }: Props) {
                 transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative rounded-3xl overflow-hidden bg-[var(--color-charcoal)] hairline flex flex-col cursor-pointer mag-btn focus-within:ring-2 focus-within:ring-white/40 focus-within:ring-offset-2 focus-within:ring-offset-[var(--color-ink)]"
                 onClick={() => setOpen(a)}
-                tabIndex={-1}
                 aria-label={`Lire l'article : ${a.title}`}
-                role="article"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-graphite)]">
                   <Pic
@@ -229,7 +227,7 @@ function ArticleModal({
           {destName && (
             <div className="mt-8 rounded-2xl bg-white text-[var(--color-ink)] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] font-bold text-[var(--color-mute)]">Prêt à partir ?</div>
+                <div className="text-[11px] uppercase tracking-[0.22em] font-bold text-gray-600">Prêt à partir ?</div>
                 <div className="font-display font-semibold text-xl mt-1 tracking-tight">
                   Marseille → {destName}
                 </div>
