@@ -28,3 +28,7 @@ dist-ssr
 
 # Claude harness local files
 .claude/
+
+# Cloudflare Wrangler local state
+.wrangler/
+.dev.vars

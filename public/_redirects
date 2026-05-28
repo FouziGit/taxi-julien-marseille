@@ -1,2 +1,0 @@
-# Cloudflare Pages — SPA fallback (any unmatched route → index.html, 200).
-/*  /index.html  200

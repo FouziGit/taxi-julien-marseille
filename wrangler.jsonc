@@ -1,0 +1,20 @@
+{
+  // Cloudflare Workers Static Assets config.
+  // The Cloudflare CI deploy step (`npx wrangler deploy`) reads this file and
+  // serves /dist/* as static assets, with SPA fallback to index.html on 404.
+  //
+  // We removed _redirects because Cloudflare flagged `/* /index.html 200` as
+  // an infinite-loop rule once `.html` extension handling kicks in. The SPA
+  // fallback below replaces it cleanly.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "taxi-julien-marseille",
+  "compatibility_date": "2026-05-28",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
