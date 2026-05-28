@@ -1,5 +1,4 @@
-import { m, useScroll, useTransform } from 'motion/react'
-import { useRef } from 'react'
+import { m } from 'motion/react'
 import { contact, trustBadges } from '../data/taxi'
 import { PhoneIcon, WhatsAppIcon, StarIcon } from '../components/Icons'
 import Pic from '../components/Pic'
@@ -12,22 +11,13 @@ const waUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent
 )}`
 
 export default function Hero() {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const photoY = useTransform(scrollYProgress, [0, 1], [0, 80])
-  const photoScale = useTransform(scrollYProgress, [0, 1], [1, 1.08])
-
-  // H1 words are STATIC — no animation. Previously each word faded in with
-  // staggered delay+duration totaling ~1s, which made Lighthouse measure LCP
-  // at ~1s after first paint instead of at first paint. The cost was 8-12 pts
-  // on the perf score. The decorative reveal isn't worth the LCP hit.
+  // H1 words are static — see commit history for the perf reasoning.
   const split = (txt: string) => txt.split(' ').map((w, i) => (
     <span key={i} className="inline-block mr-[0.22em]">{w}</span>
   ))
 
   return (
     <section
-      ref={ref}
       id="contenu"
       className="relative overflow-hidden bg-[var(--color-ink)]"
       aria-labelledby="hero-heading"
@@ -134,10 +124,12 @@ export default function Hero() {
             className="relative order-first lg:order-last"
           >
             <div className="relative rounded-[28px] overflow-hidden hairline aspect-[5/4] sm:aspect-[16/11] bg-[var(--color-graphite)]">
-              <m.div
-                style={{ y: photoY, scale: photoScale }}
-                className="absolute inset-0"
-              >
+              {/* Static photo wrapper — removed the previous useScroll + useTransform
+               * driven parallax (y 0→80px + scale 1→1.08). It looked nice on
+               * desktop but on mobile it caused per-frame layout work on a
+               * fetchpriority="high" image, costing Lighthouse perf points.
+               * The reveal CSS animation still gives the image a clean entrance. */}
+              <div className="absolute inset-0">
                 <Pic
                   src="/photos/v8.jpg"
                   srcSm="/photos/v8-sm.jpg"
@@ -149,7 +141,7 @@ export default function Hero() {
                   height={900}
                   className="w-full h-full object-cover reveal"
                 />
-              </m.div>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/60 via-transparent to-transparent"/>
 
               {/* Compact pill on mobile, full spec card on desktop */}

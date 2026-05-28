@@ -1,17 +1,42 @@
-import { m, useScroll, useTransform } from 'motion/react'
+import { useEffect, useState } from 'react'
 import { contact, business } from '../data/taxi'
 import { PhoneIcon } from './Icons'
 
+/**
+ * TopBar — replaces the previous Motion-driven version.
+ *
+ * Why we ditched Motion + useScroll/useTransform here:
+ * - On mobile, the per-frame re-render of three inline-style values
+ *   (backdrop-filter, background, border) plus a dynamic backdrop-filter
+ *   blur was one of the most expensive things on the page. backdrop-filter
+ *   in particular often forces a software paint path on mobile GPUs.
+ * - The end state is a single bool ("scrolled past 80px") — Motion was
+ *   overkill for a binary state.
+ *
+ * The new pattern: an IntersectionObserver-lite via scroll listener that
+ * toggles a class. CSS handles the transition. Zero JS work per frame.
+ */
 export default function TopBar() {
-  const { scrollY } = useScroll()
-  const blur = useTransform(scrollY, [0, 80], [0, 14])
-  const bg = useTransform(scrollY, [0, 80], ['rgba(10,10,12,0)', 'rgba(10,10,12,0.85)'])
-  const border = useTransform(scrollY, [0, 80], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.06)'])
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    // Passive listener — never blocks scroll. We only ever read scrollY,
+    // never write, so no layout thrash.
+    function onScroll() {
+      setScrolled(window.scrollY > 80)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <m.header
-      style={{ backdropFilter: useTransform(blur, b => `blur(${b}px)`), background: bg, borderBottom: '1px solid', borderColor: border }}
-      className="sticky top-0 z-50"
+    <header
+      className={`sticky top-0 z-50 transition-colors duration-200 ${
+        scrolled
+          ? 'bg-[var(--color-ink)]/85 backdrop-blur-md border-b border-white/[0.06]'
+          : 'bg-transparent border-b border-transparent'
+      }`}
     >
       {/* DESKTOP layout — left brand block + right phone CTA */}
       <div className="hidden sm:flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 items-center justify-between">
@@ -66,6 +91,6 @@ export default function TopBar() {
           <PhoneIcon className="w-[18px] h-[18px]"/>
         </a>
       </div>
-    </m.header>
+    </header>
   )
 }
