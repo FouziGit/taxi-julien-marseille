@@ -86,7 +86,44 @@
     Content-Type = "application/manifest+json; charset=utf-8"
 
 # -----------------------------------------------------------------------------
-# Redirects — SPA fallback (covers any unmatched route).
+# 301 redirects — legacy SEO pages from the previous Jalis-built site.
+# Every old URL pattern resolves to the new homepage. Sends Google a clean
+# "moved permanently" signal so backlink juice and ancientness migrate over
+# to the new domain root instead of dying on a 404.
+#
+# We intentionally collapse everything to / (rather than topic-specific
+# anchors) per the migration choice — simplest, no decision tree, but Google
+# may treat some as soft-404 if the destination has nothing to do with the
+# original keyword. The trade-off was accepted to keep this list short.
+# -----------------------------------------------------------------------------
+
+# Programmatic long-tail SEO pages (~750 URLs)
+[[redirects]]
+  from = "/activites-*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/details-*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/archives-*"
+  to = "/"
+  status = 301
+
+# All other legacy .html pages (tarifs, contact, transport-prive-*, etc.)
+[[redirects]]
+  from = "/*.html"
+  to = "/"
+  status = 301
+  force = true
+
+# -----------------------------------------------------------------------------
+# SPA fallback — must come LAST so it doesn't preempt the 301s above.
+# Sends any other unmatched route to index.html with a 200 so React Router
+# (or future client-side nav) can handle it.
 # -----------------------------------------------------------------------------
 [[redirects]]
   from = "/*"

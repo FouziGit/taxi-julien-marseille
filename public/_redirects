@@ -1,0 +1,22 @@
+# Cloudflare Workers Static Assets — 301 redirects for the legacy Jalis SEO pages.
+# The SPA fallback is handled separately by wrangler.jsonc
+# (not_found_handling: "single-page-application"), NOT by a /* rule here.
+# That's why this file only contains explicit 301 patterns — adding a catch-all
+# /* /index.html 200 here caused Cloudflare's .html-stripping handler to throw
+# "infinite loop" (error 100324) on a previous deploy.
+
+/activites-*    /     301
+/details-*      /     301
+/archives-*     /     301
+/tarifs.html    /     301
+/contact.html   /     301
+/transport-prive-*  /  301
+/taxi-conventionne-*  /  301
+/visites-touristiques-*  /  301
+/guide-local-*  /  301
+/nos-activites.html  /  301
+/plan-du-site.html   /  301
+/mentions-legales.html  /  301
+/politique-confidentialite.html  /  301
+/secteurs.html  /  301
+/toutes-nos-prestations-*  /  301
