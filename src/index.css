@@ -179,6 +179,22 @@
   animation: marquee 38s linear infinite;
 }
 
+/* Reviews marquee — slower than the trust strip so the cards are readable,
+ * and pauseable on hover or via the `.paused` class (toggled on click).
+ * Pair with `will-change: transform` only at runtime to avoid permanent layer
+ * promotion, but we keep it minimal here since the marquee runs continuously. */
+@keyframes reviews-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.reviews-marquee {
+  animation: reviews-marquee 60s linear infinite;
+}
+.reviews-marquee:hover,
+.reviews-marquee.paused {
+  animation-play-state: paused;
+}
+
 /* Subtle pulse on availability dot — composited (transform + opacity).
  * Previously used box-shadow which forces paint on every frame; the new
  * approach uses a ::after pseudo-element with scale+opacity so the GPU
