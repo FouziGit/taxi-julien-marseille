@@ -46,6 +46,16 @@ export default function Zone({ onPickDestination }: Props) {
   // Interactive route picker — set when a city chip is clicked.
   const [selectedCity, setSelectedCity] = useState<string | null>(null)
 
+  // The fare card sits inside the corridor card, just above the chips.
+  // When a city is picked, scroll the card into view so the price is always
+  // visible regardless of where the user clicked (corridor or Provence list).
+  const fareCardRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    if (selectedCity && fareCardRef.current) {
+      fareCardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [selectedCity])
+
   const mapSrc = useMemo(() => {
     if (!selectedCity) return DEFAULT_MAP_SRC
     return buildRouteMapUrl(selectedCity) ?? DEFAULT_MAP_SRC
@@ -266,6 +276,75 @@ export default function Zone({ onPickDestination }: Props) {
             La côte du Var, c'est notre terrain de jeu. <span className="text-[var(--color-cream)]">Cliquez sur une ville</span> pour voir le trajet et le tarif.
           </p>
 
+          {/* Selected-city fare card — slides in right ABOVE the chips so the
+              price is always next to the selection without scrolling. */}
+          <AnimatePresence>
+            {selectedCity && (
+              <m.div
+                ref={fareCardRef}
+                initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                key={selectedCity + '-fare'}
+                className="mb-5 rounded-2xl bg-white text-[var(--color-ink)] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 shadow-xl"
+                role="status"
+                aria-live="polite"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="grid place-items-center w-11 h-11 rounded-xl bg-[var(--color-ink)] text-white shrink-0">
+                    <PinIcon className="w-5 h-5"/>
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600">Trajet</div>
+                    <div className="font-display font-semibold text-base sm:text-lg tracking-tight leading-tight truncate">
+                      Marseille → {selectedCity}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-stretch gap-2 flex-wrap sm:flex-nowrap">
+                  {fare ? (
+                    <>
+                      {fare.day && (
+                        <div className="flex flex-col items-center px-3 py-1.5 rounded-lg bg-gray-100">
+                          <span className="text-[9px] uppercase tracking-[0.18em] font-bold text-gray-600">Jour</span>
+                          <span className="font-display font-semibold text-[15px] sm:text-base tabular-nums whitespace-nowrap">{fare.day}</span>
+                        </div>
+                      )}
+                      {fare.night && (
+                        <div className="flex flex-col items-center px-3 py-1.5 rounded-lg bg-gray-100">
+                          <span className="text-[9px] uppercase tracking-[0.18em] font-bold text-gray-600">Nuit</span>
+                          <span className="font-display font-semibold text-[15px] sm:text-base tabular-nums whitespace-nowrap">{fare.night}</span>
+                        </div>
+                      )}
+                      {fare.from && (
+                        <div className="flex flex-col items-center px-3 py-1.5 rounded-lg bg-gray-100">
+                          <span className="text-[9px] uppercase tracking-[0.18em] font-bold text-gray-600">À partir</span>
+                          <span className="font-display font-semibold text-[15px] sm:text-base tabular-nums whitespace-nowrap">{fare.from}</span>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 text-gray-600 text-[12px]">
+                      <ClockIcon className="w-4 h-4 shrink-0"/>
+                      Sur devis
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={reserveTrip}
+                    className="inline-flex items-center justify-center gap-1.5 h-11 px-4 rounded-lg bg-[var(--color-ink)] text-white font-semibold text-[13px] mag-btn whitespace-nowrap"
+                  >
+                    Réserver
+                    <ChevronIcon className="w-4 h-4 -rotate-90"/>
+                  </button>
+                </div>
+              </m.div>
+            )}
+          </AnimatePresence>
+
           {/* Clickable city chips */}
           <div className="relative">
             <ul className="relative flex flex-wrap gap-x-2 gap-y-2.5 items-center">
@@ -304,76 +383,6 @@ export default function Zone({ onPickDestination }: Props) {
             </ul>
           </div>
         </m.div>
-
-        {/* Selected-city fare card — slides up when a city is picked */}
-        <AnimatePresence>
-          {selectedCity && (
-            <m.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 12 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              key={selectedCity + '-fare'}
-              className="mt-3 rounded-3xl bg-white text-[var(--color-ink)] p-5 sm:p-6 sm:flex sm:items-center sm:justify-between gap-4"
-              role="status"
-              aria-live="polite"
-            >
-              <div className="flex items-start sm:items-center gap-4 mb-4 sm:mb-0">
-                <div className="grid place-items-center w-12 h-12 rounded-2xl bg-[var(--color-ink)] text-white shrink-0">
-                  <PinIcon className="w-5 h-5"/>
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[11px] uppercase tracking-[0.2em] font-bold text-gray-600">Trajet</div>
-                  <div className="font-display font-semibold text-lg sm:text-xl tracking-tight leading-tight">
-                    Marseille → {selectedCity}
-                  </div>
-                  {fare && (
-                    <div className="text-[12px] text-gray-600 mt-0.5">{fare.table}</div>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex items-stretch gap-2 sm:gap-3 sm:flex-wrap">
-                {fare ? (
-                  <>
-                    {fare.day && (
-                      <div className="flex flex-col items-center sm:items-end px-3 sm:px-4 py-2 rounded-xl bg-gray-100">
-                        <span className="text-[10px] uppercase tracking-[0.18em] font-bold text-gray-600">Jour</span>
-                        <span className="font-display font-semibold text-lg tabular-nums whitespace-nowrap">{fare.day}</span>
-                      </div>
-                    )}
-                    {fare.night && (
-                      <div className="flex flex-col items-center sm:items-end px-3 sm:px-4 py-2 rounded-xl bg-gray-100">
-                        <span className="text-[10px] uppercase tracking-[0.18em] font-bold text-gray-600">Nuit</span>
-                        <span className="font-display font-semibold text-lg tabular-nums whitespace-nowrap">{fare.night}</span>
-                      </div>
-                    )}
-                    {fare.from && (
-                      <div className="flex flex-col items-center sm:items-end px-3 sm:px-4 py-2 rounded-xl bg-gray-100">
-                        <span className="text-[10px] uppercase tracking-[0.18em] font-bold text-gray-600">À partir de</span>
-                        <span className="font-display font-semibold text-lg tabular-nums whitespace-nowrap">{fare.from}</span>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 text-gray-600 text-[13px]">
-                    <ClockIcon className="w-4 h-4"/>
-                    Tarif sur devis — proche de Marseille
-                  </div>
-                )}
-
-                <button
-                  type="button"
-                  onClick={reserveTrip}
-                  className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[14px] mag-btn whitespace-nowrap"
-                >
-                  Réserver ce trajet
-                  <ChevronIcon className="w-4 h-4 -rotate-90"/>
-                </button>
-              </div>
-            </m.div>
-          )}
-        </AnimatePresence>
       </div>
     </section>
   )
