@@ -60,7 +60,7 @@ export default function App() {
         <Suspense fallback={<SectionFallback/>}><Fleet/></Suspense>
         <Suspense fallback={<SectionFallback/>}><Gallery/></Suspense>
         <Suspense fallback={<SectionFallback/>}><Blog onPickDestination={pickDestinationById}/></Suspense>
-        <Suspense fallback={<SectionFallback/>}><Zone/></Suspense>
+        <Suspense fallback={<SectionFallback/>}><Zone onPickDestination={pickDestination}/></Suspense>
         <Suspense fallback={<SectionFallback/>}><Reviews/></Suspense>
         <Suspense fallback={<SectionFallback/>}><FAQ/></Suspense>
         <Suspense fallback={<SectionFallback/>}><Contact/></Suspense>

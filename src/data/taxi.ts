@@ -716,3 +716,89 @@ export const articles: Article[] = [
   },
 ]
 
+
+
+// ============================================================
+// City coordinates — used by the interactive Zone map to draw
+// "Marseille → city" routes and look up fares on click.
+// All values are decimal degrees (WGS-84). Centroids of each
+// commune chosen on OpenStreetMap.
+// ============================================================
+
+export const MARSEILLE_COORDS = { lat: 43.2965, lng: 5.3698 } as const
+
+export const cityCoords: Record<string, { lat: number; lng: number }> = {
+  Marseille: { lat: 43.2965, lng: 5.3698 },
+
+  // Var corridor — Marseille → Saint-Tropez
+  'La Penne-sur-Huveaune': { lat: 43.2870, lng: 5.5398 },
+  Aubagne: { lat: 43.2935, lng: 5.5703 },
+  'Carnoux-en-Provence': { lat: 43.2667, lng: 5.5645 },
+  'Roquefort-la-Bédoule': { lat: 43.2433, lng: 5.6011 },
+  Cassis: { lat: 43.2151, lng: 5.5365 },
+  'La Ciotat': { lat: 43.1747, lng: 5.6053 },
+  'Saint-Cyr-sur-Mer': { lat: 43.1797, lng: 5.7053 },
+  "La Cadière-d'Azur": { lat: 43.1881, lng: 5.7561 },
+  'Le Castellet': { lat: 43.2050, lng: 5.7782 },
+  Bandol: { lat: 43.1373, lng: 5.7530 },
+  'Sanary-sur-Mer': { lat: 43.1186, lng: 5.8014 },
+  'Six-Fours-les-Plages': { lat: 43.0967, lng: 5.8333 },
+  'La Seyne-sur-Mer': { lat: 43.1003, lng: 5.8800 },
+  Ollioules: { lat: 43.1392, lng: 5.8472 },
+  Toulon: { lat: 43.1242, lng: 5.9280 },
+  'La Valette-du-Var': { lat: 43.1414, lng: 5.9606 },
+  'La Garde': { lat: 43.1242, lng: 6.0086 },
+  'La Crau': { lat: 43.1517, lng: 6.0739 },
+  Hyères: { lat: 43.1206, lng: 6.1286 },
+  'La Londe-les-Maures': { lat: 43.1419, lng: 6.2336 },
+  'Bormes-les-Mimosas': { lat: 43.1517, lng: 6.3414 },
+  'Le Lavandou': { lat: 43.1378, lng: 6.3678 },
+  'Cavalaire-sur-Mer': { lat: 43.1717, lng: 6.5378 },
+  'La Croix-Valmer': { lat: 43.2089, lng: 6.5694 },
+  Gassin: { lat: 43.2278, lng: 6.5839 },
+  Cogolin: { lat: 43.2533, lng: 6.5311 },
+  Grimaud: { lat: 43.2722, lng: 6.5217 },
+  'Saint-Tropez': { lat: 43.2727, lng: 6.6406 },
+
+  // Provence intérieure
+  'Aix-en-Provence': { lat: 43.5297, lng: 5.4474 },
+  Avignon: { lat: 43.9493, lng: 4.8055 },
+  Arles: { lat: 43.6766, lng: 4.6303 },
+  Allauch: { lat: 43.3417, lng: 5.4806 },
+  'Plan-de-Cuques': { lat: 43.3392, lng: 5.4683 },
+  Marignane: { lat: 43.4156, lng: 5.2153 },
+  Vitrolles: { lat: 43.4622, lng: 5.2528 },
+  'Salon-de-Provence': { lat: 43.6403, lng: 5.0972 },
+}
+
+/**
+ * Look up the price for a Marseille→city trip across all fareTables.
+ * Returns null for cities that aren't priced as a fixed-fare destination
+ * (typical for very nearby cities billed by meter).
+ */
+export function findFareForCity(city: string): { day?: string; night?: string; from?: string; table: string } | null {
+  for (const t of fareTables) {
+    const row = t.rows.find(r => r.dest === city)
+    if (row) return { day: row.day, night: row.night, from: row.from, table: t.title }
+  }
+  return null
+}
+
+/**
+ * Build an OpenStreetMap embed URL that frames both Marseille and the chosen
+ * city with a small padding around the bbox. A marker is placed on the city.
+ * Returns null if we don't have coords for the city.
+ */
+export function buildRouteMapUrl(city: string): string | null {
+  const c = cityCoords[city]
+  if (!c) return null
+  // pad scales with the route length so short trips zoom in tight, long trips fit.
+  const dLng = Math.abs(c.lng - MARSEILLE_COORDS.lng)
+  const dLat = Math.abs(c.lat - MARSEILLE_COORDS.lat)
+  const pad = Math.max(0.05, Math.max(dLng, dLat) * 0.15)
+  const w = Math.min(MARSEILLE_COORDS.lng, c.lng) - pad
+  const s = Math.min(MARSEILLE_COORDS.lat, c.lat) - pad
+  const e = Math.max(MARSEILLE_COORDS.lng, c.lng) + pad
+  const n = Math.max(MARSEILLE_COORDS.lat, c.lat) + pad
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${w}%2C${s}%2C${e}%2C${n}&layer=mapnik&marker=${c.lat}%2C${c.lng}`
+}
