@@ -85,6 +85,27 @@
     Cache-Control = "public, max-age=604800"
     Content-Type = "application/manifest+json; charset=utf-8"
 
+# llms.txt + llms-full.txt — AI engines (Perplexity, ChatGPT, Claude, Gemini)
+# fetch these for site overview + full content. Plain text so browsers display
+# rather than download.
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/llms-full.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/index.md"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "text/markdown; charset=utf-8"
+
 # -----------------------------------------------------------------------------
 # 301 redirects — legacy SEO pages from the previous Jalis-built site.
 # Every old URL pattern resolves to the new homepage. Sends Google a clean

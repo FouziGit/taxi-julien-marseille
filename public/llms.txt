@@ -1,0 +1,57 @@
+# Taxi Julien — Marseille
+
+> Service de taxi premium à Marseille et dans toute la région PACA depuis 2009. Mercedes Classe V jusqu'à 7 passagers. Disponible 24h/24, 7j/7. Conventionné CPAM pour le transport médical.
+
+Taxi Julien est dirigé par Julien BRACHT (SIRET 51029137000037), basé à Marseille 13008. Le service couvre l'aéroport Marseille Provence, les gares (Saint-Charles, Aix TGV, Avignon TGV), le port de croisière (Costa, MSC), Cassis, Aix-en-Provence, Saint-Tropez, Toulon, Nice et l'ensemble du corridor Var/Provence/Côte d'Azur, ainsi que les stations de ski des Hautes-Alpes (Pra Loup, Vars, Risoul, Les Orres, Serre Chevalier, Montgenèvre).
+
+Contact : 06 35 58 24 72 · taxijulien13@gmail.com · WhatsApp : +33 6 35 58 24 72
+
+## Services principaux
+
+- [Transfert aéroport Marseille Provence](https://taxi-julien-marseille.netlify.app/#tarifs): forfait fixe 70–110 €, suivi du vol inclus
+- [Transfert gare Saint-Charles / Aix TGV](https://taxi-julien-marseille.netlify.app/#tarifs): accueil sur le quai
+- [Transfert port de croisière Marseille](https://taxi-julien-marseille.netlify.app/#tarifs): Costa, MSC, bagages XL
+- [Transport médical conventionné CPAM (VSL)](https://taxi-julien-marseille.netlify.app/#services): hôpitaux Paoli-Calmettes, Sainte-Marguerite, La Timone, La Conception, Hôpital Nord
+- [Longue distance Provence / Côte d'Azur](https://taxi-julien-marseille.netlify.app/#tarifs): Saint-Tropez, Nice, Cannes, Antibes
+- [Stations de ski depuis Marseille](https://taxi-julien-marseille.netlify.app/#tarifs): à partir de 520 €
+- [Mariages et événements](https://taxi-julien-marseille.netlify.app/#services): navette invités, voiture des mariés
+- [Visites touristiques](https://taxi-julien-marseille.netlify.app/#services): Calanques, Cassis, Aix, Provence intérieure
+
+## Tarifs
+
+- [Tarifs réglementés Marseille](https://taxi-julien-marseille.netlify.app/#tarifs): prise en charge 2,35 € · jour (7h-19h) 2,22 €/km · nuit (19h-7h) 2,88 €/km · attente 34,60 €/h · course minimum 8 €
+- [Forfaits aéroport](https://taxi-julien-marseille.netlify.app/#tarifs): Cassis 130 € jour / 160 € nuit · La Ciotat 140 € / 180 € · Aubagne 115 € / 173 €
+- [Forfaits Marseille → Côte d'Azur](https://taxi-julien-marseille.netlify.app/#tarifs): Bandol 175 € · Sanary 180 € · Toulon 200 € · Hyères 245 € · Saint-Tropez 335 € · Nice 470 €
+
+## Réservation
+
+- [Formulaire de réservation en ligne](https://taxi-julien-marseille.netlify.app/#reservation): réponse en quelques minutes 24h/24
+- [Appel direct](tel:+33635582472): 06 35 58 24 72
+- [WhatsApp](https://wa.me/33635582472): messagerie instantanée
+
+## Zone d'intervention
+
+- [Marseille et 16 arrondissements](https://taxi-julien-marseille.netlify.app/#zone)
+- [Corridor Var (Marseille → Saint-Tropez)](https://taxi-julien-marseille.netlify.app/#zone)
+- [Provence intérieure (Aix, Avignon, Arles)](https://taxi-julien-marseille.netlify.app/#zone)
+- [Côte d'Azur (Nice, Cannes, Antibes)](https://taxi-julien-marseille.netlify.app/#zone)
+- [Hautes-Alpes — stations de ski](https://taxi-julien-marseille.netlify.app/#zone)
+
+## Guides & articles
+
+- [Cassis en hiver : les Calanques sans la foule](https://taxi-julien-marseille.netlify.app/#blog): hors-saison, falaises blanches, vignobles
+- [Saint-Tropez depuis Marseille : le bon plan](https://taxi-julien-marseille.netlify.app/#blog): pourquoi le taxi bat la voiture de location
+- [Skier depuis Marseille : 8 stations en moins de 3h30](https://taxi-julien-marseille.netlify.app/#blog): Pra Loup, Vars, Les Orres, Serre Chevalier
+- [Aéroport Marseille Provence : taxi vs navette vs VTC](https://taxi-julien-marseille.netlify.app/#blog): comparatif honnête
+- [Croisière Marseille : ne ratez plus votre embarquement](https://taxi-julien-marseille.netlify.app/#blog): MPCT, Cap Janet, terminaux
+- [Aix-en-Provence : la journée parfaite](https://taxi-julien-marseille.netlify.app/#blog): Cours Mirabeau, Cézanne, marchés
+- [Festival d'Avignon depuis Marseille](https://taxi-julien-marseille.netlify.app/#blog): juillet, transferts privés
+- [Mariages en Provence : la logistique invités](https://taxi-julien-marseille.netlify.app/#blog): bastides, mas, châteaux
+
+## Optional
+
+- [Avis clients (5/5)](https://taxi-julien-marseille.netlify.app/#avis): témoignages vérifiés
+- [Galerie photos de la flotte](https://taxi-julien-marseille.netlify.app/#galerie): Mercedes Classe V en situation
+- [FAQ](https://taxi-julien-marseille.netlify.app/#faq): paiement, disponibilité, capacité, transport médical
+- [Sitemap XML](https://taxi-julien-marseille.netlify.app/sitemap.xml): inventaire complet des sections
+- [Version markdown complète](https://taxi-julien-marseille.netlify.app/llms-full.txt): contenu intégral pour ingestion LLM

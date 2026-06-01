@@ -1,4 +1,29 @@
+# Taxi Julien Marseille — robots policy
+
 User-agent: *
 Allow: /
 
+# Sitemaps and AI engine pointers
 Sitemap: https://taxi-julien-marseille.netlify.app/sitemap.xml
+
+# Allow modern AI / answer engines explicitly. They occasionally honor
+# user-agent rules even when the global * allows everything.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Helpful pointer for AI crawlers — not a standard but a useful convention.
+# llms.txt: site summary in markdown.
+# llms-full.txt: full content for ingestion.
+# /index.md: markdown sibling of the home page.
