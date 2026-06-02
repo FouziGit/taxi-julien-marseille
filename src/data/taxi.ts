@@ -46,6 +46,228 @@ export type Destination = {
   tagline?: string
 }
 
+// ============================================================
+// Enriched destination content — per-page SEO data for the
+// dedicated /destinations/[id]/ landing pages. Optional and
+// keyed by Destination.id so existing UI sections that consume
+// `destinations[]` keep working unchanged.
+// EVERY non-optional field must be a verified fact (Maps / OSM
+// / official sites). When unsure, leave undefined — the page
+// template renders gracefully without it.
+// ============================================================
+
+export type DestSpot = {
+  /** Display name of the place (real, verifiable). */
+  name: string
+  /** One-line description (60-120 chars). */
+  blurb: string
+  /** Category emoji + label, used to colour the icon in the page. */
+  type: 'beach' | 'monument' | 'museum' | 'viewpoint' | 'restaurant' | 'wine' | 'market' | 'sport' | 'hike' | 'shopping' | 'church' | 'other'
+}
+
+export type DestFAQ = { q: string; a: string }
+
+export type DestContent = {
+  /** Match the existing Destination.id in destinations[]. */
+  id: string
+  /** Driving distance from Marseille (km), Google Maps / ViaMichelin verified. */
+  distanceKm: number
+  /** Real off-peak driving time, e.g. "~35 min" or "2h–2h30". */
+  durationReal: string
+  /** INSEE département code (e.g. '13', '83', '06'). */
+  deptCode: string
+  deptName: string
+  /** GPS coords (decimal degrees, WGS-84), commune centroid. */
+  geo: { lat: number; lng: number }
+  /** SEO title (< 60 chars including ' | Taxi Julien'). */
+  seoTitle: string
+  /** Meta description (< 155 chars). */
+  seoDescription: string
+  /** Page H1 (full, with prefix 'Taxi Marseille → …'). */
+  h1: string
+  /** Hero subtitle: distance + duration in user-facing format. */
+  heroSubtitle: string
+  /** Lead paragraph (2-4 sentences) for the page intro. */
+  lead: string
+  /** Optional details on the trip itself (route, pick-up notes). */
+  tripNotes?: string
+  /** 4-8 real POIs / spots to visit at the destination. */
+  spots: DestSpot[]
+  /** Specific use cases (cruise transfer, airport, event…). */
+  useCases?: string[]
+  /** 3-5 destination-specific FAQ items. */
+  faq: DestFAQ[]
+  /** IDs of 3-4 nearby destinations for internal linking. */
+  related: string[]
+}
+
+export const destContent: DestContent[] = [
+  {
+    id: 'cassis',
+    distanceKm: 30,
+    durationReal: '~35 min',
+    deptCode: '13',
+    deptName: 'Bouches-du-Rhône',
+    geo: { lat: 43.2151, lng: 5.5365 },
+    seoTitle: 'Taxi Marseille → Cassis : forfait calanques | Taxi Julien',
+    seoDescription: 'Transfert taxi Marseille → Cassis (30 km, 35 min). Forfait 130 € jour / 160 € nuit. Mercedes Classe V 7 pax. Dépose port, calanques, vignobles. 24h/24.',
+    h1: 'Taxi Marseille → Cassis',
+    heroSubtitle: 'Port de pêche · Calanques · 30 km · ~35 min',
+    lead: 'Cassis, c\'est 22 km à vol d\'oiseau de Marseille mais une bulle à part : port de pêche provençal niché entre le Cap Canaille (le plus haut cap maritime de France, 394 m) et les calanques classées Parc national. Notre Mercedes Classe V vous y dépose en 35 min en heure creuse — directement au Vieux Port, au départ du sentier des calanques, ou à votre domaine viticole.',
+    tripNotes: 'Trajet par l\'A50 et la D559 panoramique. En été (juillet–août), la Route des Crêtes est fermée aux voitures particulières — autant prendre un taxi qui vous attend au port pendant que vous randonnez ou déjeunez. Le stationnement à Cassis est très limité (zone bleue stricte autour du port).',
+    spots: [
+      { name: 'Calanque de Port-Miou', blurb: 'La plus longue calanque de Cassis, ancien port d\'exploitation de la pierre. Accessible à pied depuis le port en 25 min.', type: 'viewpoint' },
+      { name: 'Calanque de Port-Pin', blurb: 'Petite plage de galets bordée de pins parasol, entre Port-Miou et En-Vau. 45 min de marche depuis le port.', type: 'beach' },
+      { name: 'Calanque d\'En-Vau', blurb: 'La plus emblématique : falaises blanches de 100 m, eau turquoise, accès par sentier (1h30 aller-retour) ou en bateau.', type: 'beach' },
+      { name: 'Cap Canaille', blurb: 'Plus haut cap maritime de France métropolitaine (394 m). Route des Crêtes panoramique entre Cassis et La Ciotat.', type: 'viewpoint' },
+      { name: 'Vieux Port de Cassis', blurb: 'Port de pêche traditionnel avec ses pointus colorés, restaurants face à la mer et terrasses au pied du château.', type: 'restaurant' },
+      { name: 'Clos Sainte-Magdeleine', blurb: 'Plus ancien domaine viticole AOC Cassis en activité (XIXe siècle). Visite + dégustation sur rendez-vous.', type: 'wine' },
+      { name: 'Plage de la Grande Mer', blurb: 'Plage municipale au cœur du port, accessible aux familles. Eau peu profonde, vue sur les falaises.', type: 'beach' },
+      { name: 'Château de Cassis', blurb: 'Forteresse médiévale (XIIIe siècle) perchée au-dessus du port. Aujourd\'hui hôtel et restaurant gastronomique.', type: 'monument' },
+    ],
+    useCases: [
+      'Aller-retour journée pour randonner les calanques (dépose port + retour fin d\'après-midi)',
+      'Dégustation dans les 12 domaines AOC Cassis (Clos Sainte-Magdeleine, Château de Fontblanche…)',
+      'Transfert pour un mariage ou repas dans un domaine viticole',
+      'Dépose à un départ de bateau touristique (visite calanques par la mer)',
+    ],
+    faq: [
+      {
+        q: 'Combien coûte un taxi Marseille → Cassis ?',
+        a: 'Forfait fixe 130 € en journée (7h–19h) et 160 € la nuit, le dimanche ou les jours fériés. Prix annoncé à la réservation, valable jusqu\'à 7 passagers en Mercedes Classe V, bagages inclus.',
+      },
+      {
+        q: 'Combien de temps dure le trajet Marseille → Cassis ?',
+        a: 'Environ 35 minutes en heure creuse via l\'A50. En été (juillet-août) ou les vendredis de retour de week-end, prévoir 50 min à 1h selon le trafic.',
+      },
+      {
+        q: 'Le taxi peut-il m\'attendre pendant ma visite des calanques ?',
+        a: 'Oui. Soit nous restons sur place avec attente facturée selon le tarif réglementé (34,60 €/h), soit nous revenons à l\'heure de votre choix — vous nous appelez quand vous voulez repartir.',
+      },
+      {
+        q: 'Pouvez-vous déposer au départ du sentier des calanques (Port-Miou) ?',
+        a: 'Oui. Le parking du Domaine d\'Arène (Port-Miou) est accessible aux taxis. C\'est le point de départ classique pour rejoindre Port-Pin et En-Vau à pied.',
+      },
+      {
+        q: 'Le retour de Cassis vers Marseille de nuit est-il possible ?',
+        a: 'Oui, 24h/24. Le tarif nuit (19h–7h) s\'applique : forfait fixe 160 € retour ou aller-retour selon votre programme.',
+      },
+    ],
+    related: ['la-ciotat', 'aix-en-provence', 'aeroport-marseille-provence', 'port-croisiere-marseille'],
+  },
+  {
+    id: 'aix-en-provence',
+    distanceKm: 32,
+    durationReal: '~30 min',
+    deptCode: '13',
+    deptName: 'Bouches-du-Rhône',
+    geo: { lat: 43.5297, lng: 5.4474 },
+    seoTitle: 'Taxi Marseille → Aix-en-Provence | Taxi Julien',
+    seoDescription: 'Transfert taxi Marseille → Aix-en-Provence (32 km, 30 min). Mercedes Classe V 7 pax. Dépose Cours Mirabeau, gare TGV, Cézanne. 24h/24 · 06 35 58 24 72.',
+    h1: 'Taxi Marseille → Aix-en-Provence',
+    heroSubtitle: 'Cours Mirabeau · Cézanne · 32 km · ~30 min',
+    lead: 'Aix-en-Provence est à 32 km de Marseille par l\'A51, soit 30 min de trajet en heure creuse. Cité universitaire et patrimoniale (2 100 ans d\'histoire, 100 fontaines), c\'est la sortie d\'une journée idéale au départ de Marseille — à condition d\'éviter le parking impossible du centre. Notre Mercedes Classe V vous dépose Place de la Rotonde ou directement au pied du Cours Mirabeau.',
+    tripNotes: 'Trajet par l\'A51 (péage gratuit Marseille → Aix). Évite les bouchons quotidiens de la D8N. Le centre d\'Aix est en zone piétonne élargie — votre taxi dépose en bordure (Rotonde, Cours Sextius, Cours Mirabeau).',
+    spots: [
+      { name: 'Cours Mirabeau', blurb: 'Avenue emblématique XVIIe siècle, 440 m bordés de platanes centenaires, cafés (Deux Garçons, façade classée) et hôtels particuliers.', type: 'monument' },
+      { name: 'Atelier Cézanne', blurb: 'Atelier de Paul Cézanne (avenue Paul Cézanne), conservé en l\'état depuis sa mort en 1906. Pinceaux, palette et nature morte d\'origine.', type: 'museum' },
+      { name: 'Cathédrale Saint-Sauveur', blurb: 'Cathédrale romano-gothique (Ve-XVIIIe siècle) abritant un baptistère paléochrétien rare et le triptyque du Buisson ardent (Nicolas Froment).', type: 'church' },
+      { name: 'Fontaine de la Rotonde', blurb: 'Fontaine monumentale (1860, 32 m de diamètre) à l\'entrée du Cours Mirabeau. Trois statues : Justice, Agriculture, Beaux-Arts.', type: 'monument' },
+      { name: 'Hôtel de Caumont', blurb: 'Hôtel particulier XVIIIe transformé en centre d\'art. Expositions temporaires d\'envergure internationale (Sisley, Turner, Monet récemment).', type: 'museum' },
+      { name: 'Marché Place Richelme', blurb: 'Marché de producteurs locaux mardi, jeudi et samedi matin. Fromages AOC, fruits et légumes de Provence, miel, huile d\'olive.', type: 'market' },
+      { name: 'Carrières de Bibémus', blurb: 'Carrières d\'ocre (8 km du centre) où Cézanne a peint plusieurs séries. Site protégé, visite guidée par l\'Office de Tourisme.', type: 'viewpoint' },
+      { name: 'Place des Cardeurs', blurb: 'Grande place piétonne avec terrasses de restaurants. Idéal pour déjeuner en terrasse à midi.', type: 'restaurant' },
+    ],
+    useCases: [
+      'Sortie journée culture (musée Granet, Atelier Cézanne, déjeuner)',
+      'Transfert gare Aix TGV ↔ centre-ville Aix (~10 min en taxi)',
+      'Aller-retour pour un dîner Place des Cardeurs ou Cours Mirabeau',
+      'Visite Carrières de Bibémus + dégustation domaines viticoles environnants',
+    ],
+    faq: [
+      {
+        q: 'Combien coûte un taxi Marseille → Aix-en-Provence ?',
+        a: 'Forfait à partir de 90 € en journée. Le tarif exact dépend de votre adresse de prise en charge à Marseille et du nombre de passagers. Annoncé fermement à la réservation.',
+      },
+      {
+        q: 'Combien de temps pour aller de Marseille à Aix ?',
+        a: 'Environ 30 minutes en heure creuse par l\'A51. Aux heures de pointe (7h30–9h30 et 17h–19h en semaine), prévoir 45 min à 1h.',
+      },
+      {
+        q: 'Pouvez-vous m\'amener à la gare Aix TGV ?',
+        a: 'Oui. La gare Aix TGV est à environ 15 km du centre d\'Aix et à 25 km de Marseille. Forfait spécifique sur devis selon votre adresse de prise en charge.',
+      },
+      {
+        q: 'Le taxi peut-il attendre pendant ma journée à Aix ?',
+        a: 'Plus économique : nous vous déposons, vous nous appelez à l\'heure du retour. Tarif aller-retour annoncé à la réservation. Si vous préférez nous garder sur place, attente à 34,60 €/h.',
+      },
+      {
+        q: 'Y a-t-il un parking proche du Cours Mirabeau ?',
+        a: 'Les parkings souterrains (Mignet, Cardeurs, Carnot) sont saturés en haute saison et coûtent ~3 €/h. D\'où l\'intérêt du taxi qui dépose en bordure de centre sans souci de stationnement.',
+      },
+    ],
+    related: ['avignon', 'arles', 'cassis', 'gare-aix-tgv'],
+  },
+  {
+    id: 'saint-tropez',
+    distanceKm: 135,
+    durationReal: '~2h–2h30',
+    deptCode: '83',
+    deptName: 'Var',
+    geo: { lat: 43.2727, lng: 6.6406 },
+    seoTitle: 'Taxi Marseille → Saint-Tropez : forfait 335 € | Taxi Julien',
+    seoDescription: 'Transfert privé Marseille → Saint-Tropez (135 km, 2h). Forfait fixe 335 € jour / 386 € nuit. Mercedes Classe V 7 pax. Dépose Vieux Port, Pampelonne, hôtel.',
+    h1: 'Taxi Marseille → Saint-Tropez',
+    heroSubtitle: 'Vieux Port · Pampelonne · 135 km · ~2h–2h30',
+    lead: 'Saint-Tropez est à 135 km de Marseille par l\'A50/A57/A570 puis la D98, soit 2h de trajet hors-saison et jusqu\'à 4h en plein été. Le forfait taxi privé à 335 € (journée) ou 386 € (nuit) revient souvent moins cher qu\'une location de voiture + parking 3 jours (90 €/min) — sans le stress des bouchons et de la circulation interdite au centre. Notre Mercedes Classe V vous dépose au Vieux Port, sur Pampelonne, ou directement à votre hôtel.',
+    tripNotes: 'Trajet par l\'A50 (péages ~8,40 €) puis l\'A57 et l\'A570 jusqu\'au Cannet-des-Maures, puis la D98 finale. Étapes possibles en route : Bandol (déjeuner port), Cap Sicié, Bormes-les-Mimosas (entre janvier et mars). Pampelonne accessible directement.',
+    spots: [
+      { name: 'Vieux Port de Saint-Tropez', blurb: 'Port emblématique avec ses yachts, terrasses (Sénéquier) et façades ocres. Marché tous les jours sur le quai au coucher du soleil.', type: 'monument' },
+      { name: 'Plage de Pampelonne', blurb: '5 km de plage de sable entre Ramatuelle et Saint-Tropez. Plages privées légendaires : Club 55, Nikki Beach, Tahiti Beach.', type: 'beach' },
+      { name: 'Place des Lices', blurb: 'Cœur du village, lieu de la pétanque tropézienne et marché en plein air mardi et samedi matin (produits provençaux).', type: 'market' },
+      { name: 'Citadelle de Saint-Tropez', blurb: 'Forteresse XVIe-XVIIe perchée. Musée d\'histoire maritime, panorama 360° sur le golfe et la presqu\'île.', type: 'museum' },
+      { name: 'Musée de l\'Annonciade', blurb: 'Musée de peinture du XXe siècle (Signac, Matisse, Bonnard, Derain). Bâti dans une ancienne chapelle XVIe.', type: 'museum' },
+      { name: 'Quartier de la Ponche', blurb: 'Ancien quartier des pêcheurs, ruelles pavées et façades colorées. Plage de la Ponche au cœur même du village.', type: 'beach' },
+      { name: 'Sentier du Littoral', blurb: 'Chemin de douaniers : 15 km de sentier côtier de Saint-Tropez à la Plage de l\'Escalet. Vues sur le Cap Camarat (3e plus haut phare français).', type: 'hike' },
+      { name: 'Église Notre-Dame-de-l\'Assomption', blurb: 'Église baroque XVIIIe siècle, clocher emblématique de Saint-Tropez (jaune et ocre), abrite le buste de Saint-Tropez.', type: 'church' },
+    ],
+    useCases: [
+      'Week-end à deux ou en famille (aller vendredi, retour dimanche soir)',
+      'Transfert directement à un hôtel ou villa privée',
+      'Course directe pour un dîner sur le port ou une soirée',
+      'Mariage à Ramatuelle, Gassin ou dans la presqu\'île',
+    ],
+    faq: [
+      {
+        q: 'Combien coûte un taxi Marseille → Saint-Tropez ?',
+        a: 'Forfait fixe annoncé à la réservation : 335 € en journée (7h–19h) et 386 € la nuit / dimanche / jours fériés. Jusqu\'à 7 passagers en Mercedes Classe V, bagages inclus.',
+      },
+      {
+        q: 'Combien de temps prend le trajet Marseille → Saint-Tropez ?',
+        a: 'Environ 2h en heure creuse. En juillet-août ou les vendredis soir, prévoir 2h30 à 4h selon le trafic. Nous suivons l\'évolution du trafic en temps réel pour ajuster.',
+      },
+      {
+        q: 'Le taxi peut-il me déposer à Pampelonne ou au Club 55 ?',
+        a: 'Oui. Dépose directement à Pampelonne, au Club 55, Nikki Beach, Tahiti, ou à votre hôtel à Ramatuelle. La D93 est accessible aux taxis hors saison ; en juillet-août, les accès plages sont régulés.',
+      },
+      {
+        q: 'Pouvez-vous gérer un week-end aller-retour ?',
+        a: 'Oui. Aller le vendredi, retour le dimanche (ou autre jour). Tarif aller-retour annoncé à la réservation, séjour intermédiaire à votre charge. Service 24h/24 si vol/retour tardif.',
+      },
+      {
+        q: 'Acceptez-vous les paiements CB pour ce forfait ?',
+        a: 'Oui. CB et Visa acceptés à bord. Espèces aussi. Facturation entreprise sur demande (déductible pour déplacement professionnel).',
+      },
+    ],
+    related: ['sainte-maxime', 'cannes', 'cogolin', 'aeroport-toulon-hyeres'],
+  },
+]
+
+// Fast lookup helper used by both the React UI and the prerender script.
+export function getDestContent(id: string): DestContent | undefined {
+  return destContent.find(c => c.id === id)
+}
+
 // Points de départ : Marseille (1er → 16e arr.) + hubs principaux
 export type Departure = { id: string; label: string; value: string; group: 'Marseille' | 'Hubs' }
 export const departures: Departure[] = [

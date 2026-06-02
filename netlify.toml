@@ -2,6 +2,18 @@
   publish = "dist"
   command = "npm run build"
 
+# Disable Netlify's automatic trailing-slash stripping. We serve destination
+# pages at /destinations/[id]/ (WITH slash) and that's what the canonical link,
+# the sitemap and every internal link points to. Without this flag, Netlify's
+# pretty-URL feature would silently rewrite /destinations/cassis/ →
+# /destinations/cassis (no slash) in the browser bar, causing a mismatch with
+# the canonical and a known Google indexation gotcha.
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = false
+
 # -----------------------------------------------------------------------------
 # Security headers — applied to every response.
 # Tuned for a static marketing site (no server, no auth, no user data).
@@ -117,6 +129,15 @@
 # may treat some as soft-404 if the destination has nothing to do with the
 # original keyword. The trade-off was accepted to keep this list short.
 # -----------------------------------------------------------------------------
+
+# Trailing-slash enforcement for destination pages — Google indexes the
+# canonical (with slash), so make sure /destinations/cassis (no slash) hits a
+# clean 301 instead of being silently mirrored. The matcher excludes paths
+# that already end in / by being narrower than the SPA fallback below.
+[[redirects]]
+  from = "/destinations/:slug"
+  to = "/destinations/:slug/"
+  status = 301
 
 # Programmatic long-tail SEO pages (~750 URLs)
 [[redirects]]
