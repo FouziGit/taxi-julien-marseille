@@ -141,11 +141,11 @@ Aix-en-Provence, Avignon, Arles, Aubagne, Allauch, Plan-de-Cuques, Marignane, Vi
 
 ## Avis clients
 
-⭐⭐⭐⭐⭐ **5,0/5** · 5 avis vérifiés
+⭐⭐⭐⭐⭐ **5,0/5** · 310 avis vérifiés sur Google
 
-- **Bernadette T.** : "Chauffeur ponctuel, courtois, véhicule impeccable."
-- **Jeremy L.** : "Très professionnel, à l'heure, communication parfaite."
-- **Christian M.** : "Service nickel, prise en charge rapide à la gare."
+- **Amelie Lesueur** : "Au top du top. Taxi pour 5 personnes, spacieux, propre et le conducteur juste génial. De l'hôtel au bateau puis retour gare, vraiment super."
+- **Tiffanie Rech** : "Confiance totale pour les trajets de nos collaborateurs entre Toulon et Trets. De jour comme de nuit, irréprochable."
+- **Patrice Duchan** : "Parfait : ponctualité, courtoisie, van pour 6 personnes et bagages, propreté. Je recommande à 1000 %."
 
 ---
 

@@ -1682,11 +1682,15 @@ export type Testimonial = {
 }
 
 export const testimonials: Testimonial[] = [
-  { author: 'Bernadette T.', context: 'Transport groupe vers le port de croisière', rating: 5, text: "Chauffeur ponctuel, courtois, véhicule impeccable. Idéal pour un groupe avec bagages." },
-  { author: 'Jeremy L.', context: 'Transfert aéroport Marseille Provence', rating: 5, text: "Très professionnel, à l'heure, communication parfaite avant la course. Confort top dans la Mercedes Classe V." },
-  { author: 'Christian M.', context: 'Saint-Charles → terminal croisière', rating: 5, text: "Service nickel, prise en charge rapide, dépose juste devant le terminal. Très bon rapport qualité-prix." },
-  { author: 'Laurie P.', context: 'Course 6 personnes', rating: 5, text: "Parfait pour notre groupe de 6. Le van est spacieux, les enfants ont eu des sièges adaptés." },
-  { author: 'Christelle H.', context: 'Trajets multiples', rating: 5, text: "J'ai pris Taxi Julien plusieurs fois, toujours fiable et ponctuel. Mon taxi attitré sur Marseille." },
+  { author: "Amelie Lesueur", context: "Hôtel → bateau → gare · croisière", rating: 5, text: "Au top du top . Taxi pour 5 personnes , spacieux , propre et le conducteur juste génial, agréable, bonne conduite , connaît sa ville , bonne discussion et très ponctuel. Je recommande +++. Nous l'avons pris à l'allée, de l'hôtel au bateau puis au retour du bateau à la gare vraiment super." },
+  { author: "Camille FOURNIL", context: "Aéroport → Pra Loup · sièges enfant", rating: 5, text: "Très bon transport entre Aéroport et pra Lou , Avec un service de qualité demande de siège bébé , siège auto . Et une conduite parfaite pour les gens souffrant du mal des transports :" },
+  { author: "Tiffanie Rech", context: "Trajets collaborateurs Toulon ↔ Trets", rating: 5, text: "Je suis ravie d'avoir fait confiance à Taxi Julien pour assurer les trajets de nos collaborateurs entre Toulon et Trets. Que ce soit de jour comme de nuit, le service a toujours été irréprochable, alliant professionnalisme et gentillesse. Une prestation au top, que je recommande sans hésiter !" },
+  { author: "Patrice Duchan", context: "Van 6 personnes + bagages", rating: 5, text: "Que dire ... Parfait tant dans la ponctualité la courtoisie de Julien l'espace de son van pour 6 personnes et leur bagages la propreté du véhicule les renseignements sur Marseille Bref je recommande à 1000 % et n'hésiterai pas à le recontacter prochainement" },
+  { author: "Pasquine Rachidi", context: "Van 7 places · famille", rating: 5, text: "Chauffeur très ponctuel, véhicule 7 places, propre et spacieux parfait pour les trajets en groupe ou en famille. La conduite est agréable, fluide et rassurante. De plus le chauffeur est sympathique et professionnel, un vrai plaisir d'échanger pendant le trajet. Je recommande vivement" },
+  { author: "Fabienne Reiff", context: "Transfert van Mercedes", rating: 5, text: "Taxi Julien, une référence sérieuse, de parole, efficace et très aimable dans un van très spacieux et confortable. Conduite impeccable, communication avant la prise en charge et prise en charge parfaite. Merci, à recommander les yeux fermés." },
+  { author: "Christelle H", context: "Cliente régulière", rating: 5, text: "Julien est un grand professionnel, j ai utilisé ses services à plusieurs reprises et continuerai de le faire. Les trajets avec Julien sont agréables et sûrs, son véhicule ultra confortable et extrêmement bien entretenu. Vous pouvez lui faire confiance les yeux fermés !" },
+  { author: "Maël Barthe", context: "Transfert aéroport", rating: 5, text: "Un énorme merci à Taxi Julien pour : la qualité et la propreté de son véhicule, sa ponctualité, son professionnalisme et sa gentillesse. Rien à redire, un taxi à recommander absolument !" },
+  { author: "Laura Boyer", context: "Deux trajets · réservation téléphone", rating: 5, text: "Très bon premier contact par téléphone. Julien a été à été ponctuel, très aimable, réactif et très professionnel pour les 2 trajets pour lesquels je l'ai sollicité. C'est un taxi que je recommande !" },
 ]
 
 export type FAQItem = { q: string; a: string }

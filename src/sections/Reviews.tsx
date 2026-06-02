@@ -59,7 +59,7 @@ export default function Reviews() {
           <div className="mt-4 inline-flex items-center gap-2 text-[var(--color-silver-2)]">
             <Stars count={5} size="lg" />
             <span className="font-semibold">5,0/5</span>
-            <span className="text-[var(--color-mute)]">· {testimonials.length} avis vérifiés sur Google</span>
+            <span className="text-[var(--color-mute)]">· 310 avis vérifiés sur Google</span>
           </div>
 
           {/* Action buttons — read all reviews + write one */}
