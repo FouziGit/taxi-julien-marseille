@@ -1,8 +1,14 @@
 import { m, AnimatePresence } from 'motion/react'
 import { useMemo, useState } from 'react'
-import { destinations, departures, type Destination } from '../data/taxi'
+import { destinations, departures, destContent, type Destination } from '../data/taxi'
 import { ChevronIcon, PinIcon, ClockIcon, CardIcon } from '../components/Icons'
 import Pic from '../components/Pic'
+
+// Precomputed set of destination ids that have a dedicated /destinations/[id]/
+// SEO page generated at build time. Used to conditionally render the
+// "Voir la page dédiée" link below the reservation button — we only link
+// where there's actually a page to land on.
+const destPageIds = new Set(destContent.map(c => c.id))
 
 type Props = {
   onPick: (d: Destination, fromValue: string) => void
@@ -184,6 +190,17 @@ export default function Destinations({ onPick }: Props) {
               Réserver ce trajet
               <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
             </button>
+
+            {/* Deep-link to the destination's dedicated SEO page, if one exists.
+                Acts as the trailing-slash entry for the internal-linking strategy. */}
+            {destPageIds.has(dest.id) && (
+              <a
+                href={`/destinations/${dest.id}/`}
+                className="text-center text-[13px] text-[var(--color-silver-deep)] hover:text-[var(--color-cream)] transition underline decoration-[var(--color-line)] hover:decoration-[var(--color-cream)]"
+              >
+                Voir la page dédiée · trajet, durée, spots à visiter →
+              </a>
+            )}
           </m.div>
 
           {/* RIGHT: photo preview */}

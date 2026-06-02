@@ -566,12 +566,20 @@ function main() {
   const fonts = ['/fonts/inter-latin.woff2', '/fonts/spacegrotesk-latin.woff2']
 
   let count = 0
+  let pageOnly = 0
   for (const content of destContent) {
-    const dest = destinations.find(d => d.id === content.id)
-    if (!dest) {
-      console.warn(`⚠️  destContent.${content.id} has no matching destinations[] entry — skipped`)
-      continue
+    // First try to use the matching destinations[] entry (full data), otherwise
+    // synthesize one from destContent's own page-only fields. This lets us add
+    // dedicated SEO pages without polluting the SPA's UI (trajet builder, etc.).
+    const existing = destinations.find(d => d.id === content.id)
+    const dest: Destination = existing ?? {
+      id: content.id,
+      name: content.destName ?? 'Destination',
+      category: content.destCategory ?? 'Ville',
+      photo: content.destPhoto,
+      photoSm: content.destPhotoSm,
     }
+    if (!existing) pageOnly++
 
     const html = buildHtml(content, dest, { css: cssHref, preloadFonts: fonts })
     const md = buildMarkdown(content, dest)
@@ -586,6 +594,7 @@ function main() {
   }
 
   console.log(`\n✅ Generated ${count} destination page${count > 1 ? 's' : ''} under dist/destinations/`)
+  if (pageOnly) console.log(`   (${pageOnly} of them are page-only — no entry in destinations[])`)
 }
 
 main()

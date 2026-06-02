@@ -2,56 +2,86 @@
 
 > Service de taxi premium à Marseille et dans toute la région PACA depuis 2009. Mercedes Classe V jusqu'à 7 passagers. Disponible 24h/24, 7j/7. Conventionné CPAM pour le transport médical.
 
-Taxi Julien est dirigé par Julien BRACHT (SIRET 51029137000037), basé à Marseille 13008. Le service couvre l'aéroport Marseille Provence, les gares (Saint-Charles, Aix TGV, Avignon TGV), le port de croisière (Costa, MSC), Cassis, Aix-en-Provence, Saint-Tropez, Toulon, Nice et l'ensemble du corridor Var/Provence/Côte d'Azur, ainsi que les stations de ski des Hautes-Alpes (Pra Loup, Vars, Risoul, Les Orres, Serre Chevalier, Montgenèvre).
+Taxi Julien est dirigé par Julien BRACHT (SIRET 51029137000037), basé à Marseille 13008. Le service couvre l'aéroport Marseille Provence, les gares (Saint-Charles, Aix TGV, Avignon TGV), le port de croisière (Costa, MSC), Cassis, Aix-en-Provence, Saint-Tropez, Toulon, Nice et l'ensemble du corridor Var/Provence/Côte d'Azur, ainsi que les stations de ski des Hautes-Alpes (Pra Loup, Vars, Risoul, Les Orres).
 
 Contact : 06 35 58 24 72 · taxijulien13@gmail.com · WhatsApp : +33 6 35 58 24 72
 
-## Services principaux
+## Pages destinations
 
-- [Transfert aéroport Marseille Provence](https://taxi-julien-marseille.netlify.app/#tarifs): forfait fixe 70–110 €, suivi du vol inclus
-- [Transfert gare Saint-Charles / Aix TGV](https://taxi-julien-marseille.netlify.app/#tarifs): accueil sur le quai
-- [Transfert port de croisière Marseille](https://taxi-julien-marseille.netlify.app/#tarifs): Costa, MSC, bagages XL
-- [Transport médical conventionné CPAM (VSL)](https://taxi-julien-marseille.netlify.app/#services): hôpitaux Paoli-Calmettes, Sainte-Marguerite, La Timone, La Conception, Hôpital Nord
-- [Longue distance Provence / Côte d'Azur](https://taxi-julien-marseille.netlify.app/#tarifs): Saint-Tropez, Nice, Cannes, Antibes
-- [Stations de ski depuis Marseille](https://taxi-julien-marseille.netlify.app/#tarifs): à partir de 520 €
-- [Mariages et événements](https://taxi-julien-marseille.netlify.app/#services): navette invités, voiture des mariés
-- [Visites touristiques](https://taxi-julien-marseille.netlify.app/#services): Calanques, Cassis, Aix, Provence intérieure
+Chaque page = forfait, distance, durée, spots à visiter, FAQ par destination.
 
-## Tarifs
+### Transport hubs
 
-- [Tarifs réglementés Marseille](https://taxi-julien-marseille.netlify.app/#tarifs): prise en charge 2,35 € · jour (7h-19h) 2,22 €/km · nuit (19h-7h) 2,88 €/km · attente 34,60 €/h · course minimum 8 €
-- [Forfaits aéroport](https://taxi-julien-marseille.netlify.app/#tarifs): Cassis 130 € jour / 160 € nuit · La Ciotat 140 € / 180 € · Aubagne 115 € / 173 €
-- [Forfaits Marseille → Côte d'Azur](https://taxi-julien-marseille.netlify.app/#tarifs): Bandol 175 € · Sanary 180 € · Toulon 200 € · Hyères 245 € · Saint-Tropez 335 € · Nice 470 €
+- [Aéroport Marseille Provence](https://taxi-julien-marseille.netlify.app/destinations/aeroport-marseille-provence/) : 30 km, 30 min, forfait 70-110 €
+- [Aéroport Nice Côte d'Azur](https://taxi-julien-marseille.netlify.app/destinations/aeroport-nice/) : 200 km, 2h30, sur devis
+- [Aéroport Toulon-Hyères](https://taxi-julien-marseille.netlify.app/destinations/aeroport-toulon-hyeres/) : 75 km, 1h, sur devis
+- [Gare Saint-Charles](https://taxi-julien-marseille.netlify.app/destinations/gare-saint-charles/) : centre Marseille
+- [Gare Aix TGV](https://taxi-julien-marseille.netlify.app/destinations/gare-aix-tgv/) : 25 km, 25 min
+- [Gare TGV Avignon](https://taxi-julien-marseille.netlify.app/destinations/gare-avignon-tgv/) : 105 km, 1h10
+- [Port de croisière Marseille](https://taxi-julien-marseille.netlify.app/destinations/port-croisiere-marseille/) : 5 km, MPCT + Cap Janet
 
-## Réservation
+### Côte calanques + Var
 
-- [Formulaire de réservation en ligne](https://taxi-julien-marseille.netlify.app/#reservation): réponse en quelques minutes 24h/24
-- [Appel direct](tel:+33635582472): 06 35 58 24 72
-- [WhatsApp](https://wa.me/33635582472): messagerie instantanée
+- [Cassis & Calanques](https://taxi-julien-marseille.netlify.app/destinations/cassis/) : 30 km, 35 min, 130 € jour / 160 € nuit
+- [La Ciotat](https://taxi-julien-marseille.netlify.app/destinations/la-ciotat/) : 34 km, 30 min
+- [Saint-Cyr-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/saint-cyr/) : 43 km, 40 min, 150 € jour
+- [Bandol](https://taxi-julien-marseille.netlify.app/destinations/bandol/) : 50 km, 45 min, 175 € jour
+- [Sanary-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/sanary/) : 61 km, 50 min, 180 € jour
+- [Embarcadère du Brusc / Les Embiez](https://taxi-julien-marseille.netlify.app/destinations/embiez/) : 65 km, 55 min, 160-210 €
+- [Six-Fours-les-Plages](https://taxi-julien-marseille.netlify.app/destinations/six-fours/) : 63 km, 55 min, 200 € jour
+- [La Seyne-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/la-seyne/) : 63 km, 55 min, 200 € jour
+- [Toulon](https://taxi-julien-marseille.netlify.app/destinations/toulon/) : 67 km, 50 min, 200 €
+- [Hyères](https://taxi-julien-marseille.netlify.app/destinations/hyeres/) : 85 km, 1h05, 245 € jour
 
-## Zone d'intervention
+### Côte des Maures (Hyères → Saint-Tropez)
 
-- [Marseille et 16 arrondissements](https://taxi-julien-marseille.netlify.app/#zone)
-- [Corridor Var (Marseille → Saint-Tropez)](https://taxi-julien-marseille.netlify.app/#zone)
-- [Provence intérieure (Aix, Avignon, Arles)](https://taxi-julien-marseille.netlify.app/#zone)
-- [Côte d'Azur (Nice, Cannes, Antibes)](https://taxi-julien-marseille.netlify.app/#zone)
-- [Hautes-Alpes — stations de ski](https://taxi-julien-marseille.netlify.app/#zone)
+- [La Londe-les-Maures](https://taxi-julien-marseille.netlify.app/destinations/la-londe/) : 100 km, 1h15, 265 € jour
+- [Bormes-les-Mimosas](https://taxi-julien-marseille.netlify.app/destinations/bormes-les-mimosas/) : 110 km, 1h20, 290 € jour
+- [Le Lavandou](https://taxi-julien-marseille.netlify.app/destinations/le-lavandou/) : 113 km, 1h25, 290 € jour
+- [Rayol-Canadel-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/rayol-canadel/) : 125 km, 1h30, 440 € jour
+- [Cavalaire-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/cavalaire/) : 128 km, 1h35, 350 € jour
+- [La Croix-Valmer](https://taxi-julien-marseille.netlify.app/destinations/la-croix-valmer/) : 132 km, 1h40, 225 € jour
+- [Cogolin](https://taxi-julien-marseille.netlify.app/destinations/cogolin/) : 135 km, 1h45, 315 € jour
+- [Gassin](https://taxi-julien-marseille.netlify.app/destinations/gassin/) : 138 km, 1h45, 335 € jour
+- [Ramatuelle](https://taxi-julien-marseille.netlify.app/destinations/ramatuelle/) : 140 km, 1h50, 340 € jour
+- [Saint-Tropez](https://taxi-julien-marseille.netlify.app/destinations/saint-tropez/) : 135 km, 2h, 335 € jour / 386 € nuit
 
-## Guides & articles
+### Côte d'Azur (Sainte-Maxime → Nice)
 
-- [Cassis en hiver : les Calanques sans la foule](https://taxi-julien-marseille.netlify.app/#blog): hors-saison, falaises blanches, vignobles
-- [Saint-Tropez depuis Marseille : le bon plan](https://taxi-julien-marseille.netlify.app/#blog): pourquoi le taxi bat la voiture de location
-- [Skier depuis Marseille : 8 stations en moins de 3h30](https://taxi-julien-marseille.netlify.app/#blog): Pra Loup, Vars, Les Orres, Serre Chevalier
-- [Aéroport Marseille Provence : taxi vs navette vs VTC](https://taxi-julien-marseille.netlify.app/#blog): comparatif honnête
-- [Croisière Marseille : ne ratez plus votre embarquement](https://taxi-julien-marseille.netlify.app/#blog): MPCT, Cap Janet, terminaux
-- [Aix-en-Provence : la journée parfaite](https://taxi-julien-marseille.netlify.app/#blog): Cours Mirabeau, Cézanne, marchés
-- [Festival d'Avignon depuis Marseille](https://taxi-julien-marseille.netlify.app/#blog): juillet, transferts privés
-- [Mariages en Provence : la logistique invités](https://taxi-julien-marseille.netlify.app/#blog): bastides, mas, châteaux
+- [Sainte-Maxime](https://taxi-julien-marseille.netlify.app/destinations/sainte-maxime/) : 135 km, 1h45, 335 € jour
+- [Fréjus](https://taxi-julien-marseille.netlify.app/destinations/frejus/) : 150 km, 1h55, 325 € jour
+- [Saint-Raphaël](https://taxi-julien-marseille.netlify.app/destinations/saint-raphael/) : 153 km, 2h, 335 € jour
+- [Mandelieu-la-Napoule](https://taxi-julien-marseille.netlify.app/destinations/mandelieu/) : 158 km, 2h05, 385 € jour
+- [Cannes](https://taxi-julien-marseille.netlify.app/destinations/cannes/) : 163 km, 2h10, 310 € jour
+- [Antibes](https://taxi-julien-marseille.netlify.app/destinations/antibes/) : 175 km, 2h20, 430 € jour
+- [Cagnes-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/cagnes-sur-mer/) : 183 km, 2h25, 450 € jour
+- [Nice](https://taxi-julien-marseille.netlify.app/destinations/nice-ville/) : 196 km, 2h30, 470 € jour
+
+### Provence intérieure
+
+- [Aix-en-Provence](https://taxi-julien-marseille.netlify.app/destinations/aix-en-provence/) : 32 km, 30 min, à partir de 90 €
+- [Avignon](https://taxi-julien-marseille.netlify.app/destinations/avignon/) : 100 km, 1h05, 210 € jour
+- [Arles](https://taxi-julien-marseille.netlify.app/destinations/arles/) : 90 km, 1h, 190 € jour
+- [Aubagne](https://taxi-julien-marseille.netlify.app/destinations/aubagne/) : 17 km, 20 min
+
+### Stations de ski (Hautes-Alpes)
+
+- [Pra Loup](https://taxi-julien-marseille.netlify.app/destinations/ski-pra-loup/) : 233 km, 2h50, à partir de 550 €
+- [Vars](https://taxi-julien-marseille.netlify.app/destinations/ski-vars/) : 280 km, 3h, à partir de 580 €
+- [Risoul](https://taxi-julien-marseille.netlify.app/destinations/ski-risoul/) : 290 km, 3h05, à partir de 560 €
+- [Les Orres](https://taxi-julien-marseille.netlify.app/destinations/ski-orres/) : 270 km, 2h50, à partir de 520 €
+
+## Sections du site principal
+
+- [Formulaire de réservation](https://taxi-julien-marseille.netlify.app/#reservation)
+- [Tarifs réglementés + 3 tableaux de forfaits](https://taxi-julien-marseille.netlify.app/#tarifs)
+- [Avis Google (5/5)](https://taxi-julien-marseille.netlify.app/#avis)
+- [FAQ](https://taxi-julien-marseille.netlify.app/#faq)
+- [Guides et articles de blog](https://taxi-julien-marseille.netlify.app/#blog)
+- [Zone d'intervention (carte interactive)](https://taxi-julien-marseille.netlify.app/#zone)
 
 ## Optional
 
-- [Avis clients (5/5)](https://taxi-julien-marseille.netlify.app/#avis): témoignages vérifiés
-- [Galerie photos de la flotte](https://taxi-julien-marseille.netlify.app/#galerie): Mercedes Classe V en situation
-- [FAQ](https://taxi-julien-marseille.netlify.app/#faq): paiement, disponibilité, capacité, transport médical
-- [Sitemap XML](https://taxi-julien-marseille.netlify.app/sitemap.xml): inventaire complet des sections
-- [Version markdown complète](https://taxi-julien-marseille.netlify.app/llms-full.txt): contenu intégral pour ingestion LLM
+- [Sitemap XML complet (58 URLs)](https://taxi-julien-marseille.netlify.app/sitemap.xml)
+- [Version markdown intégrale du site](https://taxi-julien-marseille.netlify.app/llms-full.txt)
+- [Version markdown de la page d'accueil](https://taxi-julien-marseille.netlify.app/index.md)
