@@ -55,6 +55,13 @@ export default function TopBar() {
           </div>
         </a>
 
+        {/* Center nav — links to the destination hub + key sections */}
+        <nav className="flex items-center gap-6 text-[13.5px] font-medium text-[var(--color-silver-2)]" aria-label="Navigation principale">
+          <a href="/destinations/" className="hover:text-[var(--color-cream)] transition">Destinations</a>
+          <a href="#tarifs" className="hover:text-[var(--color-cream)] transition">Tarifs</a>
+          <a href="#blog" className="hover:text-[var(--color-cream)] transition">Guides</a>
+        </nav>
+
         <a
           href={`tel:${contact.phoneTel}`}
           className="flex items-center gap-2 px-4 h-10 rounded-full bg-white text-[var(--color-ink)] font-semibold text-sm hover:bg-[var(--color-silver)] transition mag-btn"

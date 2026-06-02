@@ -190,7 +190,7 @@ function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): 
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL + '/' },
-      { '@type': 'ListItem', position: 2, name: 'Destinations', item: `${SITE_URL}/#destinations` },
+      { '@type': 'ListItem', position: 2, name: 'Destinations', item: `${SITE_URL}/destinations/` },
       { '@type': 'ListItem', position: 3, name: dest.name, item: pageUrl },
     ],
   }
@@ -314,7 +314,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         <nav aria-label="Fil d'ariane" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-[12px] text-[var(--color-silver-deep)]">
             <a href="/" class="hover:text-[var(--color-cream)] transition">Accueil</a>
             <span aria-hidden> › </span>
-            <a href="/#destinations" class="hover:text-[var(--color-cream)] transition">Destinations</a>
+            <a href="/destinations/" class="hover:text-[var(--color-cream)] transition">Destinations</a>
             <span aria-hidden> › </span>
             <span class="text-[var(--color-cream)]">${esc(dest.name)}</span>
         </nav>
@@ -552,6 +552,255 @@ ${content.faq.map(f => `**Q : ${f.q}**\nR : ${f.a}`).join('\n\n')}
 }
 
 // ---------------------------------------------------------------------------
+// Index page generator — dist/destinations/index.html
+// A human-facing hub that lists every destination grouped by area, so the
+// 40+ SEO landing pages are actually discoverable (not just reachable by
+// direct URL). Also a strong internal-linking node for SEO: one page that
+// links to all destination pages + back to the main site.
+// ---------------------------------------------------------------------------
+
+// Ordered groups for the index. IDs are matched against destContent; any
+// destContent id NOT listed here is collected into a final "Autres" group so
+// no page is ever silently dropped from the index (project rule: no silent caps).
+const INDEX_GROUPS: { title: string; sub: string; ids: string[] }[] = [
+  {
+    title: 'Aéroports, gares & port',
+    sub: 'Transferts avec suivi de vol et accueil',
+    ids: ['aeroport-marseille-provence', 'aeroport-nice', 'aeroport-toulon-hyeres', 'gare-saint-charles', 'gare-aix-tgv', 'gare-avignon-tgv', 'port-croisiere-marseille'],
+  },
+  {
+    title: 'Côte & calanques — Cassis → Toulon',
+    sub: 'Le littoral des Bouches-du-Rhône et du Var ouest',
+    ids: ['cassis', 'la-ciotat', 'saint-cyr', 'bandol', 'sanary', 'embiez', 'six-fours', 'la-seyne', 'toulon', 'hyeres'],
+  },
+  {
+    title: 'Côte des Maures — Hyères → Saint-Tropez',
+    sub: 'La presqu’île et le golfe de Saint-Tropez',
+    ids: ['la-londe', 'bormes-les-mimosas', 'le-lavandou', 'rayol-canadel', 'cavalaire', 'la-croix-valmer', 'cogolin', 'gassin', 'ramatuelle', 'saint-tropez'],
+  },
+  {
+    title: 'Côte d’Azur — Sainte-Maxime → Nice',
+    sub: 'Longue distance vers les Alpes-Maritimes',
+    ids: ['sainte-maxime', 'frejus', 'saint-raphael', 'mandelieu', 'cannes', 'antibes', 'cagnes-sur-mer', 'nice-ville'],
+  },
+  {
+    title: 'Provence intérieure',
+    sub: 'Aix, Avignon, Arles et alentours',
+    ids: ['aix-en-provence', 'avignon', 'arles', 'aubagne'],
+  },
+  {
+    title: 'Stations de ski — Hautes-Alpes',
+    sub: 'Longue distance hivernale, équipement neige inclus',
+    ids: ['ski-pra-loup', 'ski-vars', 'ski-risoul', 'ski-orres'],
+  },
+]
+
+function resolveDest(content: DestContent): Destination {
+  return (
+    destinations.find(d => d.id === content.id) ?? {
+      id: content.id,
+      name: content.destName ?? 'Destination',
+      category: content.destCategory ?? 'Ville',
+      photo: content.destPhoto,
+      photoSm: content.destPhotoSm,
+    }
+  )
+}
+
+// One destination card for the index grid.
+function indexCard(content: DestContent): string {
+  const dest = resolveDest(content)
+  const fare = findFare([dest.name, dest.shortName ?? ''])
+  const fareLabel = fare?.day ?? fare?.from ?? 'Sur devis'
+  const photo = dest.photo ?? content.destPhoto ?? '/photos/v8.jpg'
+  const photoSm = dest.photoSm ?? content.destPhotoSm ?? photo
+  const webp = (p: string) => p.replace(/\.(jpe?g|png)$/i, '.webp')
+
+  return `
+        <a href="/destinations/${esc(content.id)}/" class="group relative rounded-2xl overflow-hidden hairline bg-[var(--color-charcoal)] flex flex-col transition hover:bg-[var(--color-graphite)]">
+            <div class="relative aspect-[16/10] overflow-hidden bg-[var(--color-graphite)]">
+                <picture>
+                    <source type="image/webp" media="(min-width: 768px)" srcset="${esc(webp(photo))}" />
+                    <source type="image/webp" srcset="${esc(webp(photoSm))}" />
+                    <img src="${esc(photoSm)}" alt="Taxi Marseille → ${esc(dest.name)}" loading="lazy" decoding="async" width="400" height="250" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]" />
+                </picture>
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/80 via-transparent to-transparent"></div>
+                <span class="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[var(--color-ink)]/85 backdrop-blur-md text-[11px] font-bold text-[var(--color-cream)] tabular-nums hairline-strong">${esc(fareLabel)}</span>
+            </div>
+            <div class="p-4 flex-1 flex flex-col">
+                <div class="font-display font-semibold text-[16px] text-[var(--color-cream)] tracking-tight leading-tight">${esc(dest.name)}</div>
+                <div class="text-[12.5px] text-[var(--color-silver-deep)] mt-1">${content.distanceKm} km · ${esc(content.durationReal)}</div>
+                <div class="mt-3 flex items-center gap-1.5 text-[13px] font-semibold text-[var(--color-cream)] group-hover:gap-2.5 transition-all">
+                    <span>Voir le trajet</span>
+                    <span aria-hidden>→</span>
+                </div>
+            </div>
+        </a>`
+}
+
+function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string {
+  const pageUrl = `${SITE_URL}/destinations/`
+  const title = 'Toutes nos destinations taxi depuis Marseille | Taxi Julien'
+  const description =
+    'Taxi van Marseille vers 40+ destinations : aéroports, gares, port de croisière, côte du Var, Côte d’Azur, Provence, stations de ski. Forfaits, distances et durées par destination.'
+  const fontPreloads = assets.preloadFonts
+    .map(f => `<link rel="preload" as="font" href="${f}" type="font/woff2" crossorigin />`)
+    .join('\n    ')
+
+  // Assign every destContent to a group; collect leftovers into "Autres".
+  const assigned = new Set<string>()
+  const groupsHtml = INDEX_GROUPS.map(g => {
+    const cards = g.ids
+      .map(id => destContent.find(c => c.id === id))
+      .filter((c): c is DestContent => Boolean(c))
+    cards.forEach(c => assigned.add(c.id))
+    if (!cards.length) return ''
+    return `
+        <section class="mt-12 first:mt-0">
+            <div class="mb-5">
+                <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">${esc(g.title)}</h2>
+                <p class="text-[14px] text-[var(--color-silver-deep)] mt-1">${esc(g.sub)} · ${cards.length} destination${cards.length > 1 ? 's' : ''}</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                ${cards.map(indexCard).join('\n')}
+            </div>
+        </section>`
+  }).join('\n')
+
+  const leftovers = destContent.filter(c => !assigned.has(c.id))
+  const leftoversHtml = leftovers.length
+    ? `
+        <section class="mt-12">
+            <div class="mb-5">
+                <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">Autres destinations</h2>
+                <p class="text-[14px] text-[var(--color-silver-deep)] mt-1">${leftovers.length} destination${leftovers.length > 1 ? 's' : ''}</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                ${leftovers.map(indexCard).join('\n')}
+            </div>
+        </section>`
+    : ''
+
+  // JSON-LD: CollectionPage + ItemList of all destinations + breadcrumb.
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': pageUrl,
+        url: pageUrl,
+        name: title,
+        description,
+        inLanguage: 'fr-FR',
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Destinations', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'ItemList',
+        numberOfItems: destContent.length,
+        itemListElement: destContent.map((c, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: resolveDest(c).name,
+          url: `${SITE_URL}/destinations/${c.id}/`,
+        })),
+      },
+    ],
+  })
+
+  return `<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0c" />
+    <title>${esc(title)}</title>
+    <meta name="description" content="${esc(description)}" />
+    <link rel="canonical" href="${pageUrl}" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Taxi Julien" />
+    <meta property="og:title" content="${esc(title)}" />
+    <meta property="og:description" content="${esc(description)}" />
+    <meta property="og:url" content="${pageUrl}" />
+    <meta property="og:image" content="${SITE_URL}/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="author" content="Taxi Julien" />
+
+    <link rel="stylesheet" href="${assets.css}" />
+    ${fontPreloads}
+
+    <script type="application/ld+json">${jsonLd}</script>
+</head>
+<body>
+    <a href="#contenu" class="skip-link">Aller au contenu</a>
+
+    <header class="sticky top-0 z-50 bg-[var(--color-ink)]/85 backdrop-blur-md border-b border-white/[0.06]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2.5" aria-label="Taxi Julien — accueil">
+                <span class="grid place-items-center w-9 h-9 rounded-lg bg-white text-[var(--color-ink)] font-bold text-sm font-display">TJ</span>
+                <div class="leading-tight">
+                    <div class="font-display font-semibold text-[var(--color-cream)] text-[15px] tracking-tight">Taxi Julien</div>
+                    <div class="text-[11px] text-[var(--color-mute)] -mt-0.5 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                        <span>Disponible · Marseille</span>
+                    </div>
+                </div>
+            </a>
+            <a href="tel:${contact.phoneTel}" class="flex items-center gap-2 px-4 h-10 rounded-full bg-white text-[var(--color-ink)] font-semibold text-sm">
+                📞 ${contact.phoneDisplay}
+            </a>
+        </div>
+    </header>
+
+    <main id="contenu" class="bg-[var(--color-ink)] min-h-screen">
+        <nav aria-label="Fil d'ariane" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-[12px] text-[var(--color-silver-deep)]">
+            <a href="/" class="hover:text-[var(--color-cream)] transition">Accueil</a>
+            <span class="mx-1.5">›</span>
+            <span class="text-[var(--color-silver-2)]">Destinations</span>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-20">
+            <p class="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[var(--color-silver-deep)]">— Nos destinations</p>
+            <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-semibold mt-3 text-balance tracking-tight text-[var(--color-cream)]">
+                Taxi depuis Marseille, partout en PACA.
+            </h1>
+            <p class="mt-4 text-[var(--color-silver-deep)] text-[15px] sm:text-base max-w-2xl">
+                ${destContent.length} destinations desservies en Mercedes Classe V — aéroports, gares, port de croisière, côte du Var, Côte d’Azur, Provence et stations de ski. Chaque page détaille le trajet, la durée, le forfait et les lieux à visiter.
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+                <a href="tel:${contact.phoneTel}" class="inline-flex items-center gap-2 h-12 px-5 rounded-full bg-white text-[var(--color-ink)] font-semibold text-[14px] mag-btn">📞 ${contact.phoneDisplay}</a>
+                <a href="https://wa.me/${contact.whatsappNumber}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 h-12 px-5 rounded-full bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-[14px] mag-btn">WhatsApp</a>
+                <a href="/" class="inline-flex items-center gap-2 h-12 px-5 rounded-full hairline-strong text-[var(--color-cream)] font-semibold text-[14px]">← Retour à l’accueil</a>
+            </div>
+
+            ${groupsHtml}
+            ${leftoversHtml}
+        </div>
+    </main>
+
+    <footer class="border-t border-white/[0.06] bg-[var(--color-graphite)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-[13px] text-[var(--color-mute)] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span>Taxi Julien — Marseille · 24h/24 · 7j/7 · Conventionné CPAM</span>
+            <a href="tel:${contact.phoneTel}" class="text-[var(--color-cream)] font-semibold">${contact.phoneDisplay}</a>
+        </div>
+    </footer>
+</body>
+</html>`
+}
+
+// ---------------------------------------------------------------------------
 // Main: walk through enriched destinations, write HTML + MD to dist.
 // ---------------------------------------------------------------------------
 function main() {
@@ -593,7 +842,12 @@ function main() {
     console.log(`  ✓ /destinations/${content.id}/ (HTML ${(html.length / 1024).toFixed(1)} KB · MD ${(md.length / 1024).toFixed(1)} KB)`)
   }
 
-  console.log(`\n✅ Generated ${count} destination page${count > 1 ? 's' : ''} under dist/destinations/`)
+  // Index hub page — lists every destination, grouped by area.
+  const indexHtml = buildIndexHtml({ css: cssHref, preloadFonts: fonts })
+  fs.writeFileSync(path.join(DIST, 'destinations', 'index.html'), indexHtml, 'utf8')
+  console.log(`  ✓ /destinations/ (index hub · HTML ${(indexHtml.length / 1024).toFixed(1)} KB)`)
+
+  console.log(`\n✅ Generated ${count} destination page${count > 1 ? 's' : ''} + 1 index under dist/destinations/`)
   if (pageOnly) console.log(`   (${pageOnly} of them are page-only — no entry in destinations[])`)
 }
 
