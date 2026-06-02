@@ -12,15 +12,26 @@ const GOOGLE_REVIEWS_URL =
 
 // 5★ row used everywhere a card needs the rating. role='img' + aria-label
 // satisfies axe (aria-label on a bare span is prohibited without a role).
-function Stars({ count, size = 'sm' }: { count: number; size?: 'sm' | 'lg' }) {
-  const cls = size === 'lg' ? 'w-5 h-5' : 'w-3.5 h-3.5'
+// `tone='gold'` is used on the white CTA — cream stars on a white button
+// were invisible. Gold matches Google's review-star colour anyway.
+function Stars({
+  count,
+  size = 'sm',
+  tone = 'cream',
+}: {
+  count: number
+  size?: 'sm' | 'lg'
+  tone?: 'cream' | 'gold'
+}) {
+  const sizeCls = size === 'lg' ? 'w-5 h-5' : 'w-3.5 h-3.5'
+  const toneCls = tone === 'gold' ? 'text-amber-400' : 'text-[var(--color-cream)]'
   return (
     <span
-      className="inline-flex items-center gap-0.5 text-[var(--color-cream)]"
+      className={`inline-flex items-center gap-0.5 ${toneCls}`}
       role="img"
       aria-label={`${count} sur 5 étoiles`}
     >
-      {Array.from({ length: count }).map((_, k) => <StarIcon key={k} className={cls} />)}
+      {Array.from({ length: count }).map((_, k) => <StarIcon key={k} className={sizeCls} />)}
     </span>
   )
 }
@@ -59,7 +70,7 @@ export default function Reviews() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-[var(--color-ink)] font-semibold text-[13.5px] mag-btn"
             >
-              <Stars count={5} />
+              <Stars count={5} tone="gold" />
               Voir tous les avis Google
             </a>
             <a
