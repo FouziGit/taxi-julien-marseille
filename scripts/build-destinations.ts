@@ -81,6 +81,19 @@ function findFare(names: string[]): Fare | null {
   return null
 }
 
+// Look up a fare in ONE specific table (by key). Used to show the gare and
+// airport prices side-by-side on a destination page, since they differ.
+function findFareInTable(names: string[], key: string): Fare | null {
+  const t = fareTables.find(x => x.key === key)
+  if (!t) return null
+  for (const name of names) {
+    if (!name) continue
+    const row = t.rows.find(r => r.dest === name)
+    if (row) return { day: row.day, night: row.night, from: row.from, tableLabel: t.title }
+  }
+  return null
+}
+
 // ---------------------------------------------------------------------------
 // Small HTML escape — we never inject user input, but data has French
 // punctuation (apostrophes, &, <, >) that needs encoding for clean HTML.
@@ -223,7 +236,11 @@ function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): 
 // ---------------------------------------------------------------------------
 function buildHtml(content: DestContent, dest: Destination, assets: { css: string; preloadFonts: string[] }): string {
   const pageUrl = `${SITE_URL}/destinations/${content.id}/`
-  const fare = findFare([dest.name, dest.shortName].filter(Boolean) as string[])
+  const names = [dest.name, dest.shortName].filter(Boolean) as string[]
+  const fare = findFare(names)                       // first match (JSON-LD / fallback)
+  const gareFare = findFareInTable(names, 'gare')    // price from Marseille Saint-Charles
+  const airportFare = findFareInTable(names, 'airport') // price from the airport
+  const skiFare = findFareInTable(names, 'ski')      // ski stations ("à partir de")
   const ogImage = dest.photo ? SITE_URL + dest.photo : SITE_URL + '/og-image.jpg'
   const jsonLd = buildJsonLd(content, dest, pageUrl)
 
@@ -347,14 +364,28 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
                         </div>
                     </div>
 
-                    ${fare ? `
-                    <!-- Fare card -->
-                    <div class="mt-5 rounded-2xl bg-white text-[var(--color-ink)] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 max-w-md">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600">Forfait taxi</div>
-                            <div class="font-display font-semibold text-lg mt-0.5">${fare.day && fare.night ? `${fare.day} jour · ${fare.night} nuit` : fare.from ? `À partir de ${fare.from}` : 'Sur devis'}</div>
+                    ${gareFare || airportFare || skiFare ? `
+                    <!-- Fare card — shows both Gare and Airport forfaits when they exist -->
+                    <div class="mt-5 rounded-2xl bg-white text-[var(--color-ink)] p-4 sm:p-5 max-w-md">
+                        <div class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600 mb-2">Forfaits taxi</div>
+                        <div class="space-y-2">
+                            ${gareFare && (gareFare.day || gareFare.from) ? `
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-[13px] text-gray-600">Depuis la gare Saint-Charles</span>
+                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">${gareFare.day && gareFare.night ? `${gareFare.day} <span class="text-gray-500 font-normal text-[12px]">jour</span> · ${gareFare.night} <span class="text-gray-500 font-normal text-[12px]">nuit</span>` : `À partir de ${gareFare.from}`}</span>
+                            </div>` : ''}
+                            ${airportFare && (airportFare.day || airportFare.from) ? `
+                            <div class="flex items-center justify-between gap-3${gareFare ? ' pt-2 border-t border-gray-200' : ''}">
+                                <span class="text-[13px] text-gray-600">Depuis l'aéroport Marseille&nbsp;Provence</span>
+                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">${airportFare.day && airportFare.night ? `${airportFare.day} <span class="text-gray-500 font-normal text-[12px]">jour</span> · ${airportFare.night} <span class="text-gray-500 font-normal text-[12px]">nuit</span>` : `À partir de ${airportFare.from}`}</span>
+                            </div>` : ''}
+                            ${skiFare && skiFare.from ? `
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-[13px] text-gray-600">Depuis Marseille</span>
+                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">À partir de ${skiFare.from}</span>
+                            </div>` : ''}
                         </div>
-                        <a href="/#reservation" class="inline-flex items-center justify-center h-11 px-5 rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[13.5px]">Réserver →</a>
+                        <a href="/#reservation" class="inline-flex items-center justify-center h-11 px-5 mt-4 w-full sm:w-auto rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[13.5px]">Réserver ce trajet →</a>
                     </div>
                     ` : `
                     <div class="mt-5 rounded-2xl bg-white text-[var(--color-ink)] p-4 sm:p-5 max-w-md">

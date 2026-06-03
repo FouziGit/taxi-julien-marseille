@@ -3,17 +3,17 @@ import { useState } from 'react'
 import { pricing, paymentMethods, fareTables, contact } from '../data/taxi'
 import { CardIcon, CheckIcon, PinIcon, WhatsAppIcon } from '../components/Icons'
 
-const TABLE_KEYS = ['airport', 'marseille', 'ski'] as const
+const TABLE_KEYS = ['gare', 'airport', 'ski'] as const
 type TableKey = (typeof TABLE_KEYS)[number]
 
 const tabLabel: Record<TableKey, string> = {
+  gare: 'Gare Saint-Charles',
   airport: 'Aéroport',
-  marseille: 'Marseille → Côte / Provence',
   ski: 'Stations de ski',
 }
 
 export default function Tarifs() {
-  const [active, setActive] = useState<TableKey>('marseille')
+  const [active, setActive] = useState<TableKey>('gare')
   const current = fareTables.find(t => t.key === active)!
 
   return (
