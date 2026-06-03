@@ -131,10 +131,10 @@ export default function Hero() {
                * The reveal CSS animation still gives the image a clean entrance. */}
               <div className="absolute inset-0">
                 <Pic
-                  src="/photos/v8.jpg"
-                  srcSm="/photos/v8-sm.jpg"
+                  src="/photos/hero.jpg"
+                  srcSm="/photos/hero-sm.jpg"
                   withAvif
-                  alt="Mercedes Classe V Taxi Julien à l'aéroport Marseille Provence Terminal 1"
+                  alt="Mercedes Classe V Taxi Julien devant le Terminal 1 de l'aéroport Marseille Provence"
                   eager
                   fetchPriority="high"
                   width={1200}
