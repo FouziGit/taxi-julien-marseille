@@ -54,7 +54,7 @@ export default function Footer() {
               <li>SIRET : {business.siret}</li>
               <li>Taxi conventionné Marseille</li>
               <li className="pt-1">
-                <a className="hover:text-[var(--color-cream)] transition" href="https://www.taxijulien.com/mentions-legales.html" target="_blank" rel="noopener">
+                <a className="hover:text-[var(--color-cream)] transition" href="/mentions-legales/">
                   Mentions légales complètes ↗
                 </a>
               </li>

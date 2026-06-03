@@ -839,6 +839,141 @@ function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string
 // ---------------------------------------------------------------------------
 // Main: walk through enriched destinations, write HTML + MD to dist.
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Legal notices page — dist/mentions-legales/index.html
+// French LCEN (art. 6-III) + RGPD compliant. All operator data supplied by
+// the owner; nothing invented (fields not provided are simply omitted).
+// ---------------------------------------------------------------------------
+function buildLegalPage(assets: { css: string; preloadFonts: string[] }): string {
+  const pageUrl = `${SITE_URL}/mentions-legales/`
+  const title = 'Mentions légales | Taxi Julien Marseille'
+  const description = 'Mentions légales du site Taxi Julien — éditeur, hébergeur, propriété intellectuelle, données personnelles (RGPD).'
+  const fontPreloads = assets.preloadFonts
+    .map(f => `<link rel="preload" as="font" href="${f}" type="font/woff2" crossorigin />`)
+    .join('\n    ')
+
+  const sectionCls = 'mt-8'
+  const h2 = 'font-display font-semibold text-xl sm:text-2xl text-[var(--color-cream)] tracking-tight mb-3'
+  const p = 'text-[15px] text-[var(--color-silver-2)] leading-relaxed'
+  const dl = 'mt-2 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-x-4 gap-y-1.5 text-[14.5px]'
+  const dt = 'text-[var(--color-silver-deep)]'
+  const dd = 'text-[var(--color-cream)]'
+
+  return `<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0c" />
+    <title>${esc(title)}</title>
+    <meta name="description" content="${esc(description)}" />
+    <link rel="canonical" href="${pageUrl}" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="${esc(title)}" />
+    <meta property="og:url" content="${pageUrl}" />
+    <link rel="stylesheet" href="${assets.css}" />
+    ${fontPreloads}
+</head>
+<body>
+    <a href="#contenu" class="skip-link">Aller au contenu</a>
+
+    <header class="sticky top-0 z-50 bg-[var(--color-ink)]/85 backdrop-blur-md border-b border-white/[0.06]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2.5" aria-label="Taxi Julien — accueil">
+                <span class="grid place-items-center w-9 h-9 rounded-lg bg-white text-[var(--color-ink)] font-bold text-sm font-display">TJ</span>
+                <span class="font-display font-semibold text-[var(--color-cream)] text-[15px] tracking-tight">Taxi Julien</span>
+            </a>
+            <a href="tel:${contact.phoneTel}" class="flex items-center gap-2 px-4 h-10 rounded-full bg-white text-[var(--color-ink)] font-semibold text-sm">📞 ${contact.phoneDisplay}</a>
+        </div>
+    </header>
+
+    <main id="contenu" class="bg-[var(--color-ink)] min-h-screen">
+        <nav aria-label="Fil d'ariane" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-[12px] text-[var(--color-silver-deep)]">
+            <a href="/" class="hover:text-[var(--color-cream)] transition">Accueil</a>
+            <span class="mx-1.5">›</span>
+            <span class="text-[var(--color-silver-2)]">Mentions légales</span>
+        </nav>
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-20">
+            <h1 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--color-cream)]">Mentions légales</h1>
+            <p class="mt-3 text-[13px] text-[var(--color-mute)]">Conformément à la loi n°2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN).</p>
+
+            <section class="${sectionCls}">
+                <h2 class="${h2}">Éditeur du site</h2>
+                <p class="${p}">Le présent site est édité par :</p>
+                <dl class="${dl}">
+                    <dt class="${dt}">Dénomination</dt><dd class="${dd}">BRACHT Julien Jean Michel</dd>
+                    <dt class="${dt}">Enseigne</dt><dd class="${dd}">Taxi Julien</dd>
+                    <dt class="${dt}">Forme juridique</dt><dd class="${dd}">EURL (Entreprise Unipersonnelle à Responsabilité Limitée)</dd>
+                    <dt class="${dt}">Gérant</dt><dd class="${dd}">Julien BRACHT</dd>
+                    <dt class="${dt}">Siège social</dt><dd class="${dd}">33 Traverse de la Baume Loubière, 13013 Marseille, France</dd>
+                    <dt class="${dt}">SIREN</dt><dd class="${dd}">510 291 370</dd>
+                    <dt class="${dt}">SIRET</dt><dd class="${dd}">510 291 370 00037</dd>
+                    <dt class="${dt}">Téléphone</dt><dd class="${dd}">04 91 95 74 02</dd>
+                    <dt class="${dt}">Mobile</dt><dd class="${dd}">${contact.phoneDisplay}</dd>
+                    <dt class="${dt}">E-mail</dt><dd class="${dd}"><a href="mailto:${contact.email}" class="underline hover:text-white">${contact.email}</a></dd>
+                </dl>
+            </section>
+
+            <section class="${sectionCls}">
+                <h2 class="${h2}">Directeur de la publication</h2>
+                <p class="${p}">Monsieur Julien BRACHT, en sa qualité de gérant.</p>
+            </section>
+
+            <section class="${sectionCls}">
+                <h2 class="${h2}">Hébergement</h2>
+                <p class="${p}">Le site est hébergé par :</p>
+                <dl class="${dl}">
+                    <dt class="${dt}">Hébergeur</dt><dd class="${dd}">Netlify, Inc.</dd>
+                    <dt class="${dt}">Adresse</dt><dd class="${dd}">512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis</dd>
+                    <dt class="${dt}">Site web</dt><dd class="${dd}"><a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" class="underline hover:text-white">www.netlify.com</a></dd>
+                </dl>
+            </section>
+
+            <section class="${sectionCls}">
+                <h2 class="${h2}">Propriété intellectuelle</h2>
+                <p class="${p}">L'ensemble des éléments du site (textes, mise en page, identité visuelle, photographies du véhicule) est la propriété de Taxi Julien, sauf mention contraire. Les photographies des destinations sont issues de Wikimedia Commons sous leurs licences respectives. Toute reproduction, représentation ou exploitation, totale ou partielle, sans autorisation préalable écrite, est interdite et constituerait une contrefaçon sanctionnée par le Code de la propriété intellectuelle.</p>
+            </section>
+
+            <section class="${sectionCls}">
+                <h2 class="${h2}">Données personnelles (RGPD)</h2>
+                <p class="${p}">Ce site est statique et ne dispose d'aucune base de données. Aucune donnée personnelle n'est collectée ni stockée à votre insu. Lorsque vous remplissez le formulaire de réservation, les informations saisies (nom, téléphone, trajet, date) servent uniquement à composer un message WhatsApp que <strong class="text-[var(--color-cream)]">vous</strong> choisissez d'envoyer ; elles ne transitent par aucun serveur de notre part et ne sont conservées que dans votre conversation WhatsApp et chez Taxi Julien le temps de traiter votre demande.</p>
+                <p class="${p} mt-3">Conformément au Règlement général sur la protection des données (RGPD) et à la loi « Informatique et Libertés », vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition sur vos données. Pour l'exercer, contactez-nous à <a href="mailto:${contact.email}" class="underline hover:text-white">${contact.email}</a> ou au ${contact.phoneDisplay}.</p>
+            </section>
+
+            <section class="${sectionCls}">
+                <h2 class="${h2}">Cookies</h2>
+                <p class="${p}">Le site n'utilise aucun cookie publicitaire ni outil de suivi statistique. La carte interactive de la zone d'intervention est fournie par OpenStreetMap, susceptible de déposer des cookies techniques nécessaires à son affichage. Vous pouvez configurer votre navigateur pour les refuser.</p>
+            </section>
+
+            <section class="${sectionCls}">
+                <h2 class="${h2}">Responsabilité</h2>
+                <p class="${p}">Taxi Julien s'efforce d'assurer l'exactitude des informations diffusées (tarifs, distances, durées). Les tarifs au compteur sont réglementés par arrêté préfectoral ; les forfaits sont communiqués fermement à la réservation. Les durées de trajet sont indicatives et dépendent des conditions de circulation. Taxi Julien ne saurait être tenu responsable d'éventuelles erreurs ou d'une indisponibilité temporaire du site.</p>
+            </section>
+
+            <section class="${sectionCls}">
+                <h2 class="${h2}">Droit applicable</h2>
+                <p class="${p}">Les présentes mentions légales sont régies par le droit français. Tout litige relatif à l'utilisation du site relève de la compétence des tribunaux de Marseille.</p>
+            </section>
+
+            <div class="mt-12 pt-6 border-t border-white/[0.06] flex flex-wrap gap-3">
+                <a href="/" class="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-[var(--color-ink)] font-semibold text-[14px]">← Retour à l'accueil</a>
+                <a href="tel:${contact.phoneTel}" class="inline-flex items-center gap-2 h-11 px-5 rounded-full hairline-strong text-[var(--color-cream)] font-semibold text-[14px]">📞 ${contact.phoneDisplay}</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/[0.06] bg-[var(--color-graphite)]">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-[13px] text-[var(--color-mute)] text-center">
+            © ${new Date().getFullYear()} Taxi Julien — Marseille · 24h/24 · 7j/7
+        </div>
+    </footer>
+</body>
+</html>`
+}
+
 function main() {
   const mainHtml = readMainHtml()
   const cssHref = extractAssetHash(mainHtml, 'index', 'css')
@@ -882,6 +1017,13 @@ function main() {
   const indexHtml = buildIndexHtml({ css: cssHref, preloadFonts: fonts })
   fs.writeFileSync(path.join(DIST, 'destinations', 'index.html'), indexHtml, 'utf8')
   console.log(`  ✓ /destinations/ (index hub · HTML ${(indexHtml.length / 1024).toFixed(1)} KB)`)
+
+  // Legal notices page
+  const legalHtml = buildLegalPage({ css: cssHref, preloadFonts: fonts })
+  const legalDir = path.join(DIST, 'mentions-legales')
+  fs.mkdirSync(legalDir, { recursive: true })
+  fs.writeFileSync(path.join(legalDir, 'index.html'), legalHtml, 'utf8')
+  console.log(`  ✓ /mentions-legales/ (HTML ${(legalHtml.length / 1024).toFixed(1)} KB)`)
 
   console.log(`\n✅ Generated ${count} destination page${count > 1 ? 's' : ''} + 1 index under dist/destinations/`)
   if (pageOnly) console.log(`   (${pageOnly} of them are page-only — no entry in destinations[])`)
