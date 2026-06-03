@@ -933,6 +933,15 @@ function buildLegalPage(assets: { css: string; preloadFonts: string[] }): string
             </section>
 
             <section class="${sectionCls}">
+                <h2 class="${h2}">Conception et réalisation</h2>
+                <p class="${p}">Ce site a été conçu, réalisé et est géré par <strong class="text-[var(--color-cream)]">Nouh BENZIDANE</strong>.</p>
+                <dl class="${dl}">
+                    <dt class="${dt}">Créateur & gestionnaire</dt><dd class="${dd}">Nouh BENZIDANE</dd>
+                    <dt class="${dt}">Portfolio</dt><dd class="${dd}"><a href="https://nouhbenzidane.fr/" target="_blank" rel="noopener noreferrer" class="underline hover:text-white">nouhbenzidane.fr</a></dd>
+                </dl>
+            </section>
+
+            <section class="${sectionCls}">
                 <h2 class="${h2}">Propriété intellectuelle</h2>
                 <p class="${p}">L'ensemble des éléments du site (textes, mise en page, identité visuelle, photographies du véhicule) est la propriété de Taxi Julien, sauf mention contraire. Les photographies des destinations sont issues de Wikimedia Commons sous leurs licences respectives. Toute reproduction, représentation ou exploitation, totale ou partielle, sans autorisation préalable écrite, est interdite et constituerait une contrefaçon sanctionnée par le Code de la propriété intellectuelle.</p>
             </section>

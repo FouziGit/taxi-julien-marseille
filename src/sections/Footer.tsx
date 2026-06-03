@@ -64,7 +64,21 @@ export default function Footer() {
 
         <div className="mt-12 pt-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-[var(--color-mute)]">
           <div>© {new Date().getFullYear()} {business.legalName}. Tous droits réservés.</div>
-          <div>Marseille · Provence · Côte d'Azur</div>
+          <div className="flex items-center gap-3">
+            <span>Marseille · Provence · Côte d'Azur</span>
+            <span className="text-[var(--color-line)]" aria-hidden>·</span>
+            <span>
+              Site par{' '}
+              <a
+                href="https://nouhbenzidane.fr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-silver-deep)] hover:text-[var(--color-cream)] transition underline underline-offset-2"
+              >
+                Nouh Benzidane
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     </footer>
