@@ -38,7 +38,7 @@
 | Élément | Tarif |
 |---|---|
 | Prise en charge | 2,35 € |
-| Tarif jour (7h–19h) | 2,22 € / km |
+| Tarif jour (7h–19h) | 2,24 € / km |
 | Tarif nuit (19h–7h, dimanches, jours fériés) | 2,88 € / km |
 | Attente / marche lente | 34,60 € / h |
 | Course minimum | 8,00 € |

@@ -1457,7 +1457,7 @@ export const pricing = {
   legalNote: "Tarifs réglementés Marseille — affichés sur taxijulien.com/tarifs.html",
   rates: [
     { label: 'Prise en charge', value: '2,35 €' },
-    { label: 'Tarif jour (7h–19h)', value: '2,22 € / km' },
+    { label: 'Tarif jour (7h–19h)', value: '2,24 € / km' },
     { label: 'Tarif nuit (19h–7h)', value: '2,88 € / km' },
     { label: 'Dimanches & jours fériés', value: '2,88 € / km' },
     { label: 'Attente / marche lente', value: '34,60 € / h' },
