@@ -379,7 +379,12 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
                 ${dest.photo ? `
                 <div class="relative rounded-3xl overflow-hidden hairline aspect-[5/4] sm:aspect-[16/11] bg-[var(--color-graphite)]">
                     <picture>
-                        <source type="image/avif" media="(min-width: 768px)" srcset="${dest.photo.replace(/\.jpg$/, '.avif')}" />
+                        <!-- WebP first (generated for every dest photo), JPG fallback.
+                             AVIF was removed: the .avif files were never generated for
+                             destination photos, and Netlify's SPA fallback served HTML
+                             with a 200 for the missing .avif — which the browser tried
+                             to decode as an image and failed, breaking the hero on every
+                             AVIF-capable desktop browser. WebP + JPG both exist for all. -->
                         <source type="image/webp" media="(min-width: 768px)" srcset="${dest.photo.replace(/\.jpg$/, '.webp')}" />
                         ${dest.photoSm ? `<source type="image/webp" srcset="${dest.photoSm.replace(/\.jpg$/, '.webp')}" />` : ''}
                         <img
