@@ -149,7 +149,7 @@ export const destContent: DestContent[] = [
       },
       {
         q: 'Le taxi peut-il m\'attendre pendant ma visite des calanques ?',
-        a: 'Oui. Soit nous restons sur place avec attente facturée selon le tarif réglementé (34,60 €/h), soit nous revenons à l\'heure de votre choix — vous nous appelez quand vous voulez repartir.',
+        a: 'Oui. Soit nous restons sur place avec attente facturée selon le tarif réglementé (35,60 €/h), soit nous revenons à l\'heure de votre choix — vous nous appelez quand vous voulez repartir.',
       },
       {
         q: 'Pouvez-vous déposer au départ du sentier des calanques (Port-Miou) ?',
@@ -206,7 +206,7 @@ export const destContent: DestContent[] = [
       },
       {
         q: 'Le taxi peut-il attendre pendant ma journée à Aix ?',
-        a: 'Plus économique : nous vous déposons, vous nous appelez à l\'heure du retour. Tarif aller-retour annoncé à la réservation. Si vous préférez nous garder sur place, attente à 34,60 €/h.',
+        a: 'Plus économique : nous vous déposons, vous nous appelez à l\'heure du retour. Tarif aller-retour annoncé à la réservation. Si vous préférez nous garder sur place, attente à 35,60 €/h.',
       },
       {
         q: 'Y a-t-il un parking proche du Cours Mirabeau ?',
@@ -1460,7 +1460,7 @@ export const pricing = {
     { label: 'Tarif jour (7h–19h)', value: '2,24 € / km' },
     { label: 'Tarif nuit (19h–7h)', value: '2,88 € / km' },
     { label: 'Dimanches & jours fériés', value: '2,88 € / km' },
-    { label: 'Attente / marche lente', value: '34,60 € / h' },
+    { label: 'Attente / marche lente', value: '35,60 € / h' },
     { label: 'Course minimum', value: '8,00 €' },
   ],
   surcharges: [

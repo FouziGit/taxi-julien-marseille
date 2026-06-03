@@ -67,7 +67,7 @@ Tarifs taxi officiels Marseille — conformes à l'arrêté préfectoral. **Tari
 - Jour (7h-19h) : **2,24 € / km**
 - Nuit (19h-7h) : **2,88 € / km**
 - Dimanche & fériés : 2,88 € / km
-- Attente / marche lente : **34,60 € / h**
+- Attente / marche lente : **35,60 € / h**
 - Course minimum : 8,00 €
 
 ### Suppléments
