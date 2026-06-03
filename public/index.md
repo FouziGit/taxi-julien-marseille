@@ -1,7 +1,7 @@
 ---
 title: Taxi Julien — Marseille · 24h/24 — Réservation immédiate 06 35 58 24 72
 description: Taxi premium Marseille & PACA. Aéroport, gare, port, longue distance, transport médical conventionné CPAM. Mercedes Classe V 1-7 passagers. Réservation immédiate 24/7.
-canonical: https://taxi-julien-marseille.netlify.app/
+canonical: https://taxijulien.com/
 author: Julien BRACHT
 type: WebPage
 lang: fr-FR
@@ -34,7 +34,7 @@ D'où. Vers où. Sélectionnez un départ et une destination — on s'occupe du 
 - **Provence** : Aix-en-Provence (30 min), Avignon (1h15), Arles (1h)
 - **Ski** : Les Arcs, Les Orres, Risoul, Vars, Pra Loup, Serre Chevalier, Montgenèvre, Superdévoluy
 
-[**→ Réserver ce trajet**](https://taxi-julien-marseille.netlify.app/#reservation)
+[**→ Réserver ce trajet**](https://taxijulien.com/#reservation)
 
 ---
 
@@ -42,7 +42,7 @@ D'où. Vers où. Sélectionnez un départ et une destination — on s'occupe du 
 
 Réponse confirmée en quelques minutes par téléphone, WhatsApp ou email.
 
-[**→ Formulaire de réservation**](https://taxi-julien-marseille.netlify.app/#reservation)
+[**→ Formulaire de réservation**](https://taxijulien.com/#reservation)
 
 ---
 

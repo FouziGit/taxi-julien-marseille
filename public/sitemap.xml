@@ -1,362 +1,362 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/</loc>
+    <loc>https://taxijulien.com/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#reservation</loc>
+    <loc>https://taxijulien.com/#reservation</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#destinations</loc>
+    <loc>https://taxijulien.com/#destinations</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#services</loc>
+    <loc>https://taxijulien.com/#services</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#tarifs</loc>
+    <loc>https://taxijulien.com/#tarifs</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#flotte</loc>
+    <loc>https://taxijulien.com/#flotte</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#galerie</loc>
+    <loc>https://taxijulien.com/#galerie</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#zone</loc>
+    <loc>https://taxijulien.com/#zone</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#avis</loc>
+    <loc>https://taxijulien.com/#avis</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#faq</loc>
+    <loc>https://taxijulien.com/#faq</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#contact</loc>
+    <loc>https://taxijulien.com/#contact</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/#blog</loc>
+    <loc>https://taxijulien.com/#blog</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/llms.txt</loc>
+    <loc>https://taxijulien.com/llms.txt</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/llms-full.txt</loc>
+    <loc>https://taxijulien.com/llms-full.txt</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/index.md</loc>
+    <loc>https://taxijulien.com/index.md</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/</loc>
+    <loc>https://taxijulien.com/destinations/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/aix-en-provence/</loc>
+    <loc>https://taxijulien.com/destinations/aix-en-provence/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/cassis/</loc>
+    <loc>https://taxijulien.com/destinations/cassis/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/saint-tropez/</loc>
+    <loc>https://taxijulien.com/destinations/saint-tropez/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/la-ciotat/</loc>
+    <loc>https://taxijulien.com/destinations/la-ciotat/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/saint-cyr/</loc>
+    <loc>https://taxijulien.com/destinations/saint-cyr/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/bandol/</loc>
+    <loc>https://taxijulien.com/destinations/bandol/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/sanary/</loc>
+    <loc>https://taxijulien.com/destinations/sanary/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/embiez/</loc>
+    <loc>https://taxijulien.com/destinations/embiez/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/six-fours/</loc>
+    <loc>https://taxijulien.com/destinations/six-fours/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/la-seyne/</loc>
+    <loc>https://taxijulien.com/destinations/la-seyne/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/toulon/</loc>
+    <loc>https://taxijulien.com/destinations/toulon/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/hyeres/</loc>
+    <loc>https://taxijulien.com/destinations/hyeres/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/la-londe/</loc>
+    <loc>https://taxijulien.com/destinations/la-londe/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/bormes-les-mimosas/</loc>
+    <loc>https://taxijulien.com/destinations/bormes-les-mimosas/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/le-lavandou/</loc>
+    <loc>https://taxijulien.com/destinations/le-lavandou/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/rayol-canadel/</loc>
+    <loc>https://taxijulien.com/destinations/rayol-canadel/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/cavalaire/</loc>
+    <loc>https://taxijulien.com/destinations/cavalaire/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/la-croix-valmer/</loc>
+    <loc>https://taxijulien.com/destinations/la-croix-valmer/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/cogolin/</loc>
+    <loc>https://taxijulien.com/destinations/cogolin/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/gassin/</loc>
+    <loc>https://taxijulien.com/destinations/gassin/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/ramatuelle/</loc>
+    <loc>https://taxijulien.com/destinations/ramatuelle/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/sainte-maxime/</loc>
+    <loc>https://taxijulien.com/destinations/sainte-maxime/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/frejus/</loc>
+    <loc>https://taxijulien.com/destinations/frejus/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/saint-raphael/</loc>
+    <loc>https://taxijulien.com/destinations/saint-raphael/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/mandelieu/</loc>
+    <loc>https://taxijulien.com/destinations/mandelieu/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/cannes/</loc>
+    <loc>https://taxijulien.com/destinations/cannes/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/antibes/</loc>
+    <loc>https://taxijulien.com/destinations/antibes/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/cagnes-sur-mer/</loc>
+    <loc>https://taxijulien.com/destinations/cagnes-sur-mer/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/nice-ville/</loc>
+    <loc>https://taxijulien.com/destinations/nice-ville/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/aubagne/</loc>
+    <loc>https://taxijulien.com/destinations/aubagne/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/avignon/</loc>
+    <loc>https://taxijulien.com/destinations/avignon/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/arles/</loc>
+    <loc>https://taxijulien.com/destinations/arles/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/ski-pra-loup/</loc>
+    <loc>https://taxijulien.com/destinations/ski-pra-loup/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/ski-vars/</loc>
+    <loc>https://taxijulien.com/destinations/ski-vars/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/ski-risoul/</loc>
+    <loc>https://taxijulien.com/destinations/ski-risoul/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/ski-orres/</loc>
+    <loc>https://taxijulien.com/destinations/ski-orres/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/aeroport-marseille-provence/</loc>
+    <loc>https://taxijulien.com/destinations/aeroport-marseille-provence/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/port-croisiere-marseille/</loc>
+    <loc>https://taxijulien.com/destinations/port-croisiere-marseille/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/gare-saint-charles/</loc>
+    <loc>https://taxijulien.com/destinations/gare-saint-charles/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/gare-aix-tgv/</loc>
+    <loc>https://taxijulien.com/destinations/gare-aix-tgv/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/gare-avignon-tgv/</loc>
+    <loc>https://taxijulien.com/destinations/gare-avignon-tgv/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/aeroport-nice/</loc>
+    <loc>https://taxijulien.com/destinations/aeroport-nice/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/destinations/aeroport-toulon-hyeres/</loc>
+    <loc>https://taxijulien.com/destinations/aeroport-toulon-hyeres/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://taxi-julien-marseille.netlify.app/mentions-legales/</loc>
+    <loc>https://taxijulien.com/mentions-legales/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

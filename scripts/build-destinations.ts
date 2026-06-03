@@ -43,7 +43,7 @@ const DIST = path.join(ROOT, 'dist')
 
 // Production URL — used for canonical, Open Graph, JSON-LD @id. Update
 // when the DNS migrates to taxijulien.com.
-const SITE_URL = 'https://taxi-julien-marseille.netlify.app'
+const SITE_URL = 'https://taxijulien.com'
 
 // ---------------------------------------------------------------------------
 // Find the hashed asset paths that Vite emitted for this build, so the

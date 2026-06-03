@@ -12,76 +12,76 @@ Chaque page = forfait, distance, durée, spots à visiter, FAQ par destination.
 
 ### Transport hubs
 
-- [Aéroport Marseille Provence](https://taxi-julien-marseille.netlify.app/destinations/aeroport-marseille-provence/) : 30 km, 30 min, forfait 70-110 €
-- [Aéroport Nice Côte d'Azur](https://taxi-julien-marseille.netlify.app/destinations/aeroport-nice/) : 200 km, 2h30, sur devis
-- [Aéroport Toulon-Hyères](https://taxi-julien-marseille.netlify.app/destinations/aeroport-toulon-hyeres/) : 75 km, 1h, sur devis
-- [Gare Saint-Charles](https://taxi-julien-marseille.netlify.app/destinations/gare-saint-charles/) : centre Marseille
-- [Gare Aix TGV](https://taxi-julien-marseille.netlify.app/destinations/gare-aix-tgv/) : 25 km, 25 min
-- [Gare TGV Avignon](https://taxi-julien-marseille.netlify.app/destinations/gare-avignon-tgv/) : 105 km, 1h10
-- [Port de croisière Marseille](https://taxi-julien-marseille.netlify.app/destinations/port-croisiere-marseille/) : 5 km, MPCT + Cap Janet
+- [Aéroport Marseille Provence](https://taxijulien.com/destinations/aeroport-marseille-provence/) : 30 km, 30 min, forfait 70-110 €
+- [Aéroport Nice Côte d'Azur](https://taxijulien.com/destinations/aeroport-nice/) : 200 km, 2h30, sur devis
+- [Aéroport Toulon-Hyères](https://taxijulien.com/destinations/aeroport-toulon-hyeres/) : 75 km, 1h, sur devis
+- [Gare Saint-Charles](https://taxijulien.com/destinations/gare-saint-charles/) : centre Marseille
+- [Gare Aix TGV](https://taxijulien.com/destinations/gare-aix-tgv/) : 25 km, 25 min
+- [Gare TGV Avignon](https://taxijulien.com/destinations/gare-avignon-tgv/) : 105 km, 1h10
+- [Port de croisière Marseille](https://taxijulien.com/destinations/port-croisiere-marseille/) : 5 km, MPCT + Cap Janet
 
 ### Côte calanques + Var
 
-- [Cassis & Calanques](https://taxi-julien-marseille.netlify.app/destinations/cassis/) : 30 km, 35 min, 130 € jour / 160 € nuit
-- [La Ciotat](https://taxi-julien-marseille.netlify.app/destinations/la-ciotat/) : 34 km, 30 min
-- [Saint-Cyr-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/saint-cyr/) : 43 km, 40 min, 150 € jour
-- [Bandol](https://taxi-julien-marseille.netlify.app/destinations/bandol/) : 50 km, 45 min, 175 € jour
-- [Sanary-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/sanary/) : 61 km, 50 min, 180 € jour
-- [Embarcadère du Brusc / Les Embiez](https://taxi-julien-marseille.netlify.app/destinations/embiez/) : 65 km, 55 min, 160-210 €
-- [Six-Fours-les-Plages](https://taxi-julien-marseille.netlify.app/destinations/six-fours/) : 63 km, 55 min, 200 € jour
-- [La Seyne-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/la-seyne/) : 63 km, 55 min, 200 € jour
-- [Toulon](https://taxi-julien-marseille.netlify.app/destinations/toulon/) : 67 km, 50 min, 200 €
-- [Hyères](https://taxi-julien-marseille.netlify.app/destinations/hyeres/) : 85 km, 1h05, 245 € jour
+- [Cassis & Calanques](https://taxijulien.com/destinations/cassis/) : 30 km, 35 min, 130 € jour / 160 € nuit
+- [La Ciotat](https://taxijulien.com/destinations/la-ciotat/) : 34 km, 30 min
+- [Saint-Cyr-sur-Mer](https://taxijulien.com/destinations/saint-cyr/) : 43 km, 40 min, 150 € jour
+- [Bandol](https://taxijulien.com/destinations/bandol/) : 50 km, 45 min, 175 € jour
+- [Sanary-sur-Mer](https://taxijulien.com/destinations/sanary/) : 61 km, 50 min, 180 € jour
+- [Embarcadère du Brusc / Les Embiez](https://taxijulien.com/destinations/embiez/) : 65 km, 55 min, 160-210 €
+- [Six-Fours-les-Plages](https://taxijulien.com/destinations/six-fours/) : 63 km, 55 min, 200 € jour
+- [La Seyne-sur-Mer](https://taxijulien.com/destinations/la-seyne/) : 63 km, 55 min, 200 € jour
+- [Toulon](https://taxijulien.com/destinations/toulon/) : 67 km, 50 min, 200 €
+- [Hyères](https://taxijulien.com/destinations/hyeres/) : 85 km, 1h05, 245 € jour
 
 ### Côte des Maures (Hyères → Saint-Tropez)
 
-- [La Londe-les-Maures](https://taxi-julien-marseille.netlify.app/destinations/la-londe/) : 100 km, 1h15, 265 € jour
-- [Bormes-les-Mimosas](https://taxi-julien-marseille.netlify.app/destinations/bormes-les-mimosas/) : 110 km, 1h20, 290 € jour
-- [Le Lavandou](https://taxi-julien-marseille.netlify.app/destinations/le-lavandou/) : 113 km, 1h25, 290 € jour
-- [Rayol-Canadel-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/rayol-canadel/) : 125 km, 1h30, 440 € jour
-- [Cavalaire-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/cavalaire/) : 128 km, 1h35, 350 € jour
-- [La Croix-Valmer](https://taxi-julien-marseille.netlify.app/destinations/la-croix-valmer/) : 132 km, 1h40, 225 € jour
-- [Cogolin](https://taxi-julien-marseille.netlify.app/destinations/cogolin/) : 135 km, 1h45, 315 € jour
-- [Gassin](https://taxi-julien-marseille.netlify.app/destinations/gassin/) : 138 km, 1h45, 335 € jour
-- [Ramatuelle](https://taxi-julien-marseille.netlify.app/destinations/ramatuelle/) : 140 km, 1h50, 340 € jour
-- [Saint-Tropez](https://taxi-julien-marseille.netlify.app/destinations/saint-tropez/) : 135 km, 2h, 335 € jour / 386 € nuit
+- [La Londe-les-Maures](https://taxijulien.com/destinations/la-londe/) : 100 km, 1h15, 265 € jour
+- [Bormes-les-Mimosas](https://taxijulien.com/destinations/bormes-les-mimosas/) : 110 km, 1h20, 290 € jour
+- [Le Lavandou](https://taxijulien.com/destinations/le-lavandou/) : 113 km, 1h25, 290 € jour
+- [Rayol-Canadel-sur-Mer](https://taxijulien.com/destinations/rayol-canadel/) : 125 km, 1h30, 440 € jour
+- [Cavalaire-sur-Mer](https://taxijulien.com/destinations/cavalaire/) : 128 km, 1h35, 350 € jour
+- [La Croix-Valmer](https://taxijulien.com/destinations/la-croix-valmer/) : 132 km, 1h40, 225 € jour
+- [Cogolin](https://taxijulien.com/destinations/cogolin/) : 135 km, 1h45, 315 € jour
+- [Gassin](https://taxijulien.com/destinations/gassin/) : 138 km, 1h45, 335 € jour
+- [Ramatuelle](https://taxijulien.com/destinations/ramatuelle/) : 140 km, 1h50, 340 € jour
+- [Saint-Tropez](https://taxijulien.com/destinations/saint-tropez/) : 135 km, 2h, 335 € jour / 386 € nuit
 
 ### Côte d'Azur (Sainte-Maxime → Nice)
 
-- [Sainte-Maxime](https://taxi-julien-marseille.netlify.app/destinations/sainte-maxime/) : 135 km, 1h45, 335 € jour
-- [Fréjus](https://taxi-julien-marseille.netlify.app/destinations/frejus/) : 150 km, 1h55, 325 € jour
-- [Saint-Raphaël](https://taxi-julien-marseille.netlify.app/destinations/saint-raphael/) : 153 km, 2h, 335 € jour
-- [Mandelieu-la-Napoule](https://taxi-julien-marseille.netlify.app/destinations/mandelieu/) : 158 km, 2h05, 385 € jour
-- [Cannes](https://taxi-julien-marseille.netlify.app/destinations/cannes/) : 163 km, 2h10, 310 € jour
-- [Antibes](https://taxi-julien-marseille.netlify.app/destinations/antibes/) : 175 km, 2h20, 430 € jour
-- [Cagnes-sur-Mer](https://taxi-julien-marseille.netlify.app/destinations/cagnes-sur-mer/) : 183 km, 2h25, 450 € jour
-- [Nice](https://taxi-julien-marseille.netlify.app/destinations/nice-ville/) : 196 km, 2h30, 470 € jour
+- [Sainte-Maxime](https://taxijulien.com/destinations/sainte-maxime/) : 135 km, 1h45, 335 € jour
+- [Fréjus](https://taxijulien.com/destinations/frejus/) : 150 km, 1h55, 325 € jour
+- [Saint-Raphaël](https://taxijulien.com/destinations/saint-raphael/) : 153 km, 2h, 335 € jour
+- [Mandelieu-la-Napoule](https://taxijulien.com/destinations/mandelieu/) : 158 km, 2h05, 385 € jour
+- [Cannes](https://taxijulien.com/destinations/cannes/) : 163 km, 2h10, 310 € jour
+- [Antibes](https://taxijulien.com/destinations/antibes/) : 175 km, 2h20, 430 € jour
+- [Cagnes-sur-Mer](https://taxijulien.com/destinations/cagnes-sur-mer/) : 183 km, 2h25, 450 € jour
+- [Nice](https://taxijulien.com/destinations/nice-ville/) : 196 km, 2h30, 470 € jour
 
 ### Provence intérieure
 
-- [Aix-en-Provence](https://taxi-julien-marseille.netlify.app/destinations/aix-en-provence/) : 32 km, 30 min, à partir de 90 €
-- [Avignon](https://taxi-julien-marseille.netlify.app/destinations/avignon/) : 100 km, 1h05, 210 € jour
-- [Arles](https://taxi-julien-marseille.netlify.app/destinations/arles/) : 90 km, 1h, 190 € jour
-- [Aubagne](https://taxi-julien-marseille.netlify.app/destinations/aubagne/) : 17 km, 20 min
+- [Aix-en-Provence](https://taxijulien.com/destinations/aix-en-provence/) : 32 km, 30 min, à partir de 90 €
+- [Avignon](https://taxijulien.com/destinations/avignon/) : 100 km, 1h05, 210 € jour
+- [Arles](https://taxijulien.com/destinations/arles/) : 90 km, 1h, 190 € jour
+- [Aubagne](https://taxijulien.com/destinations/aubagne/) : 17 km, 20 min
 
 ### Stations de ski (Hautes-Alpes)
 
-- [Pra Loup](https://taxi-julien-marseille.netlify.app/destinations/ski-pra-loup/) : 233 km, 2h50, à partir de 550 €
-- [Vars](https://taxi-julien-marseille.netlify.app/destinations/ski-vars/) : 280 km, 3h, à partir de 580 €
-- [Risoul](https://taxi-julien-marseille.netlify.app/destinations/ski-risoul/) : 290 km, 3h05, à partir de 560 €
-- [Les Orres](https://taxi-julien-marseille.netlify.app/destinations/ski-orres/) : 270 km, 2h50, à partir de 520 €
+- [Pra Loup](https://taxijulien.com/destinations/ski-pra-loup/) : 233 km, 2h50, à partir de 550 €
+- [Vars](https://taxijulien.com/destinations/ski-vars/) : 280 km, 3h, à partir de 580 €
+- [Risoul](https://taxijulien.com/destinations/ski-risoul/) : 290 km, 3h05, à partir de 560 €
+- [Les Orres](https://taxijulien.com/destinations/ski-orres/) : 270 km, 2h50, à partir de 520 €
 
 ## Sections du site principal
 
-- [Formulaire de réservation](https://taxi-julien-marseille.netlify.app/#reservation)
-- [Tarifs réglementés + 3 tableaux de forfaits](https://taxi-julien-marseille.netlify.app/#tarifs)
-- [Avis Google (5/5)](https://taxi-julien-marseille.netlify.app/#avis)
-- [FAQ](https://taxi-julien-marseille.netlify.app/#faq)
-- [Guides et articles de blog](https://taxi-julien-marseille.netlify.app/#blog)
-- [Zone d'intervention (carte interactive)](https://taxi-julien-marseille.netlify.app/#zone)
+- [Formulaire de réservation](https://taxijulien.com/#reservation)
+- [Tarifs réglementés + 3 tableaux de forfaits](https://taxijulien.com/#tarifs)
+- [Avis Google (5/5)](https://taxijulien.com/#avis)
+- [FAQ](https://taxijulien.com/#faq)
+- [Guides et articles de blog](https://taxijulien.com/#blog)
+- [Zone d'intervention (carte interactive)](https://taxijulien.com/#zone)
 
 ## Optional
 
-- [Sitemap XML complet (58 URLs)](https://taxi-julien-marseille.netlify.app/sitemap.xml)
-- [Version markdown intégrale du site](https://taxi-julien-marseille.netlify.app/llms-full.txt)
-- [Version markdown de la page d'accueil](https://taxi-julien-marseille.netlify.app/index.md)
+- [Sitemap XML complet (58 URLs)](https://taxijulien.com/sitemap.xml)
+- [Version markdown intégrale du site](https://taxijulien.com/llms-full.txt)
+- [Version markdown de la page d'accueil](https://taxijulien.com/index.md)

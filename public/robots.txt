@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps and AI engine pointers
-Sitemap: https://taxi-julien-marseille.netlify.app/sitemap.xml
+Sitemap: https://taxijulien.com/sitemap.xml
 
 # Allow modern AI / answer engines explicitly. They occasionally honor
 # user-agent rules even when the global * allows everything.
