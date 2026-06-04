@@ -64,7 +64,7 @@ export default function Destinations({ onPick }: Props) {
         >
           <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[var(--color-silver-deep)]">— Construisez votre trajet</p>
           <h2 id="dest-heading" className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold mt-3 text-balance tracking-tight">
-            D'où. Vers où.
+            D'où, vers où.
           </h2>
           <p className="mt-4 text-[var(--color-silver-deep)] text-[15px] sm:text-base max-w-xl mx-auto">
             Sélectionnez un départ et une destination — on s'occupe du reste.

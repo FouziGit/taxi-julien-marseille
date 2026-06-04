@@ -54,7 +54,7 @@ export default function Reviews() {
         >
           <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[var(--color-silver-deep)]">— Avis clients</p>
           <h2 id="avis-heading" className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold mt-3 text-balance tracking-tight">
-            Cinq sur cinq.
+            5 sur 5.
           </h2>
           <div className="mt-4 inline-flex items-center gap-2 text-[var(--color-silver-2)]">
             <Stars count={5} size="lg" />
