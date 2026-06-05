@@ -25,8 +25,9 @@ const groupLabel: Record<Destination['category'], string> = {
 }
 
 export default function Destinations({ onPick }: Props) {
-  const [fromId, setFromId] = useState<string>('aeroport-mp')
-  const [toId, setToId] = useState<string>('cassis')
+  // Default trip = Marseille → Aéroport (the core service), shown first.
+  const [fromId, setFromId] = useState<string>('msl-1')
+  const [toId, setToId] = useState<string>('aeroport-marseille-provence')
 
   const grouped = useMemo(() => {
     const out: Record<string, Destination[]> = {}

@@ -1399,7 +1399,7 @@ export const departures: Departure[] = [
 
 export const destinations: Destination[] = [
   // Aéroports
-  { id: 'aeroport-marseille-provence', name: 'Aéroport Marseille Provence', shortName: 'Marseille Provence', category: 'Aéroport', priceFrom: 70, priceTo: 110, duration: '~30 min', tagline: 'Forfait fixe · suivi du vol', photo: '/photos/v8.jpg', photoSm: '/photos/v8-sm.jpg' },
+  { id: 'aeroport-marseille-provence', name: 'Aéroport Marseille Provence', shortName: 'Marseille Provence', category: 'Aéroport', priceFrom: 70, priceTo: 110, duration: '~30 min', tagline: 'Forfait fixe · suivi du vol', photo: '/photos/hero.jpg', photoSm: '/photos/hero-sm.jpg' },
   { id: 'aeroport-nice', name: "Aéroport Nice Côte d'Azur", shortName: 'Nice', category: 'Aéroport', duration: '~2h', note: 'Sur devis', tagline: 'Direct par autoroute', photo: '/photos/dest-nice.jpg', photoSm: '/photos/dest-nice-sm.jpg' },
   { id: 'aeroport-toulon-hyeres', name: 'Aéroport Toulon-Hyères', shortName: 'Toulon-Hyères', category: 'Aéroport', duration: '~1h', note: 'Sur devis', tagline: 'Côte varoise', photo: '/photos/v3.jpg', photoSm: '/photos/v3-sm.jpg' },
 
