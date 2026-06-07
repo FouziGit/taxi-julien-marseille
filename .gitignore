@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Secrets — ne JAMAIS committer la clé API Anthropic
+.env
+.env.*
+!.env.example
+
+# Rapports d'exécution locaux du générateur de blog (bruit, gardés en local)
+scripts/article-gen/run-reports/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

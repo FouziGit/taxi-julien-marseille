@@ -1,0 +1,73 @@
+name: Blog — article du jour
+
+# FALLBACK CLOUD (optionnel). L'automatisation principale tourne en LOCAL sur le
+# Mac via launchd (scripts/article-gen/run-local.sh + com.taxijulien.blog.plist).
+# Ce workflow est gardé en déclenchement MANUEL uniquement (pas de cron) pour
+# éviter de publier 2 articles le même jour. Pour l'activer en cloud : remettre
+# le bloc `schedule` ci-dessous et ajouter le secret ANTHROPIC_API_KEY.
+#
+#   schedule:
+#     - cron: '0 7 * * *'   # 07:00 UTC ≈ 8h/9h Paris
+
+on:
+  workflow_dispatch:
+    # Permet de lancer un article à la demande depuis l'onglet Actions.
+    inputs:
+      topic:
+        description: "Forcer un id de sujet (optionnel, ex: ski-alpes-du-sud-depuis-marseille)"
+        required: false
+        default: ''
+
+concurrency:
+  group: article-gen
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Générer l'article du jour
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -n "${{ github.event.inputs.topic }}" ]; then
+            npm run gen:article -- --topic=${{ github.event.inputs.topic }}
+          else
+            npm run gen:article
+          fi
+
+      - name: Committer & pousser les changements
+        run: |
+          git config user.name "Taxi Julien Blog"
+          git config user.email "blog@taxijulien.com"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Aucun changement (sujet vide ou rien à publier) — pas de commit."
+            exit 0
+          fi
+          git add src/data/articles.json scripts/article-gen/topics.json \
+                  scripts/article-gen/run-reports scripts/article-gen/_drafts 2>/dev/null || true
+          # Message basé sur le dernier rapport de run (publié vs brouillon).
+          LAST_REPORT=$(ls -t scripts/article-gen/run-reports/*.json 2>/dev/null | head -1)
+          if [ -n "$LAST_REPORT" ] && grep -q '"status": "published"' "$LAST_REPORT"; then
+            SLUG=$(grep -o '"slug": "[^"]*"' "$LAST_REPORT" | head -1 | cut -d'"' -f4)
+            git commit -m "content(blog): nouvel article « ${SLUG} »"
+          else
+            git commit -m "chore(blog): brouillon d'article à relire"
+          fi
+          git push

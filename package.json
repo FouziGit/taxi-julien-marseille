@@ -9,7 +9,9 @@
     "build:spa": "tsc -b && vite build",
     "build:destinations": "tsx scripts/build-destinations.ts",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:article": "tsx scripts/article-gen/cli.mts",
+    "gen:article:dry": "tsx scripts/article-gen/cli.mts --dry-run"
   },
   "dependencies": {
     "motion": "^12.38.0",
@@ -17,6 +19,7 @@
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.100.1",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.2.4",
     "@types/node": "^24.12.2",

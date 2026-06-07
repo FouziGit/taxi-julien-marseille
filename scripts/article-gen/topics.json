@@ -1,0 +1,247 @@
+{
+  "_comment": "File de sujets du blog Taxi Julien. status: pending | published | drafted. Le script prend le 1er 'pending' (priorité haute d'abord). Ajoute des sujets à la fin sans toucher aux publiés.",
+  "topics": [
+    {
+      "id": "aeroport-marseille-vol-tot-matin",
+      "title": "Vol tôt le matin à Marseille Provence : comment ne pas le rater",
+      "brief": "Guide pratique pour un vol matinal (avant 7h) depuis l'aéroport Marseille Provence : à quelle heure partir de Marseille, temps de trajet réaliste de nuit, pourquoi réserver son taxi la veille, dépose au bon terminal. Mettre en avant le forfait aéroport et le suivi de vol.",
+      "ctaDestinationId": "aeroport-marseille-provence",
+      "season": "Toute l'année",
+      "priority": "high",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "port-croisiere-marseille-jour-embarquement",
+      "title": "Embarquement croisière à Marseille : la logistique du jour J",
+      "brief": "Tout sur l'arrivée au port de croisière de Marseille (terminal Costa / MSC) le jour de l'embarquement : où déposer, gestion des bagages, à quelle heure arriver avant l'appareillage, réserver le retour à l'avance. Insister sur l'espace bagages du van.",
+      "ctaDestinationId": "port-croisiere-marseille",
+      "season": "Toute l'année",
+      "priority": "high",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "gare-saint-charles-transfert-tgv",
+      "title": "Gare Saint-Charles : arriver serein pour son TGV",
+      "brief": "Conseils pour un transfert taxi vers/depuis Marseille Saint-Charles : prise en charge sur le quai, marge à prévoir aux heures de pointe, dépose minute, correspondances tardives. Rassurer sur la ponctualité même tard le soir.",
+      "ctaDestinationId": "gare-saint-charles",
+      "season": "Toute l'année",
+      "priority": "high",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "taxi-conventionne-cpam-marseille",
+      "title": "Transport médical conventionné à Marseille : comment ça marche",
+      "brief": "Expliquer le VSL / taxi conventionné CPAM : qui peut en bénéficier, la prescription médicale, le tiers payant (sans avance de frais), les hôpitaux desservis (Paoli-Calmettes, Timone, Conception, Nord). Ton rassurant, pédagogique. PAS de conseil médical, juste la logistique transport.",
+      "ctaDestinationId": null,
+      "season": "Toute l'année",
+      "priority": "high",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "ski-alpes-du-sud-depuis-marseille",
+      "title": "Rejoindre les stations des Alpes du Sud en taxi depuis Marseille",
+      "brief": "Transfert hiver vers Pra Loup, Les Orres, Risoul, Vars, Les Arcs depuis Marseille ou l'aéroport : durées de trajet réalistes, confort du van avec les skis/bagages, route enneigée et pneus, intérêt du forfait porte-à-porte vs train+navette. Tarif sur devis.",
+      "ctaDestinationId": "ski-pra-loup",
+      "season": "Hiver",
+      "priority": "high",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "mariage-provence-transport-invites",
+      "title": "Transport des mariés et invités : un mariage en Provence sans stress",
+      "brief": "Comment organiser le transport pour un mariage en Provence/PACA : navettes invités, véhicule des mariés, discrétion, chauffeur en tenue, devis personnalisé. Domaines et bastides de la région. Insister sur la fiabilité le jour J.",
+      "ctaDestinationId": null,
+      "season": "Été",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "taxi-vs-vtc-vs-navette-marseille",
+      "title": "Taxi, VTC ou navette à Marseille : lequel choisir pour l'aéroport",
+      "brief": "Comparatif honnête taxi conventionné vs VTC vs navette aéroport pour un transfert Marseille Provence : ponctualité, prix annoncé d'avance, prise en charge bagages, voie taxi réservée, dépose terminal. Positionner Taxi Julien (chauffeur de confiance, forfait fixe) sans dénigrer. Rester factuel sur les tarifs réglementés.",
+      "ctaDestinationId": "aeroport-marseille-provence",
+      "season": "Toute l'année",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "calanques-acces-taxi-printemps",
+      "title": "Accéder aux Calanques au printemps quand la route est fermée",
+      "brief": "Au printemps/été, l'accès voiture aux Calanques (Sormiou, Morgiou) est réglementé. Expliquer comment un taxi local contourne la galère de parking : dépose au plus près, récupération sur appel, éviter la chaleur de la marche. Honnête sur les restrictions d'accès.",
+      "ctaDestinationId": "cassis",
+      "season": "Printemps",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "tarif-nuit-taxi-marseille-explique",
+      "title": "Tarif de nuit en taxi à Marseille : ce qu'il faut savoir",
+      "brief": "Pédagogie sur les tarifs réglementés : différence jour/nuit (19h–7h), dimanches et jours fériés, prise en charge, course minimum, pourquoi le compteur ou le forfait. Transparence totale. Utiliser UNIQUEMENT les tarifs du site-context.",
+      "ctaDestinationId": null,
+      "season": "Toute l'année",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "aeroport-nice-depuis-marseille-cote-azur",
+      "title": "Marseille ↔ Aéroport de Nice : le transfert longue distance confortable",
+      "brief": "Transfert entre Marseille et l'aéroport Nice Côte d'Azur : durée réaliste sur l'A8, confort du van pour 2h de route, intérêt du porte-à-porte avec bagages vs train. Forfait sur devis. Cas d'usage : correspondance, vol indisponible à Marseille.",
+      "ctaDestinationId": "aeroport-nice",
+      "season": "Toute l'année",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "saint-tropez-depuis-marseille-ete",
+      "title": "Marseille → Saint-Tropez : éviter les bouchons de l'été",
+      "brief": "Rejoindre Saint-Tropez depuis Marseille en taxi l'été : la réalité des embouchures du Golfe, meilleurs horaires de départ, durée honnête, confort vs voiture de location à garer. Forfait sur devis. Ton de chauffeur qui connaît la route.",
+      "ctaDestinationId": "saint-tropez",
+      "season": "Été",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "aix-en-provence-transfert-gare-tgv",
+      "title": "Aix-en-Provence TGV : le transfert qui vous évite la galère de parking",
+      "brief": "Transfert vers la gare Aix-en-Provence TGV (excentrée, parkings saturés et chers) : pourquoi le taxi est rentable, prise en charge sur le quai, marge aux heures de pointe. Relier au service gare.",
+      "ctaDestinationId": "gare-aix-tgv",
+      "season": "Toute l'année",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "voyage-affaires-marseille-compte-pro",
+      "title": "Déplacements pro à Marseille : le taxi avec compte entreprise",
+      "brief": "Pour les entreprises : compte pro, facturation centralisée, navettes salariés, transferts clients, anglais parlé, ponctualité pour les rendez-vous. Cas d'usage séminaire/déplacement client. Crédibilité B2B.",
+      "ctaDestinationId": null,
+      "season": "Toute l'année",
+      "priority": "low",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "bagages-famille-taxi-van-aeroport",
+      "title": "Partir en famille avec bagages : pourquoi le van change tout",
+      "brief": "Transfert aéroport/gare en famille : siège auto sur demande, espace pour poussette et grosses valises, jusqu'à 7 places, pas de Tetris dans un coffre de berline. Concret et rassurant pour parents qui voyagent.",
+      "ctaDestinationId": "aeroport-marseille-provence",
+      "season": "Toute l'année",
+      "priority": "low",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "toulon-hyeres-aeroport-transfert",
+      "title": "Aéroport de Toulon-Hyères : transfert depuis Marseille et le Var",
+      "brief": "Desservir l'aéroport Toulon-Hyères depuis Marseille ou les villes du Var (Bandol, Sanary, La Seyne) : durées, cas d'usage vols low-cost, forfait sur devis. Connaissance fine du littoral varois.",
+      "ctaDestinationId": "aeroport-toulon-hyeres",
+      "season": "Toute l'année",
+      "priority": "low",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "avignon-tgv-provence-transfert",
+      "title": "Gare TGV d'Avignon : rejoindre la Provence sans voiture",
+      "brief": "Transfert depuis la gare Avignon TGV vers Marseille, Aix, le Luberon : la gare est loin du centre, le taxi évite la double galère train+location. Durées réalistes, cas d'usage touristique. Forfait sur devis.",
+      "ctaDestinationId": "gare-avignon-tgv",
+      "season": "Toute l'année",
+      "priority": "low",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "cassis-restaurants-port-apres-calanques",
+      "title": "Cassis : où manger au port après les Calanques",
+      "brief": "Guide gourmand local de Cassis : tables du port, spécialités (oursinades en saison, vin de Cassis blanc), comment enchaîner Calanques + déjeuner sans stress de parking grâce au taxi qui vous récupère. Honnête sur l'affluence estivale.",
+      "ctaDestinationId": "cassis",
+      "season": "Été",
+      "priority": "low",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "reserver-taxi-marseille-comment",
+      "title": "Réserver un taxi à Marseille : appel ou WhatsApp, mode d'emploi",
+      "brief": "Comment réserver chez Taxi Julien : par téléphone ou WhatsApp en 1 message, infos à donner (heure, adresse, nb de passagers, bagages, vol), confirmation, réservation à l'avance pour les vols/trains. Pas de paiement en ligne — c'est volontaire, contact direct avec le chauffeur.",
+      "ctaDestinationId": null,
+      "season": "Toute l'année",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "provence-lavande-circuit-ete",
+      "title": "Circuit lavande en Provence : Valensole et le plateau en taxi privé",
+      "brief": "Excursion touristique à la saison de la lavande (fin juin–mi-juillet) : plateau de Valensole, meilleurs horaires (lumière du matin), circuit sur mesure avec chauffeur, éviter la conduite et le parking. Honnête sur la fenêtre de floraison courte. Forfait sur devis.",
+      "ctaDestinationId": null,
+      "season": "Été",
+      "priority": "low",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "toussaint-noel-aeroport-affluence",
+      "title": "Vacances de fin d'année : anticiper son transfert aéroport",
+      "brief": "Période de Noël/jour de l'an : affluence à l'aéroport et sur les routes, pourquoi réserver tôt, tarif dimanche/jours fériés (réglementé), ponctualité quand tout le monde voyage. Conseils d'anticipation. Utiliser le vrai tarif férié.",
+      "ctaDestinationId": "aeroport-marseille-provence",
+      "season": "Hiver",
+      "priority": "medium",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "bandol-sanary-littoral-varois-decouverte",
+      "title": "Bandol, Sanary, Les Embiez : escapade sur le littoral varois",
+      "brief": "Découverte du littoral varois proche de Marseille : Bandol (vignoble AOC), Sanary (port pittoresque), embarcadère du Brusc pour Les Embiez. Comment enchaîner en taxi privé. Forfait Marseille↔Embiez 160–210 € (aller simple), reste sur devis.",
+      "ctaDestinationId": "bandol",
+      "season": "Printemps",
+      "priority": "low",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    },
+    {
+      "id": "longue-distance-confort-van-mercedes",
+      "title": "Longue distance en taxi : pourquoi 2h de van valent mieux que le train",
+      "brief": "L'argument confort du van Mercedes Classe V pour les longs trajets PACA : porte-à-porte sans correspondance, bagages sans limite de quai, travailler ou dormir en route, même chauffeur. Cas d'usage : famille, pro, personne à mobilité réduite. Tarif sur devis.",
+      "ctaDestinationId": null,
+      "season": "Toute l'année",
+      "priority": "low",
+      "status": "pending",
+      "publishedSlug": null,
+      "publishedAt": null
+    }
+  ]
+}

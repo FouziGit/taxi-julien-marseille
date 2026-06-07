@@ -1,0 +1,63 @@
+# Phrases / tics interdits (anti-AI-slop). Une par ligne, # = commentaire.
+# Le contrôle qualité pénalise la présence de ces tournures. Insensible à la casse.
+
+# --- Tics d'IA en français ---
+plongeons dans
+plongez dans
+embarquez pour
+embarquons pour
+au cœur de
+nichée au cœur
+niché au cœur
+écrin de verdure
+joyau caché
+véritable joyau
+n'hésitez pas à
+il est important de noter
+il convient de noter
+force est de constater
+dans le monde d'aujourd'hui
+de nos jours
+à l'ère du
+que vous soyez
+plus qu'une simple
+bien plus qu'un
+laissez-vous transporter
+laissez-vous séduire
+laissez-vous tenter
+une expérience inoubliable
+des souvenirs inoubliables
+un moment magique
+sans plus attendre
+en somme
+en définitive
+pour conclure
+en conclusion
+in fine
+le saviez-vous
+prêt à
+prêts à
+tant attendu
+véritable havre
+havre de paix
+le paradis sur terre
+une destination de rêve
+la perle de
+la perle du
+un cadre idyllique
+à couper le souffle
+trésor caché
+
+# --- Tics d'IA en anglais (au cas où) ---
+delve into
+in today's fast-paced
+unlock the
+elevate your
+nestled in
+hidden gem
+breathtaking
+look no further
+when it comes to
+whether you're
+a testament to
+seamless experience
