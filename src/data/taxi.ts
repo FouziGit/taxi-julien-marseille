@@ -1414,7 +1414,7 @@ export const destinations: Destination[] = [
   { id: 'gare-avignon-tgv', name: "Gare TGV d'Avignon", shortName: 'Avignon TGV', category: 'Gare', note: 'Sur devis', tagline: 'Provence — terre des papes', photo: '/photos/dest-gare.jpg', photoSm: '/photos/dest-gare-sm.jpg' },
 
   // Ports — photo réelle : Taxi Julien devant MSC
-  { id: 'port-croisiere-marseille', name: 'Port de croisière Marseille', shortName: 'Croisière Marseille', category: 'Port', note: 'Sur devis', tagline: 'Costa · MSC · bagages XL', photo: '/photos/v5.jpg', photoSm: '/photos/v5-sm.jpg' },
+  { id: 'port-croisiere-marseille', name: 'Port de croisière Marseille', shortName: 'Croisière Marseille', category: 'Port', note: 'Sur devis', tagline: 'Costa · MSC · bagages XL', photo: '/photos/v5-2.jpg', photoSm: '/photos/v5-2-sm.jpg' },
 
   // Côte & calanques
   { id: 'cassis', name: 'Cassis & Calanques', shortName: 'Cassis', category: 'Site', duration: '~45 min', note: 'Sur devis', tagline: 'Falaises blanches · eau turquoise', photo: '/photos/dest-cassis.jpg', photoSm: '/photos/dest-cassis-sm.jpg' },
@@ -1624,8 +1624,8 @@ export const fleet: Vehicle[] = [
   {
     model: 'Mercedes Classe V',
     seats: 7,
-    image: '/photos/v0.jpg',
-    imageSm: '/photos/v0-sm.jpg',
+    image: '/photos/v0-2.jpg',
+    imageSm: '/photos/v0-2-sm.jpg',
     features: [
       'Van extra-long avec grand coffre',
       'Sièges enfant et rehausseurs',
@@ -1676,8 +1676,8 @@ export const gallery: GalleryPhoto[] = [
     context: 'Port',
   },
   {
-    src: '/photos/v5.jpg',
-    srcSm: '/photos/v5-sm.jpg',
+    src: '/photos/v5-2.jpg',
+    srcSm: '/photos/v5-2-sm.jpg',
     alt: 'Mercedes Classe V Taxi Julien devant un navire MSC',
     caption: 'Port de croisière — MSC',
     context: 'Port',
@@ -1690,8 +1690,8 @@ export const gallery: GalleryPhoto[] = [
     context: 'Longue distance',
   },
   {
-    src: '/photos/v2.jpg',
-    srcSm: '/photos/v2-sm.jpg',
+    src: '/photos/v2-2.jpg',
+    srcSm: '/photos/v2-2-sm.jpg',
     alt: 'Mercedes Classe V Taxi Julien sur une zone taxi à Marseille',
     caption: 'Zone taxi — Marseille',
     context: 'Marseille',
@@ -1704,8 +1704,8 @@ export const gallery: GalleryPhoto[] = [
     context: 'Marseille',
   },
   {
-    src: '/photos/v0.jpg',
-    srcSm: '/photos/v0-sm.jpg',
+    src: '/photos/v0-2.jpg',
+    srcSm: '/photos/v0-2-sm.jpg',
     alt: 'Mercedes Classe V Taxi Julien plein cadre',
     caption: "Mercedes Classe V — vue d'ensemble",
     context: 'Marseille',
