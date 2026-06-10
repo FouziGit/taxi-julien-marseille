@@ -51,9 +51,9 @@
     <meta name="apple-mobile-web-app-title" content="Taxi Julien" />
     <meta name="format-detection" content="telephone=yes" />
 
-    <!-- LCP image preload — hero AVIF preferred (~50% smaller than JPEG) -->
-    <link rel="preload" as="image" href="/photos/hero-sm.avif" type="image/avif" media="(max-width: 767px)" fetchpriority="high" />
-    <link rel="preload" as="image" href="/photos/hero.avif" type="image/avif" media="(min-width: 768px)" fetchpriority="high" />
+    <!-- LCP image preload — poster du fond vidéo du hero (s'affiche avant que
+         la vidéo charge). WebP léger (~55 Ko) pour un LCP rapide. -->
+    <link rel="preload" as="image" href="/photos/hero-poster.webp" type="image/webp" fetchpriority="high" />
 
     <!-- Self-hosted fonts — preload the two Latin woff2 files used above the fold -->
     <link rel="preload" as="font" href="/fonts/inter-latin.woff2" type="font/woff2" crossorigin />

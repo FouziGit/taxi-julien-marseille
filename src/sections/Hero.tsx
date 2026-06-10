@@ -1,7 +1,6 @@
 import { m } from 'motion/react'
 import { contact, trustBadges } from '../data/taxi'
 import { PhoneIcon, WhatsAppIcon, StarIcon } from '../components/Icons'
-import Pic from '../components/Pic'
 
 const headline = 'Une autre idée'
 const headline2 = 'du transport.'
@@ -124,23 +123,33 @@ export default function Hero() {
             className="relative order-first lg:order-last"
           >
             <div className="relative rounded-[28px] overflow-hidden hairline aspect-[5/4] sm:aspect-[16/11] bg-[var(--color-graphite)]">
-              {/* Static photo wrapper — removed the previous useScroll + useTransform
-               * driven parallax (y 0→80px + scale 1→1.08). It looked nice on
-               * desktop but on mobile it caused per-frame layout work on a
-               * fetchpriority="high" image, costing Lighthouse perf points.
-               * The reveal CSS animation still gives the image a clean entrance. */}
+              {/* Fond vidéo du véhicule — boucle fluide (boomerang), muet,
+               * lecture auto. Le poster s'affiche instantanément (= image LCP,
+               * préchargée dans index.html) et la vidéo prend le relais une fois
+               * chargée, sans bloquer le rendu. <img> de secours pour les très
+               * rares navigateurs sans <video>. */}
               <div className="absolute inset-0">
-                <Pic
-                  src="/photos/hero.jpg"
-                  srcSm="/photos/hero-sm.jpg"
-                  withAvif
-                  alt="Mercedes Classe V Taxi Julien devant le Terminal 1 de l'aéroport Marseille Provence"
-                  eager
-                  fetchPriority="high"
+                <video
+                  className="w-full h-full object-cover reveal"
+                  poster="/photos/hero-poster.webp"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="Mercedes Classe V Taxi Julien — vue d'ensemble du véhicule"
                   width={1200}
                   height={900}
-                  className="w-full h-full object-cover reveal"
-                />
+                >
+                  <source src="/photos/hero-video.mp4" type="video/mp4" />
+                  <img
+                    src="/photos/hero-poster.webp"
+                    alt="Mercedes Classe V Taxi Julien — vue d'ensemble du véhicule"
+                    className="w-full h-full object-cover"
+                    width={1200}
+                    height={900}
+                  />
+                </video>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/60 via-transparent to-transparent"/>
 
