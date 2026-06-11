@@ -231,7 +231,7 @@ export const destContent: DestContent[] = [
     seoDescription: 'Transfert privé Marseille → Saint-Tropez (135 km, 2h). Forfait fixe 320 € jour / 410 € nuit. Mercedes Classe V 7 pax. Dépose Vieux Port, Pampelonne, hôtel.',
     h1: 'Taxi Marseille → Saint-Tropez',
     heroSubtitle: 'Vieux Port · Pampelonne · 135 km · ~2h–2h30',
-    lead: 'Saint-Tropez est à 135 km de Marseille par l\'A50/A57/A570 puis la D98, soit 2h de trajet hors-saison et jusqu\'à 4h en plein été. Le forfait taxi privé à 335 € (journée) ou 386 € (nuit) revient souvent moins cher qu\'une location de voiture + parking 3 jours (90 €/min) — sans le stress des bouchons et de la circulation interdite au centre. Notre Mercedes Classe V vous dépose au Vieux Port, sur Pampelonne, ou directement à votre hôtel.',
+    lead: 'Saint-Tropez est à 135 km de Marseille par l\'A50/A57/A570 puis la D98, soit 2h de trajet hors-saison et jusqu\'à 4h en plein été. Le forfait taxi privé à 335 € (journée) ou 385 € (nuit) revient souvent moins cher qu\'une location de voiture + parking 3 jours (90 €/min) — sans le stress des bouchons et de la circulation interdite au centre. Notre Mercedes Classe V vous dépose au Vieux Port, sur Pampelonne, ou directement à votre hôtel.',
     tripNotes: 'Trajet par l\'A50 (péages ~8,40 €) puis l\'A57 et l\'A570 jusqu\'au Cannet-des-Maures, puis la D98 finale. Étapes possibles en route : Bandol (déjeuner port), Cap Sicié, Bormes-les-Mimosas (entre janvier et mars). Pampelonne accessible directement.',
     spots: [
       { name: 'Vieux Port de Saint-Tropez', blurb: 'Port emblématique avec ses yachts, terrasses (Sénéquier) et façades ocres. Marché tous les jours sur le quai au coucher du soleil.', type: 'monument' },
@@ -1564,7 +1564,7 @@ export const fareTables: FareTable[] = [
       { dest: "Six-Fours-les-Plages", day: "200 €", night: "250 €" },
       { dest: "La Seyne-sur-Mer", day: "200 €", night: "255 €" },
       { dest: "Ollioules", day: "190 €", night: "245 €" },
-      { dest: "Toulon", day: "200 €", night: "200 €" },
+      { dest: "Toulon", day: "200 €", night: "260 €" },
       { dest: "La Valette-du-Var", day: "220 €", night: "280 €" },
       { dest: "Le Pradet", day: "225 €", night: "285 €" },
       { dest: "Carqueiranne", day: "250 €", night: "320 €" },
@@ -1578,7 +1578,7 @@ export const fareTables: FareTable[] = [
       { dest: "Cogolin", day: "315 €", night: "400 €" },
       { dest: "Gassin", day: "335 €", night: "435 €" },
       { dest: "Ramatuelle", day: "340 €", night: "420 €" },
-      { dest: "Saint-Tropez", day: "335 €", night: "386 €" },
+      { dest: "Saint-Tropez", day: "335 €", night: "385 €" },
       { dest: "Sainte-Maxime", day: "335 €", night: "430 €" },
       { dest: "Fréjus", day: "325 €", night: "415 €" },
       { dest: "Saint-Raphaël", day: "335 €", night: "425 €" },
@@ -1643,7 +1643,7 @@ export type GalleryPhoto = {
   srcSm: string
   alt: string
   caption: string
-  context: 'Aéroport' | 'Port' | 'Gare' | 'Longue distance' | 'Marseille' | 'Hôtel'
+  context: 'Aéroport' | 'Port' | 'Gare' | 'Longue distance' | 'Marseille' | 'Hôtel' | 'Montagne'
 }
 
 export const gallery: GalleryPhoto[] = [
@@ -1686,8 +1686,15 @@ export const gallery: GalleryPhoto[] = [
     src: '/photos/v4.jpg',
     srcSm: '/photos/v4-sm.jpg',
     alt: 'Mercedes Classe V Taxi Julien en montagne, neige et sommets',
-    caption: 'Longue distance — montagne & ski',
-    context: 'Longue distance',
+    caption: 'Montagne — neige & sommets',
+    context: 'Montagne',
+  },
+  {
+    src: '/photos/v9.jpg',
+    srcSm: '/photos/v9-sm.jpg',
+    alt: 'Mercedes Classe V Taxi Julien dans la neige face aux sommets enneigés',
+    caption: 'Montagne — transfert ski',
+    context: 'Montagne',
   },
   {
     src: '/photos/v2-2.jpg',

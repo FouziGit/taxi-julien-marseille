@@ -44,7 +44,7 @@ Chaque page = forfait, distance, durée, spots à visiter, FAQ par destination.
 - [Cogolin](https://taxijulien.com/destinations/cogolin/) : 135 km, 1h45, 315 € jour
 - [Gassin](https://taxijulien.com/destinations/gassin/) : 138 km, 1h45, 335 € jour
 - [Ramatuelle](https://taxijulien.com/destinations/ramatuelle/) : 140 km, 1h50, 340 € jour
-- [Saint-Tropez](https://taxijulien.com/destinations/saint-tropez/) : 135 km, 2h, 335 € jour / 386 € nuit
+- [Saint-Tropez](https://taxijulien.com/destinations/saint-tropez/) : 135 km, 2h, 335 € jour / 385 € nuit
 
 ### Côte d'Azur (Sainte-Maxime → Nice)
 
