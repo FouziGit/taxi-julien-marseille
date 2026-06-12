@@ -1690,11 +1690,11 @@ export const gallery: GalleryPhoto[] = [
     context: 'Montagne',
   },
   {
-    src: '/photos/v9.jpg',
-    srcSm: '/photos/v9-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien dans la neige face aux sommets enneigés',
-    caption: 'Montagne — transfert ski',
-    context: 'Montagne',
+    src: '/photos/v10.jpg',
+    srcSm: '/photos/v10-sm.jpg',
+    alt: 'Mercedes Classe V Taxi Julien devant le Terminal 1 de l\'aéroport Marseille Provence, de jour',
+    caption: 'Terminal 1 — accueil de jour',
+    context: 'Aéroport',
   },
   {
     src: '/photos/v2-2.jpg',
