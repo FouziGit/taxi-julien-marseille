@@ -119,48 +119,21 @@
     Content-Type = "text/markdown; charset=utf-8"
 
 # -----------------------------------------------------------------------------
-# 301 redirects — legacy SEO pages from the previous Jalis-built site.
-# Every old URL pattern resolves to the new homepage. Sends Google a clean
-# "moved permanently" signal so backlink juice and ancientness migrate over
-# to the new domain root instead of dying on a 404.
-#
-# We intentionally collapse everything to / (rather than topic-specific
-# anchors) per the migration choice — simplest, no decision tree, but Google
-# may treat some as soft-404 if the destination has nothing to do with the
-# original keyword. The trade-off was accepted to keep this list short.
+# Legacy SEO redirects are handled by the edge function
+# netlify/edge-functions/legacy-redirects.ts — it 301-routes every old Jalis
+# URL (the "+"-slugs, "-z##"/"-y#" pages, .html, details-/activites-/…) to the
+# most relevant new /destinations/<slug>/ page (keyword-matched), falling back
+# to the homepage. Edge functions run BEFORE these [[redirects]], so the old
+# blanket "collapse-to-/" rules are gone: they sent everything to / (soft-404)
+# AND missed the "-z"/"-y" URLs, which then returned 200 homepage = duplicate.
 # -----------------------------------------------------------------------------
 
 # Trailing-slash enforcement for destination pages — Google indexes the
-# canonical (with slash), so make sure /destinations/cassis (no slash) hits a
-# clean 301 instead of being silently mirrored. The matcher excludes paths
-# that already end in / by being narrower than the SPA fallback below.
+# canonical (with slash), so /destinations/cassis (no slash) gets a clean 301.
 [[redirects]]
   from = "/destinations/:slug"
   to = "/destinations/:slug/"
   status = 301
-
-# Programmatic long-tail SEO pages (~750 URLs)
-[[redirects]]
-  from = "/activites-*"
-  to = "/"
-  status = 301
-
-[[redirects]]
-  from = "/details-*"
-  to = "/"
-  status = 301
-
-[[redirects]]
-  from = "/archives-*"
-  to = "/"
-  status = 301
-
-# All other legacy .html pages (tarifs, contact, transport-prive-*, etc.)
-[[redirects]]
-  from = "/*.html"
-  to = "/"
-  status = 301
-  force = true
 
 # -----------------------------------------------------------------------------
 # SPA fallback — must come LAST so it doesn't preempt the 301s above.
