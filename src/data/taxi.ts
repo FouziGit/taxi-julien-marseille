@@ -1648,20 +1648,6 @@ export type GalleryPhoto = {
 
 export const gallery: GalleryPhoto[] = [
   {
-    src: '/photos/v8.jpg',
-    srcSm: '/photos/v8-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien devant le Terminal 1 de nuit',
-    caption: 'Terminal 1 — accueil de nuit',
-    context: 'Aéroport',
-  },
-  {
-    src: '/photos/v3.jpg',
-    srcSm: '/photos/v3-sm.jpg',
-    alt: "Mercedes Classe V Taxi Julien à l'aéroport Terminal 1 de jour",
-    caption: 'Aéroport Marseille Provence',
-    context: 'Aéroport',
-  },
-  {
     src: '/photos/v1.jpg',
     srcSm: '/photos/v1-sm.jpg',
     alt: 'Mercedes Classe V Taxi Julien devant un hôtel avec bagages',
