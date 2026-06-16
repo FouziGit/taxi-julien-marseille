@@ -1655,10 +1655,10 @@ export const gallery: GalleryPhoto[] = [
     context: 'Hôtel',
   },
   {
-    src: '/photos/v7.jpg',
-    srcSm: '/photos/v7-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien devant le paquebot Costa Diadema',
-    caption: 'Port de croisière — Costa Diadema',
+    src: '/photos/v11.jpg',
+    srcSm: '/photos/v11-sm.jpg',
+    alt: 'Mercedes Classe V Taxi Julien devant un paquebot Costa',
+    caption: 'Port de croisière — Costa',
     context: 'Port',
   },
   {
