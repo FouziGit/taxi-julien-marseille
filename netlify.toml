@@ -105,18 +105,25 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
     Content-Type = "text/plain; charset=utf-8"
+    # Readable by AI crawlers, but kept out of Google's search index — it's an
+    # AI-ingestion artifact, not a SERP page. X-Robots-Tag: noindex does NOT
+    # block fetching, so GPTBot/ClaudeBot/Perplexity still read it fine; it only
+    # removes it from Google's "Crawled - currently not indexed" bucket (GSC noise).
+    X-Robots-Tag = "noindex"
 
 [[headers]]
   for = "/llms-full.txt"
   [headers.values]
     Cache-Control = "public, max-age=3600"
     Content-Type = "text/plain; charset=utf-8"
+    X-Robots-Tag = "noindex"
 
 [[headers]]
   for = "/index.md"
   [headers.values]
     Cache-Control = "public, max-age=3600"
     Content-Type = "text/markdown; charset=utf-8"
+    X-Robots-Tag = "noindex"
 
 # -----------------------------------------------------------------------------
 # Legacy SEO redirects are handled by the edge function
