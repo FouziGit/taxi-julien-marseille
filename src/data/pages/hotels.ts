@@ -1,0 +1,62 @@
+import type { DestContent } from '../taxi'
+
+// Page service : transferts hôtels de Marseille. Les établissements listés sont
+// ceux que l'ancien site liait (pages lien-hotel-*) ; tous existent. Pas
+// d'adresse postale (non vérifiée), seulement l'arrondissement.
+export const hotelPages: DestContent[] = [
+  {
+    id: 'hotels',
+    kind: 'service',
+    path: '/hotels/',
+    destName: 'Hôtels de Marseille',
+    destCategory: 'Ville',
+    destPhoto: '/photos/v1.jpg',
+    destPhotoSm: '/photos/v1-sm.jpg',
+    distanceKm: 0,
+    durationReal: '—',
+    deptCode: '13',
+    deptName: 'Bouches-du-Rhône',
+    geo: { lat: 43.2965, lng: 5.3698 },
+    seoTitle: 'Taxi hôtel Marseille ↔ aéroport, port, gare | Taxi Julien',
+    seoDescription: "Transfert taxi entre votre hôtel de Marseille et l'aéroport Marseille Provence, le port de croisière ou la gare Saint-Charles. Forfait fixe, pancarte nominative, 7 places. 24h/24.",
+    h1: 'Taxi depuis et vers les hôtels de Marseille',
+    kicker: '— Hôtels · Vieux-Port, Prado, Corniche',
+    heroSubtitle: "Aéroport 70 – 110 € · Port de croisière · Gare Saint-Charles · Pancarte à l'arrivée",
+    lead: "Réservez votre transfert avant même d'arriver : nous vous attendons à l'aéroport ou à la gare avec une pancarte à votre nom et vous déposons devant la réception de votre hôtel. Au départ, le chauffeur est à l'heure convenue devant l'entrée, bagages chargés. Forfait fixe annoncé à la réservation, paiement par carte à bord.",
+    fareLabel: '70 – 110 € aéroport',
+    fareNote: 'Forfait fixe hôtel ↔ aéroport Marseille Provence selon véhicule et passagers. Port et gare : tarif annoncé à la réservation.',
+    ctaTitle: 'Prêt à réserver votre transfert hôtel ?',
+    whatsappText: 'Bonjour, je souhaite réserver un transfert entre mon hôtel à Marseille et l\'aéroport, le port ou la gare.',
+    spotsTitle: 'Hôtels régulièrement desservis',
+    spotsSub: 'Une sélection parmi les établissements où nous déposons chaque semaine ; tous les hôtels de la métropole sont desservis.',
+    spots: [
+      { name: 'Sofitel Marseille Vieux-Port', blurb: 'Marseille 7e, boulevard Charles Livon, face au Vieux-Port.', type: 'hotel' },
+      { name: 'InterContinental Marseille – Hôtel-Dieu', blurb: 'Marseille 2e, au-dessus du Panier.', type: 'hotel' },
+      { name: 'Radisson Blu Hôtel Marseille Vieux-Port', blurb: 'Marseille 7e, quai Rive Neuve.', type: 'hotel' },
+      { name: 'nhow Marseille', blurb: 'Marseille 7e, sur la Corniche Kennedy.', type: 'hotel' },
+      { name: 'Le Petit Nice – Passedat', blurb: 'Marseille 7e, Corniche, hôtel-restaurant.', type: 'hotel' },
+      { name: 'New Hotel of Marseille – Le Pharo', blurb: 'Marseille 7e, près du Palais du Pharo.', type: 'hotel' },
+      { name: 'Mercure Marseille Centre Vieux-Port', blurb: 'Marseille 1er, près de la Canebière.', type: 'hotel' },
+      { name: 'Mama Shelter Marseille', blurb: 'Marseille 6e, quartier du Cours Julien.', type: 'hotel' },
+      { name: 'Hôtel C2', blurb: 'Marseille 6e, près de la Préfecture.', type: 'hotel' },
+      { name: 'Ibis Styles, Citadines et Odalys City Prado Castellane', blurb: 'Marseille 6e et 8e, autour de la place Castellane.', type: 'hotel' },
+      { name: 'Novotel Marseille Centre Prado Vélodrome', blurb: 'Marseille 8e, à côté du stade et du Parc Chanot.', type: 'hotel' },
+      { name: 'Golden Tulip Marseille Villa Massalia', blurb: 'Marseille 8e, face au parc Borély.', type: 'hotel' },
+      { name: 'Hôtel Le Corbusier', blurb: 'Marseille 8e, dans la Cité Radieuse.', type: 'hotel' },
+      { name: 'Kyriad Marseille Palais des Congrès', blurb: 'Marseille 10e.', type: 'hotel' },
+    ],
+    useCases: [
+      'Arrivée en avion ou en train : accueil avec pancarte, dépose à la réception',
+      'Départ en croisière : hôtel → terminal MSC ou Costa avec les bagages',
+      "Séjour professionnel : navettes hôtel ↔ Parc Chanot, Palais du Pharo, bureaux d'Euroméditerranée",
+      "Journée en Provence depuis l'hôtel : Cassis, Aix, Côte d'Azur",
+    ],
+    faq: [
+      { q: "Comment nous retrouver à l'aéroport ?", a: "Le chauffeur vous attend dans le hall des arrivées avec une pancarte à votre nom. Nous suivons votre vol : l'attente en cas de retard est incluse." },
+      { q: 'Combien coûte le transfert hôtel ↔ aéroport ?', a: 'Forfait fixe de 70 à 110 € selon le véhicule et le nombre de passagers, péages compris, annoncé à la réservation.' },
+      { q: 'Peut-on payer par carte ?', a: 'Oui, carte bancaire et Visa à bord, espèces acceptées, facture fournie.' },
+      { q: "Mon hôtel n'est pas dans la liste.", a: "Nous desservons tous les hôtels et locations de Marseille et de la métropole. Indiquez l'adresse à la réservation." },
+    ],
+    related: ['aeroport-marseille-provence', 'port-croisiere-marseille', 'gare-saint-charles', 'van-7-places-groupes'],
+  },
+]
