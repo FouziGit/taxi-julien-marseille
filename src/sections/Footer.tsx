@@ -55,7 +55,7 @@ export default function Footer() {
               <li><a className="hover:text-[var(--color-cream)] transition" href="/van-7-places-groupes/">Van 7 places & groupes</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="/hotels/">Hôtels de Marseille</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="/evenements/">Événements</a></li>
-              <li><a className="hover:text-[var(--color-cream)] transition" href="/en/marseille-airport-taxi/" hrefLang="en">English</a></li>
+              <li><a className="hover:text-[var(--color-cream)] transition" href="/en/marseille-airport-taxi/" hrefLang="en" lang="en">English</a></li>
             </ul>
           </div>
 
@@ -82,7 +82,7 @@ export default function Footer() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-[13px]">
             {destinationGroups.map(g => (
               <div key={g.title}>
-                <div className="text-[var(--color-silver-deep)] font-semibold mb-2">{g.title}</div>
+                <h4 className="text-[var(--color-silver-deep)] font-semibold mb-2">{g.title}</h4>
                 <ul className="flex flex-wrap gap-x-3 gap-y-1 text-[var(--color-silver-2)]">
                   {g.ids.map(id => (
                     <li key={id}>
@@ -94,11 +94,11 @@ export default function Footer() {
             ))}
           </div>
           <div className="mt-6 text-[13px]">
-            <div className="text-[var(--color-silver-deep)] font-semibold mb-2">Aéroport Marseille Provence depuis votre arrondissement</div>
-            <ul className="flex flex-wrap gap-x-3 gap-y-1 text-[var(--color-silver-2)]">
+            <h4 id="footer-arrondissements" className="text-[var(--color-silver-deep)] font-semibold mb-2">Aéroport Marseille Provence depuis votre arrondissement</h4>
+            <ul aria-labelledby="footer-arrondissements" className="flex flex-wrap gap-x-3 gap-y-1 text-[var(--color-silver-2)]">
               {Array.from({ length: 16 }, (_, i) => i + 1).map(n => (
                 <li key={n}>
-                  <a className="hover:text-[var(--color-cream)] transition" href={`/aeroport/130${String(n).padStart(2, '0')}/`}>{n === 1 ? '1er' : `${n}e`}</a>
+                  <a className="hover:text-[var(--color-cream)] transition" href={`/aeroport/130${String(n).padStart(2, '0')}/`}>Marseille {n === 1 ? '1er' : `${n}e`}</a>
                 </li>
               ))}
             </ul>

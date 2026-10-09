@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url'
 import { createElement } from 'react'
 import { prerender } from 'react-dom/static'
 import { Root } from '../src/root'
+import { destinationGroups } from '../src/data/taxi'
 
 const DIST = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist')
 const file = path.join(DIST, 'index.html')
@@ -27,7 +28,10 @@ const html = fs.readFileSync(file, 'utf8')
 const mount = '<div id="root"></div>'
 if (!html.includes(mount)) throw new Error('dist/index.html : #root vide introuvable (déjà prérendu ?)')
 
-const { prelude } = await prerender(createElement(Root))
+// progressiveChunkSize infini : sans lui, React sort les sections Suspense
+// terminées de leur place (div cachés + scripts $RC) dès que le HTML dépasse
+// 12,8 Ko, et la FAQ ou les tarifs deviennent invisibles sans JavaScript.
+const { prelude } = await prerender(createElement(Root), { progressiveChunkSize: Number.POSITIVE_INFINITY })
 const body = await new Response(prelude).text()
 const out = html.replace(mount, `<div id="root">${body}</div>`)
 fs.writeFileSync(file, out, 'utf8')
@@ -39,4 +43,8 @@ const links = new Set(out.match(/href="\/destinations\/[a-z0-9-]+\/"/g) ?? []).s
 console.log(`  ✓ / prérendu (${words} mots visibles, ${links} liens destinations uniques)`)
 if (words < 1500) throw new Error(`Prérendu trop court : ${words} mots (< 1500)`)
 if (!text.includes('Questions fréquentes')) throw new Error("Prérendu sans la FAQ : une section lazy n'a pas été résolue")
-if (links < 43) throw new Error(`Accueil : ${links} liens destinations (< 43) — le pied de page ne liste pas tout`)
+const expectedLinks = destinationGroups.reduce((n, g) => n + g.ids.length, 0)
+if (links < expectedLinks) throw new Error(`Accueil : ${links} liens destinations (< ${expectedLinks}) — le pied de page ne liste pas tout`)
+// Les sections Suspense doivent être à leur place dans le HTML, pas dans des
+// blocs cachés remis en place par un script (invisibles sans JavaScript).
+if (/<!--\$\?-->|<div hidden id="S:/.test(out)) throw new Error('Prérendu : sections Suspense sorties de leur place (chunks progressifs) — passer progressiveChunkSize à prerender')

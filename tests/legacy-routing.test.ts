@@ -36,6 +36,14 @@ const cases: [string, string | null][] = [
   ['/transport-prive-transfert-aeroport-w9.html', '/destinations/aeroport-marseille-provence/'],
   ['/tarifs', '/'],
   ['/-w1.html', '/'],
+  // Arrondissement + ville ou gare : l'intention est la ville, pas l'aéroport
+  ['/details-taxi+van+de+marseille+13007+vers+cassis-1.html', '/destinations/cassis/'],
+  ['/details-taxi+marseille+8eme+vers+gare+saint+charles-2.html', '/destinations/gare-saint-charles/'],
+  ['/details-taxi+marseille+13008+vers+saint+tropez-3.html', '/destinations/saint-tropez/'],
+  // Arrondissement seul : la page aéroport reste la meilleure cible
+  ['/details-taxi+marseille+13004-5.html', '/aeroport/13004/'],
+  // URL mal encodée (accent en Latin-1) : pas de plantage, accueil
+  ['/details-foo%E9-12.html', '/'],
   // Pas legacy
   ['/', null],
   ['/destinations/cassis/', null],

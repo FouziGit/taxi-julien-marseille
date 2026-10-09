@@ -55,6 +55,7 @@ const LABELS = {
   fr: {
     htmlLang: 'fr', ogLocale: 'fr_FR', inLanguage: 'fr-FR',
     skip: 'Aller au contenu', available: 'Disponible · Marseille', home: 'Accueil', destinations: 'Destinations',
+    breadcrumb: 'Fil d\'ariane', homeLink: 'Taxi Julien — accueil',
     distance: 'Distance', duration: 'Durée', capacity: 'Capacité', fares: 'Forfaits taxi', fare: 'Tarif',
     fromStation: 'Depuis la gare Saint-Charles', fromAirport: 'Depuis l\'aéroport Marseille&nbsp;Provence', fromMarseille: 'Depuis Marseille',
     day: 'jour', night: 'nuit', fromPrice: 'À partir de', quote: 'Forfait sur devis', book: 'Réserver ce trajet →', askQuote: 'Demander un devis →',
@@ -66,6 +67,7 @@ const LABELS = {
   en: {
     htmlLang: 'en', ogLocale: 'en_US', inLanguage: 'en-US',
     skip: 'Skip to content', available: 'Available · Marseille', home: 'Home', destinations: 'Destinations',
+    breadcrumb: 'Breadcrumb', homeLink: 'Taxi Julien — home',
     distance: 'Distance', duration: 'Duration', capacity: 'Capacity', fares: 'Taxi fares', fare: 'Fare',
     fromStation: 'From Saint-Charles station', fromAirport: 'From Marseille&nbsp;Provence airport', fromMarseille: 'From Marseille',
     day: 'day', night: 'night', fromPrice: 'From', quote: 'Fixed quote on request', book: 'Book this ride →', askQuote: 'Get a quote →',
@@ -367,7 +369,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
     <!-- Top bar — static version, links back to the SPA -->
     <header class="sticky top-0 z-50 bg-[var(--color-ink)]/85 backdrop-blur-md border-b border-white/[0.06]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2.5" aria-label="Taxi Julien — accueil">
+            <a href="/" class="flex items-center gap-2.5" aria-label="${L.homeLink}">
                 <span class="grid place-items-center w-9 h-9 rounded-lg bg-white text-[var(--color-ink)] font-bold text-sm font-display">TJ</span>
                 <div class="leading-tight">
                     <div class="font-display font-semibold text-[var(--color-cream)] text-[15px] tracking-tight">Taxi Julien</div>
@@ -385,7 +387,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
 
     <main id="contenu" class="bg-[var(--color-ink)]">
         <!-- Breadcrumb -->
-        <nav aria-label="Fil d'ariane" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-[12px] text-[var(--color-silver-deep)]">
+        <nav aria-label="${L.breadcrumb}" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-[12px] text-[var(--color-silver-deep)]">
             <a href="/" class="hover:text-[var(--color-cream)] transition">${L.home}</a>
             ${parent.path === '/' ? '' : `<span aria-hidden> › </span>
             <a href="${parent.path}" class="hover:text-[var(--color-cream)] transition">${esc(parent.label)}</a>`}
@@ -852,7 +854,7 @@ function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string
                 Taxi depuis Marseille, partout en PACA.
             </h1>
             <p class="mt-4 text-[var(--color-silver-deep)] text-[15px] sm:text-base max-w-2xl">
-                ${destContent.length} destinations desservies en Mercedes Classe V — aéroports, gares, port de croisière, côte du Var, Côte d’Azur, Provence et stations de ski. Chaque page détaille le trajet, la durée, le forfait et les lieux à visiter.
+                ${listed.length} destinations desservies en Mercedes Classe V — aéroports, gares, port de croisière, côte du Var, Côte d’Azur, Provence et stations de ski. Chaque page détaille le trajet, la durée, le forfait et les lieux à visiter.
             </p>
 
             <div class="mt-6 flex flex-wrap gap-3">
@@ -995,7 +997,7 @@ function buildLegalPage(assets: { css: string; preloadFonts: string[] }): string
 
             <section class="${sectionCls}">
                 <h2 class="${h2}">Cookies</h2>
-                <p class="${p}">Le site n'utilise aucun cookie publicitaire ni outil de suivi statistique. La carte interactive de la zone d'intervention est fournie par OpenStreetMap, susceptible de déposer des cookies techniques nécessaires à son affichage. Vous pouvez configurer votre navigateur pour les refuser.</p>
+                <p class="${p}">Le site n'utilise aucun cookie publicitaire. La mesure d'audience est assurée par Plausible Analytics : sans cookie, sans identifiant personnel, statistiques agrégées uniquement, serveurs hébergés dans l'Union européenne. La carte interactive de la zone d'intervention est fournie par OpenStreetMap, susceptible de déposer des cookies techniques nécessaires à son affichage. Vous pouvez configurer votre navigateur pour les refuser.</p>
             </section>
 
             <section class="${sectionCls}">
@@ -1056,6 +1058,10 @@ function main() {
 
     if (content.kind === 'service' && !content.path) {
       throw new Error(`destContent "${content.id}" : kind 'service' exige un champ path`)
+    }
+    // Limites SEO : au-delà, Google tronque le titre et la description.
+    if (content.seoTitle.length > 60 || content.seoDescription.length > 155) {
+      throw new Error(`destContent "${content.id}" : seoTitle ${content.seoTitle.length}/60, seoDescription ${content.seoDescription.length}/155 caractères`)
     }
     const outDir = path.join(DIST, pagePath(content))
     fs.mkdirSync(outDir, { recursive: true })

@@ -83,7 +83,13 @@ export function isLegacy(pathname: string): boolean {
 }
 
 function normalize(pathname: string): string {
-  return ' ' + decodeURIComponent(pathname).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim() + ' '
+  let decoded = pathname
+  try {
+    decoded = decodeURIComponent(pathname)
+  } catch {
+    // Accent en Latin-1 (%E9) : URL mal encodée, on garde le chemin brut.
+  }
+  return ' ' + decoded.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim() + ' '
 }
 
 // Code postal 130XX ou « 8eme arrondissement » → page aéroport de l'arrondissement.
@@ -110,11 +116,13 @@ export function targetFor(pathname: string): string {
     if (norm.includes(' ' + needle + ' ')) return target
   }
   const arr = arrondissementOf(norm)
-  if (arr) return arr
+  // L'arrondissement prime seulement si l'URL vise l'aéroport : « 13007 vers
+  // Cassis » va à Cassis ; « 13004 » seul va à la page aéroport du 4e.
+  if (arr && / (aeroport|marignane|marseille provence) /.test(norm)) return arr
   for (const [needle, target] of RULES) {
     if (norm.includes(' ' + needle + ' ')) return target
   }
-  return '/'
+  return arr ?? '/'
 }
 
 export function resolveLegacy(pathname: string): string | null {
