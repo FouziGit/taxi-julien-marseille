@@ -67,7 +67,7 @@ export type DestSpot = {
   /** One-line description (60-120 chars). */
   blurb: string
   /** Category emoji + label, used to colour the icon in the page. */
-  type: 'beach' | 'monument' | 'museum' | 'viewpoint' | 'restaurant' | 'wine' | 'market' | 'sport' | 'hike' | 'shopping' | 'church' | 'other'
+  type: 'beach' | 'monument' | 'museum' | 'viewpoint' | 'restaurant' | 'wine' | 'market' | 'sport' | 'hike' | 'shopping' | 'church' | 'hospital' | 'hotel' | 'other'
 }
 
 export type DestFAQ = { q: string; a: string }
@@ -111,6 +111,30 @@ export type DestContent = {
   faq: DestFAQ[]
   /** IDs of 3-4 nearby destinations for internal linking. */
   related: string[]
+  /** 'service' = page thématique (médical, hôtels, van, anglais, événements…) :
+   *  pas de bloc TouristDestination, pas de bloc distance/durée, libellés dédiés.
+   *  Défaut 'destination'. */
+  kind?: 'destination' | 'service'
+  /** Chemin servi, avec slash final (ex. '/hotels/'). Obligatoire si kind = 'service'.
+   *  Défaut `/destinations/<id>/`. */
+  path?: string
+  /** Langue de la page. Défaut 'fr'. */
+  lang?: 'fr' | 'en'
+  /** Surtitre du hero. Défaut « — Destination · <département> ». */
+  kicker?: string
+  /** Tarif affiché tel quel dans la carte (ex. '70 – 110 €'). Sans lui, le
+   *  builder cherche un forfait dans fareTables, sinon « Forfait sur devis ». */
+  fareLabel?: string
+  fareNote?: string
+  /** Titre et sous-titre de la section des spots. Défaut « Que faire à <nom> ». */
+  spotsTitle?: string
+  spotsSub?: string
+  /** Titre du bloc final. Défaut « Prêt à partir vers <nom> ? ». */
+  ctaTitle?: string
+  /** Texte prérempli WhatsApp. Défaut « … Je voudrais aller à <nom>. ». */
+  whatsappText?: string
+  /** Parent du fil d'Ariane. Défaut Destinations → /destinations/. */
+  parent?: { label: string; path: string }
 }
 
 export const destContent: DestContent[] = [

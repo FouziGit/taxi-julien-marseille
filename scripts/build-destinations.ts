@@ -46,6 +46,41 @@ const DIST = path.join(ROOT, 'dist')
 // when the DNS migrates to taxijulien.com.
 const SITE_URL = 'https://taxijulien.com'
 
+// Chemin servi d'une page (slash final = convention du sitemap/canonical).
+function pagePath(c: DestContent): string {
+  return c.path ?? `/destinations/${c.id}/`
+}
+
+// Libellés fixes du gabarit, par langue.
+const LABELS = {
+  fr: {
+    htmlLang: 'fr', ogLocale: 'fr_FR', inLanguage: 'fr-FR',
+    skip: 'Aller au contenu', available: 'Disponible · Marseille', home: 'Accueil', destinations: 'Destinations',
+    distance: 'Distance', duration: 'Durée', capacity: 'Capacité', fares: 'Forfaits taxi', fare: 'Tarif',
+    fromStation: 'Depuis la gare Saint-Charles', fromAirport: 'Depuis l\'aéroport Marseille&nbsp;Provence', fromMarseille: 'Depuis Marseille',
+    day: 'jour', night: 'nuit', fromPrice: 'À partir de', quote: 'Forfait sur devis', book: 'Réserver ce trajet →', askQuote: 'Demander un devis →',
+    call: 'Appeler', whatsapp: 'WhatsApp', trip: 'Le trajet', whatToDo: 'Que faire à', spotsSub: 'spots vérifiés. Nous vous déposons et vous récupérons à l\'heure de votre choix.',
+    useCases: 'Pour qui · Pour quoi', faq: 'Questions fréquentes', related: 'Destinations proches', seeFare: 'Voir le forfait',
+    ctaKicker: '— Réservation immédiate', readyFor: 'Prêt à partir vers', ctaSub: 'Tarif annoncé fermement à la réservation. Mercedes Classe V jusqu\'à 7 passagers. 24h/24, 7j/7.',
+    form: 'Formulaire en ligne', back: '← Retour à l\'accueil Taxi Julien', legal: 'Conventionné CPAM · 24h/24, 7j/7', wantTo: 'Je voudrais aller à',
+  },
+  en: {
+    htmlLang: 'en', ogLocale: 'en_US', inLanguage: 'en-US',
+    skip: 'Skip to content', available: 'Available · Marseille', home: 'Home', destinations: 'Destinations',
+    distance: 'Distance', duration: 'Duration', capacity: 'Capacity', fares: 'Taxi fares', fare: 'Fare',
+    fromStation: 'From Saint-Charles station', fromAirport: 'From Marseille&nbsp;Provence airport', fromMarseille: 'From Marseille',
+    day: 'day', night: 'night', fromPrice: 'From', quote: 'Fixed quote on request', book: 'Book this ride →', askQuote: 'Get a quote →',
+    call: 'Call', whatsapp: 'WhatsApp', trip: 'The ride', whatToDo: 'What to do in', spotsSub: 'verified spots. We drop you off and pick you up at the time you choose.',
+    useCases: 'Who · What for', faq: 'Frequently asked questions', related: 'Nearby destinations', seeFare: 'See the fare',
+    ctaKicker: '— Instant booking', readyFor: 'Ready to go to', ctaSub: 'Fixed price confirmed at booking. Mercedes V-Class, up to 7 passengers. 24/7.',
+    form: 'Online form', back: '← Back to Taxi Julien home', legal: 'CPAM-approved · 24/7', wantTo: 'I would like to go to',
+  },
+} as const
+type Labels = (typeof LABELS)['fr']
+function labelsFor(c: DestContent): Labels {
+  return LABELS[c.lang ?? 'fr'] as Labels
+}
+
 // Plausible (analytics sans cookie) + suivi des clics d'appel, identique à
 // l'accueil (index.html / src/lib/track.ts). Les pages statiques n'importent
 // aucun module : la règle href → événement est répétée en ligne.
@@ -129,6 +164,8 @@ const SPOT_ICON: Record<DestSpot['type'], string> = {
   hike: '🥾',
   shopping: '🛍️',
   church: '⛪',
+  hospital: '🏥',
+  hotel: '🏨',
   other: '📍',
 }
 
@@ -142,10 +179,13 @@ const SPOT_ICON: Record<DestSpot['type'], string> = {
 // All linked via @id so Google can resolve the entity graph cleanly.
 // ---------------------------------------------------------------------------
 function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): string {
+  const L = labelsFor(content)
+  const isService = content.kind === 'service'
+  const parent = content.parent ?? { label: L.destinations, path: '/destinations/' }
   const taxiService = {
     '@type': 'TaxiService',
     '@id': `${pageUrl}#taxiservice`,
-    name: `Taxi Julien — Marseille → ${dest.name}`,
+    name: isService ? content.h1 : `Taxi Julien — Marseille → ${dest.name}`,
     provider: {
       '@type': 'Organization',
       name: business.legalName,
@@ -161,10 +201,10 @@ function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): 
     },
     areaServed: {
       '@type': 'City',
-      name: dest.name,
+      name: isService ? 'Marseille' : dest.name,
       address: {
         '@type': 'PostalAddress',
-        addressLocality: dest.name,
+        addressLocality: isService ? 'Marseille' : dest.name,
         addressRegion: content.deptName,
         addressCountry: 'FR',
       },
@@ -210,8 +250,8 @@ function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): 
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL + '/' },
-      { '@type': 'ListItem', position: 2, name: 'Destinations', item: `${SITE_URL}/destinations/` },
+      { '@type': 'ListItem', position: 1, name: L.home, item: SITE_URL + '/' },
+      { '@type': 'ListItem', position: 2, name: parent.label, item: SITE_URL + parent.path },
       { '@type': 'ListItem', position: 3, name: dest.name, item: pageUrl },
     ],
   }
@@ -222,17 +262,17 @@ function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): 
     url: pageUrl,
     name: content.seoTitle,
     description: content.seoDescription,
-    inLanguage: 'fr-FR',
+    inLanguage: L.inLanguage,
     isPartOf: { '@id': `${SITE_URL}/#website` },
     primaryImageOfPage: dest.photo ? { '@type': 'ImageObject', url: SITE_URL + dest.photo } : undefined,
     breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
-    about: { '@id': `${pageUrl}#place` },
+    about: isService ? undefined : { '@id': `${pageUrl}#place` },
     mainEntity: { '@id': `${pageUrl}#taxiservice` },
   }
 
   const graph = {
     '@context': 'https://schema.org',
-    '@graph': [taxiService, place, faqPage, breadcrumb, webPage],
+    '@graph': isService ? [taxiService, faqPage, breadcrumb, webPage] : [taxiService, place, faqPage, breadcrumb, webPage],
   }
   return JSON.stringify(graph)
 }
@@ -243,7 +283,10 @@ function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): 
 // /destinations/[id]/ gets the same look without a flash.
 // ---------------------------------------------------------------------------
 function buildHtml(content: DestContent, dest: Destination, assets: { css: string; preloadFonts: string[] }): string {
-  const pageUrl = `${SITE_URL}/destinations/${content.id}/`
+  const pageUrl = SITE_URL + pagePath(content)
+  const L = labelsFor(content)
+  const isService = content.kind === 'service'
+  const parent = content.parent ?? { label: L.destinations, path: '/destinations/' }
   const names = [dest.name, dest.shortName].filter(Boolean) as string[]
   const fare = findFare(names)                       // first match (JSON-LD / fallback)
   const gareFare = findFareInTable(names, 'gare')    // price from Marseille Saint-Charles
@@ -254,15 +297,16 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
 
   // Resolve related destinations for the internal-linking block.
   const related = content.related
-    .map(id => destinations.find(d => d.id === id))
-    .filter((d): d is Destination => Boolean(d))
+    .map(id => destContent.find(c => c.id === id))
+    .filter((c): c is DestContent => Boolean(c))
+    .map(c => ({ c, d: resolveDest(c) }))
 
   const fontPreloads = assets.preloadFonts
     .map(f => `<link rel="preload" as="font" href="${f}" type="font/woff2" crossorigin />`)
     .join('\n    ')
 
   return `<!doctype html>
-<html lang="fr" dir="ltr">
+<html lang="${L.htmlLang}" dir="ltr">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -278,7 +322,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale" content="${L.ogLocale}" />
     <meta property="og:site_name" content="Taxi Julien" />
     <meta property="og:title" content="${esc(content.seoTitle)}" />
     <meta property="og:description" content="${esc(content.seoDescription)}" />
@@ -301,7 +345,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
     <meta name="author" content="Taxi Julien" />
 
     <!-- AI engines: pointer to the markdown sibling for cleaner ingestion -->
-    <link rel="alternate" type="text/markdown" href="/destinations/${content.id}/index.md" />
+    <link rel="alternate" type="text/markdown" href="${pagePath(content)}index.md" />
 
     <!-- Shared CSS bundle (same one the SPA uses) -->
     <link rel="stylesheet" href="${assets.css}" />
@@ -314,7 +358,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
     <script type="application/ld+json">${jsonLd}</script>
 </head>
 <body>
-    <a href="/#contenu" class="skip-link">Aller au contenu</a>
+    <a href="/#contenu" class="skip-link">${L.skip}</a>
 
     <!-- Top bar — static version, links back to the SPA -->
     <header class="sticky top-0 z-50 bg-[var(--color-ink)]/85 backdrop-blur-md border-b border-white/[0.06]">
@@ -325,7 +369,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
                     <div class="font-display font-semibold text-[var(--color-cream)] text-[15px] tracking-tight">Taxi Julien</div>
                     <div class="text-[11px] text-[var(--color-mute)] -mt-0.5 flex items-center gap-1.5">
                         <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                        <span>Disponible · Marseille</span>
+                        <span>${L.available}</span>
                     </div>
                 </div>
             </a>
@@ -338,9 +382,9 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
     <main id="contenu" class="bg-[var(--color-ink)]">
         <!-- Breadcrumb -->
         <nav aria-label="Fil d'ariane" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-[12px] text-[var(--color-silver-deep)]">
-            <a href="/" class="hover:text-[var(--color-cream)] transition">Accueil</a>
+            <a href="/" class="hover:text-[var(--color-cream)] transition">${L.home}</a>
             <span aria-hidden> › </span>
-            <a href="/destinations/" class="hover:text-[var(--color-cream)] transition">Destinations</a>
+            <a href="${parent.path}" class="hover:text-[var(--color-cream)] transition">${esc(parent.label)}</a>
             <span aria-hidden> › </span>
             <span class="text-[var(--color-cream)]">${esc(dest.name)}</span>
         </nav>
@@ -349,7 +393,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12 lg:py-16">
             <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
                 <div>
-                    <p class="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[var(--color-silver-deep)]">— Destination · ${esc(content.deptName)}</p>
+                    <p class="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[var(--color-silver-deep)]">${esc(content.kicker ?? `— Destination · ${content.deptName}`)}</p>
                     <h1 class="font-display font-semibold tracking-tight text-balance text-[clamp(2rem,6vw,4rem)] leading-[1.05] mt-4 text-[var(--color-cream)]">
                         ${esc(content.h1)}
                     </h1>
@@ -357,60 +401,67 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
 
                     <p class="mt-6 text-[var(--color-silver-2)] text-[15.5px] leading-relaxed max-w-2xl">${esc(content.lead)}</p>
 
-                    <!-- Quick facts -->
+                    ${isService ? '' : `<!-- Quick facts -->
                     <div class="mt-6 grid grid-cols-3 gap-2 max-w-md">
                         <div class="rounded-xl bg-[var(--color-graphite)] hairline p-3">
-                            <div class="text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)] font-bold">Distance</div>
+                            <div class="text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)] font-bold">${L.distance}</div>
                             <div class="font-display font-semibold text-[var(--color-cream)] text-base mt-0.5 tabular-nums">${content.distanceKm} km</div>
                         </div>
                         <div class="rounded-xl bg-[var(--color-graphite)] hairline p-3">
-                            <div class="text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)] font-bold">Durée</div>
+                            <div class="text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)] font-bold">${L.duration}</div>
                             <div class="font-display font-semibold text-[var(--color-cream)] text-base mt-0.5">${esc(content.durationReal)}</div>
                         </div>
                         <div class="rounded-xl bg-[var(--color-graphite)] hairline p-3">
-                            <div class="text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)] font-bold">Capacité</div>
+                            <div class="text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)] font-bold">${L.capacity}</div>
                             <div class="font-display font-semibold text-[var(--color-cream)] text-base mt-0.5">7 pax</div>
                         </div>
-                    </div>
+                    </div>`}
 
-                    ${gareFare || airportFare || skiFare ? `
+                    ${content.fareLabel ? `
+                    <div class="mt-5 rounded-2xl bg-white text-[var(--color-ink)] p-4 sm:p-5 max-w-md">
+                        <div class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600">${L.fare}</div>
+                        <div class="font-display font-semibold text-lg mt-0.5">${esc(content.fareLabel)}</div>
+                        ${content.fareNote ? `<p class="mt-1 text-[12.5px] text-gray-600">${esc(content.fareNote)}</p>` : ''}
+                        <a href="/#reservation" class="inline-flex items-center justify-center h-11 px-5 mt-3 rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[13.5px]">${L.book}</a>
+                    </div>
+                    ` : gareFare || airportFare || skiFare ? `
                     <!-- Fare card — shows both Gare and Airport forfaits when they exist -->
                     <div class="mt-5 rounded-2xl bg-white text-[var(--color-ink)] p-4 sm:p-5 max-w-md">
-                        <div class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600 mb-2">Forfaits taxi</div>
+                        <div class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600 mb-2">${L.fares}</div>
                         <div class="space-y-2">
                             ${gareFare && (gareFare.day || gareFare.from) ? `
                             <div class="flex items-center justify-between gap-3">
-                                <span class="text-[13px] text-gray-600">Depuis la gare Saint-Charles</span>
-                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">${gareFare.day && gareFare.night ? `${gareFare.day} <span class="text-gray-500 font-normal text-[12px]">jour</span> · ${gareFare.night} <span class="text-gray-500 font-normal text-[12px]">nuit</span>` : `À partir de ${gareFare.from}`}</span>
+                                <span class="text-[13px] text-gray-600">${L.fromStation}</span>
+                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">${gareFare.day && gareFare.night ? `${gareFare.day} <span class="text-gray-500 font-normal text-[12px]">${L.day}</span> · ${gareFare.night} <span class="text-gray-500 font-normal text-[12px]">${L.night}</span>` : `${L.fromPrice} ${gareFare.from}`}</span>
                             </div>` : ''}
                             ${airportFare && (airportFare.day || airportFare.from) ? `
                             <div class="flex items-center justify-between gap-3${gareFare ? ' pt-2 border-t border-gray-200' : ''}">
-                                <span class="text-[13px] text-gray-600">Depuis l'aéroport Marseille&nbsp;Provence</span>
-                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">${airportFare.day && airportFare.night ? `${airportFare.day} <span class="text-gray-500 font-normal text-[12px]">jour</span> · ${airportFare.night} <span class="text-gray-500 font-normal text-[12px]">nuit</span>` : `À partir de ${airportFare.from}`}</span>
+                                <span class="text-[13px] text-gray-600">${L.fromAirport}</span>
+                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">${airportFare.day && airportFare.night ? `${airportFare.day} <span class="text-gray-500 font-normal text-[12px]">${L.day}</span> · ${airportFare.night} <span class="text-gray-500 font-normal text-[12px]">${L.night}</span>` : `${L.fromPrice} ${airportFare.from}`}</span>
                             </div>` : ''}
                             ${skiFare && skiFare.from ? `
                             <div class="flex items-center justify-between gap-3">
-                                <span class="text-[13px] text-gray-600">Depuis Marseille</span>
-                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">À partir de ${skiFare.from}</span>
+                                <span class="text-[13px] text-gray-600">${L.fromMarseille}</span>
+                                <span class="font-display font-semibold text-[15px] tabular-nums whitespace-nowrap">${L.fromPrice} ${skiFare.from}</span>
                             </div>` : ''}
                         </div>
-                        <a href="/#reservation" class="inline-flex items-center justify-center h-11 px-5 mt-4 w-full sm:w-auto rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[13.5px]">Réserver ce trajet →</a>
+                        <a href="/#reservation" class="inline-flex items-center justify-center h-11 px-5 mt-4 w-full sm:w-auto rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[13.5px]">${L.book}</a>
                     </div>
                     ` : `
                     <div class="mt-5 rounded-2xl bg-white text-[var(--color-ink)] p-4 sm:p-5 max-w-md">
-                        <div class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600">Tarif</div>
-                        <div class="font-display font-semibold text-lg mt-0.5">Forfait sur devis</div>
-                        <a href="/#reservation" class="inline-flex items-center justify-center h-11 px-5 mt-3 rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[13.5px]">Demander un devis →</a>
+                        <div class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600">${L.fare}</div>
+                        <div class="font-display font-semibold text-lg mt-0.5">${L.quote}</div>
+                        <a href="/#reservation" class="inline-flex items-center justify-center h-11 px-5 mt-3 rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[13.5px]">${L.askQuote}</a>
                     </div>
                     `}
 
                     <!-- CTAs -->
                     <div class="mt-5 flex flex-wrap gap-3">
                         <a href="tel:${contact.phoneTel}" class="inline-flex items-center gap-2 h-12 px-5 rounded-xl bg-white text-[var(--color-ink)] font-semibold text-[14px]">
-                            📞 Appeler ${contact.phoneDisplay}
+                            📞 ${L.call} ${contact.phoneDisplay}
                         </a>
-                        <a href="https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappBaseText + ' Je voudrais aller à ' + dest.name + '.')}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 h-12 px-5 rounded-xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-[14px]">
-                            💬 WhatsApp
+                        <a href="https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(content.whatsappText ?? (contact.whatsappBaseText + ' ' + L.wantTo + ' ' + dest.name + '.'))}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 h-12 px-5 rounded-xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-[14px]">
+                            💬 ${L.whatsapp}
                         </a>
                     </div>
                 </div>
@@ -448,7 +499,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         <!-- Trip notes -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-white/[0.05]">
             <div class="max-w-3xl">
-                <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">Le trajet</h2>
+                <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">${L.trip}</h2>
                 <p class="mt-4 text-[var(--color-silver-2)] text-[15.5px] leading-relaxed">${esc(content.tripNotes)}</p>
             </div>
         </section>
@@ -457,8 +508,8 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         <!-- Spots / POIs -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/[0.05]">
             <div class="mb-8">
-                <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">Que faire à ${esc(dest.name)}</h2>
-                <p class="mt-2 text-[var(--color-silver-deep)] text-[14.5px]">${content.spots.length} spots vérifiés. Nous vous déposons et vous récupérons à l'heure de votre choix.</p>
+                <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">${esc(content.spotsTitle ?? `${L.whatToDo} ${dest.name}`)}</h2>
+                <p class="mt-2 text-[var(--color-silver-deep)] text-[14.5px]">${esc(content.spotsSub ?? `${content.spots.length} ${L.spotsSub}`)}</p>
             </div>
             <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 ${content.spots.map(s => `
@@ -474,7 +525,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         ${content.useCases?.length ? `
         <!-- Use cases -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/[0.05]">
-            <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">Pour qui · Pour quoi</h2>
+            <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">${L.useCases}</h2>
             <ul class="mt-6 space-y-2 max-w-3xl">
                 ${content.useCases.map(u => `
                 <li class="flex items-start gap-3 text-[var(--color-silver-2)] text-[15px]">
@@ -488,7 +539,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
 
         <!-- FAQ -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/[0.05]">
-            <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">Questions fréquentes</h2>
+            <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">${L.faq}</h2>
             <ul class="mt-6 space-y-3 max-w-3xl">
                 ${content.faq.map((item, i) => `
                 <li class="rounded-2xl bg-[var(--color-charcoal)] hairline p-5 sm:p-6">
@@ -502,14 +553,14 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         <!-- Related destinations -->
         ${related.length ? `
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/[0.05]">
-            <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">Destinations proches</h2>
+            <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">${L.related}</h2>
             <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 ${related.map(r => `
                 <li>
-                    <a href="/destinations/${r.id}/" class="block rounded-2xl bg-[var(--color-charcoal)] hairline p-5 hover:bg-[var(--color-line-soft)] transition">
-                        <div class="text-[10px] uppercase tracking-[0.18em] font-bold text-[var(--color-mute)]">${esc(r.category)}</div>
-                        <div class="font-display font-semibold text-[var(--color-cream)] text-[16px] tracking-tight mt-1">Marseille → ${esc(r.shortName || r.name)}</div>
-                        <div class="text-[13px] text-[var(--color-silver-deep)] mt-1 flex items-center gap-1">Voir le forfait <span aria-hidden>→</span></div>
+                    <a href="${pagePath(r.c)}" class="block rounded-2xl bg-[var(--color-charcoal)] hairline p-5 hover:bg-[var(--color-line-soft)] transition">
+                        <div class="text-[10px] uppercase tracking-[0.18em] font-bold text-[var(--color-mute)]">${esc(r.d.category)}</div>
+                        <div class="font-display font-semibold text-[var(--color-cream)] text-[16px] tracking-tight mt-1">${r.c.kind === 'service' ? esc(r.d.name) : `Marseille → ${esc(r.d.shortName || r.d.name)}`}</div>
+                        <div class="text-[13px] text-[var(--color-silver-deep)] mt-1 flex items-center gap-1">${L.seeFare} <span aria-hidden>→</span></div>
                     </a>
                 </li>
                 `).join('')}
@@ -520,13 +571,13 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         <!-- Final CTA -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="rounded-3xl bg-white text-[var(--color-ink)] p-8 sm:p-10 text-center">
-                <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-gray-600">— Réservation immédiate</p>
-                <h2 class="font-display font-semibold text-2xl sm:text-3xl mt-3 tracking-tight">Prêt à partir vers ${esc(dest.name)} ?</h2>
-                <p class="mt-3 text-gray-700 text-[15px] max-w-md mx-auto">Tarif annoncé fermement à la réservation. Mercedes Classe V jusqu'à 7 passagers. 24h/24, 7j/7.</p>
+                <p class="text-[11px] font-bold uppercase tracking-[0.22em] text-gray-600">${L.ctaKicker}</p>
+                <h2 class="font-display font-semibold text-2xl sm:text-3xl mt-3 tracking-tight">${esc(content.ctaTitle ?? `${L.readyFor} ${dest.name} ?`)}</h2>
+                <p class="mt-3 text-gray-700 text-[15px] max-w-md mx-auto">${L.ctaSub}</p>
                 <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-                    <a href="tel:${contact.phoneTel}" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[14px]">📞 Appeler ${contact.phoneDisplay}</a>
-                    <a href="https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappBaseText + ' Je voudrais aller à ' + dest.name + '.')}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-[14px]">💬 WhatsApp</a>
-                    <a href="/#reservation" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl hairline-strong bg-transparent text-[var(--color-ink)] font-semibold text-[14px]">Formulaire en ligne</a>
+                    <a href="tel:${contact.phoneTel}" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[14px]">📞 ${L.call} ${contact.phoneDisplay}</a>
+                    <a href="https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(content.whatsappText ?? (contact.whatsappBaseText + ' ' + L.wantTo + ' ' + dest.name + '.'))}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-[14px]">💬 ${L.whatsapp}</a>
+                    <a href="/#reservation" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl hairline-strong bg-transparent text-[var(--color-ink)] font-semibold text-[14px]">${L.form}</a>
                 </div>
             </div>
         </section>
@@ -534,8 +585,8 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
 
     <!-- Footer link -->
     <footer class="bg-[var(--color-ink)] border-t border-white/[0.05] py-8 text-center text-[12px] text-[var(--color-mute)]">
-        <a href="/" class="text-[var(--color-cream)] font-semibold hover:underline">← Retour à l'accueil Taxi Julien</a>
-        <p class="mt-3">SIRET ${business.siret} · ${business.legalName}, ${business.streetAddress} · Conventionné CPAM · 24h/24, 7j/7</p>
+        <a href="/" class="text-[var(--color-cream)] font-semibold hover:underline">${L.back}</a>
+        <p class="mt-3">SIRET ${business.siret} · ${business.legalName}, ${business.streetAddress} · ${L.legal}</p>
     </footer>
 </body>
 </html>
@@ -546,13 +597,14 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
 // Markdown sibling for AI engines — same pattern as /index.md on the home.
 // ---------------------------------------------------------------------------
 function buildMarkdown(content: DestContent, dest: Destination): string {
-  const pageUrl = `${SITE_URL}/destinations/${content.id}/`
+  const pageUrl = SITE_URL + pagePath(content)
+  const L = labelsFor(content)
   const fare = findFare([dest.name, dest.shortName].filter(Boolean) as string[])
   return `---
 title: ${content.seoTitle}
 description: ${content.seoDescription}
 canonical: ${pageUrl}
-lang: fr-FR
+lang: ${L.inLanguage}
 geo: ${content.geo.lat},${content.geo.lng}
 deptCode: FR-${content.deptCode}
 ---
@@ -563,36 +615,36 @@ ${content.heroSubtitle}
 
 📞 **${contact.phoneDisplay}** · 💬 wa.me/${contact.whatsappNumber} · ✉️ ${contact.email}
 
-## Trajet
+${content.kind === 'service' ? `- **${L.fare}** : ${content.fareLabel ?? L.quote}` : `## Trajet
 
 - **Distance** : ${content.distanceKm} km
 - **Durée** : ${content.durationReal}
 - **Capacité** : Mercedes Classe V, 1 à 7 passagers
-${fare ? `- **Tarif** : ${fare.day && fare.night ? `${fare.day} jour · ${fare.night} nuit` : fare.from ? `À partir de ${fare.from}` : 'Sur devis'}` : '- **Tarif** : Sur devis'}
+${fare ? `- **Tarif** : ${fare.day && fare.night ? `${fare.day} jour · ${fare.night} nuit` : fare.from ? `À partir de ${fare.from}` : 'Sur devis'}` : `- **Tarif** : ${content.fareLabel ?? 'Sur devis'}`}`}
 
 ${content.lead}
 
 ${content.tripNotes ? `## Le trajet\n\n${content.tripNotes}\n` : ''}
 
-## Que faire à ${dest.name}
+## ${content.spotsTitle ?? `${L.whatToDo} ${dest.name}`}
 
 ${content.spots.map(s => `- **${s.name}** — ${s.blurb}`).join('\n')}
 
-${content.useCases?.length ? `## Cas d'usage\n\n${content.useCases.map(u => `- ${u}`).join('\n')}\n` : ''}
+${content.useCases?.length ? `## ${L.useCases}\n\n${content.useCases.map(u => `- ${u}`).join('\n')}\n` : ''}
 
 ## FAQ
 
 ${content.faq.map(f => `**Q : ${f.q}**\nR : ${f.a}`).join('\n\n')}
 
-## Réservation
+## ${L.ctaKicker.replace('— ', '')}
 
-- [Appeler maintenant](tel:${contact.phoneTel}) : ${contact.phoneDisplay}
-- [WhatsApp](https://wa.me/${contact.whatsappNumber})
-- [Formulaire en ligne](${SITE_URL}/#reservation)
+- [${L.call}](tel:${contact.phoneTel}) : ${contact.phoneDisplay}
+- [${L.whatsapp}](https://wa.me/${contact.whatsappNumber})
+- [${L.form}](${SITE_URL}/#reservation)
 
 ---
 
-[← Retour à l'accueil Taxi Julien](${SITE_URL}/)
+[${L.back}](${SITE_URL}/)
 `
 }
 
@@ -632,7 +684,7 @@ function indexCard(content: DestContent): string {
   const webp = (p: string) => p.replace(/\.(jpe?g|png)$/i, '.webp')
 
   return `
-        <a href="/destinations/${esc(content.id)}/" class="group relative rounded-2xl overflow-hidden hairline bg-[var(--color-charcoal)] flex flex-col transition hover:bg-[var(--color-graphite)]">
+        <a href="${pagePath(content)}" class="group relative rounded-2xl overflow-hidden hairline bg-[var(--color-charcoal)] flex flex-col transition hover:bg-[var(--color-graphite)]">
             <div class="relative aspect-[16/10] overflow-hidden bg-[var(--color-graphite)]">
                 <picture>
                     <source type="image/webp" media="(min-width: 768px)" srcset="${esc(webp(photo))}" />
@@ -682,7 +734,9 @@ function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string
         </section>`
   }).join('\n')
 
-  const leftovers = destContent.filter(c => !assigned.has(c.id))
+  // Les pages « service » (médical, hôtels, van, anglais…) ont leurs propres
+  // chemins et ne sont pas des destinations : elles n'entrent pas dans le hub.
+  const leftovers = destContent.filter(c => c.kind !== 'service' && !assigned.has(c.id))
   const leftoversHtml = leftovers.length
     ? `
         <section class="mt-12">
@@ -994,13 +1048,16 @@ function main() {
     const html = buildHtml(content, dest, { css: cssHref, preloadFonts: fonts })
     const md = buildMarkdown(content, dest)
 
-    const outDir = path.join(DIST, 'destinations', content.id)
+    if (content.kind === 'service' && !content.path) {
+      throw new Error(`destContent "${content.id}" : kind 'service' exige un champ path`)
+    }
+    const outDir = path.join(DIST, pagePath(content))
     fs.mkdirSync(outDir, { recursive: true })
     fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8')
     fs.writeFileSync(path.join(outDir, 'index.md'), md, 'utf8')
 
     count++
-    console.log(`  ✓ /destinations/${content.id}/ (HTML ${(html.length / 1024).toFixed(1)} KB · MD ${(md.length / 1024).toFixed(1)} KB)`)
+    console.log(`  ✓ ${pagePath(content)} (HTML ${(html.length / 1024).toFixed(1)} KB · MD ${(md.length / 1024).toFixed(1)} KB)`)
   }
 
   // Index hub page — lists every destination, grouped by area.
@@ -1014,6 +1071,19 @@ function main() {
   fs.mkdirSync(legalDir, { recursive: true })
   fs.writeFileSync(path.join(legalDir, 'index.html'), legalHtml, 'utf8')
   console.log(`  ✓ /mentions-legales/ (HTML ${(legalHtml.length / 1024).toFixed(1)} KB)`)
+
+  // Sitemap généré depuis la même source que les pages : impossible d'oublier
+  // une page ou d'en lister une qui n'existe pas. Pas de lastmod : une date
+  // de build identique partout serait un signal faux pour Google.
+  const urls = [
+    `${SITE_URL}/`,
+    `${SITE_URL}/destinations/`,
+    ...destContent.map(c => SITE_URL + pagePath(c)),
+    `${SITE_URL}/mentions-legales/`,
+  ]
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`
+  fs.writeFileSync(path.join(DIST, 'sitemap.xml'), sitemap, 'utf8')
+  console.log(`  ✓ /sitemap.xml (${urls.length} URLs)`)
 
   console.log(`\n✅ Generated ${count} destination page${count > 1 ? 's' : ''} + 1 index under dist/destinations/`)
   if (pageOnly) console.log(`   (${pageOnly} of them are page-only — no entry in destinations[])`)
