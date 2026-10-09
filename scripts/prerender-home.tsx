@@ -1,5 +1,4 @@
 #!/usr/bin/env tsx
-/* eslint-disable no-console */
 /**
  * Post-build : prérend l'accueil dans dist/index.html.
  *

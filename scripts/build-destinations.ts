@@ -1,5 +1,4 @@
 #!/usr/bin/env tsx
-/* eslint-disable no-console */
 /**
  * Post-build script — generates a static HTML page per enriched destination
  * under dist/destinations/[id]/index.html.
@@ -294,7 +293,6 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
   const isService = content.kind === 'service'
   const parent = content.parent ?? { label: L.destinations, path: '/destinations/' }
   const names = [dest.name, dest.shortName].filter(Boolean) as string[]
-  const fare = findFare(names)                       // first match (JSON-LD / fallback)
   const gareFare = findFareInTable(names, 'gare')    // price from Marseille Saint-Charles
   const airportFare = findFareInTable(names, 'airport') // price from the airport
   const skiFare = findFareInTable(names, 'ski')      // ski stations ("à partir de")
@@ -547,7 +545,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/[0.05]">
             <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">${L.faq}</h2>
             <ul class="mt-6 space-y-3 max-w-3xl">
-                ${content.faq.map((item, i) => `
+                ${content.faq.map(item => `
                 <li class="rounded-2xl bg-[var(--color-charcoal)] hairline p-5 sm:p-6">
                     <h3 class="font-display font-semibold text-[var(--color-cream)] text-[16px] sm:text-[17px] tracking-tight">${esc(item.q)}</h3>
                     <p class="mt-2 text-[var(--color-silver-2)] text-[14.5px] leading-relaxed">${esc(item.a)}</p>
