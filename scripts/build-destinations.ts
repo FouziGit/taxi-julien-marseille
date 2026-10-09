@@ -45,6 +45,13 @@ const DIST = path.join(ROOT, 'dist')
 // when the DNS migrates to taxijulien.com.
 const SITE_URL = 'https://taxijulien.com'
 
+// Plausible (analytics sans cookie) + suivi des clics d'appel, identique à
+// l'accueil (index.html / src/lib/track.ts). Les pages statiques n'importent
+// aucun module : la règle href → événement est répétée en ligne.
+const PLAUSIBLE_SNIPPET = `<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+    <script defer data-domain="taxijulien.com" src="https://plausible.io/js/script.js"></script>
+    <script>document.addEventListener('click',function(e){var a=e.target&&e.target.closest('a');if(!a)return;if(a.href.indexOf('tel:')===0)plausible('Appel');else if(a.href.indexOf('wa.me')!==-1)plausible('WhatsApp')})</script>`
+
 // ---------------------------------------------------------------------------
 // Find the hashed asset paths that Vite emitted for this build, so the
 // destination pages share the exact same CSS bundle and font preloads
@@ -297,6 +304,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
 
     <!-- Shared CSS bundle (same one the SPA uses) -->
     <link rel="stylesheet" href="${assets.css}" />
+    ${PLAUSIBLE_SNIPPET}
 
     <!-- Self-hosted fonts (preload the latin subsets) -->
     ${fontPreloads}
@@ -774,6 +782,7 @@ function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string
     <meta name="author" content="Taxi Julien" />
 
     <link rel="stylesheet" href="${assets.css}" />
+    ${PLAUSIBLE_SNIPPET}
     ${fontPreloads}
 
     <script type="application/ld+json">${jsonLd}</script>
@@ -874,6 +883,7 @@ function buildLegalPage(assets: { css: string; preloadFonts: string[] }): string
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:url" content="${pageUrl}" />
     <link rel="stylesheet" href="${assets.css}" />
+    ${PLAUSIBLE_SNIPPET}
     ${fontPreloads}
 </head>
 <body>

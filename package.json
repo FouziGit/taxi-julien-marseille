@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "gen:article": "tsx scripts/article-gen/cli.mts",
-    "gen:article:dry": "tsx scripts/article-gen/cli.mts --dry-run"
+    "gen:article:dry": "tsx scripts/article-gen/cli.mts --dry-run",
+    "test": "tsx --test tests/track.test.ts"
   },
   "dependencies": {
     "motion": "^12.38.0",

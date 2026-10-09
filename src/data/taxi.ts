@@ -1459,7 +1459,7 @@ export const services: Service[] = [
 ]
 
 export const pricing = {
-  legalNote: "Tarifs réglementés Marseille — affichés sur taxijulien.com/tarifs.html",
+  legalNote: "Tarifs réglementés Bouches-du-Rhône — grille complète ci-dessous",
   rates: [
     { label: 'Prise en charge', value: '2,35 €' },
     { label: 'Tarif jour (7h–19h)', value: '2,24 € / km' },

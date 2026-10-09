@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import TopBar from './components/TopBar'
 import StickyDock from './components/StickyDock'
 import Hero from './sections/Hero'
@@ -6,6 +6,7 @@ import Reviews from './sections/Reviews'
 import Destinations from './sections/Destinations'
 import Reservation, { type ReservationFields } from './sections/Reservation'
 import { destinations, type Destination } from './data/taxi'
+import { eventForHref } from './lib/track'
 
 // Above-the-fold (TopBar, Hero, Reviews, Destinations, Reservation) eager.
 // Reviews now sits right under the Hero's trust marquee — it's the first
@@ -31,6 +32,24 @@ export default function App() {
   const formRef = useRef<HTMLFormElement | null>(null)
   const dateRef = useRef<HTMLInputElement | null>(null)
   const [prefill, setPrefill] = useState<ReservationFields>({ from: '', to: '' })
+
+  // Suivi des conversions (Plausible) : un seul listener délégué couvre tous
+  // les CTA (TopBar, Hero, StickyDock, Tarifs, Contact, Footer, Réservation).
+  useEffect(() => {
+    const track = (name: string) => (window as unknown as { plausible?: (n: string) => void }).plausible?.(name)
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest('a')
+      const event = a && eventForHref(a.href)
+      if (event) track(event)
+    }
+    const onSubmit = () => track('Formulaire')
+    document.addEventListener('click', onClick)
+    document.addEventListener('submit', onSubmit)
+    return () => {
+      document.removeEventListener('click', onClick)
+      document.removeEventListener('submit', onSubmit)
+    }
+  }, [])
 
   function pickDestination(d: Destination, fromValue?: string) {
     const next: ReservationFields = {

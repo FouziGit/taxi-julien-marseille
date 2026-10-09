@@ -203,6 +203,11 @@
       ]
     }
     </script>
+    <!-- Plausible : analytics sans cookie (pas de bannière). Événements personnalisés
+         via window.plausible() ; la file d'attente ci-dessous absorbe les clics
+         survenant avant le chargement du script. -->
+    <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+    <script defer data-domain="taxijulien.com" src="https://plausible.io/js/script.js"></script>
   </head>
   <body>
     <a href="#contenu" class="skip-link">Aller au contenu</a>
