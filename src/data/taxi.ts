@@ -9,6 +9,7 @@ import articlesData from './articles.json'
 // fusionnés dans destContent en fin de tableau.
 import { medicalPages } from './pages/medical'
 import { arrondissementPages } from './pages/arrondissements'
+import { vanPages } from './pages/van'
 
 export const business = {
   legalName: 'Taxi Julien',
@@ -1413,6 +1414,7 @@ export const destContent: DestContent[] = [
   },
   ...medicalPages,
   ...arrondissementPages,
+  ...vanPages,
 ]
 
 // Fast lookup helper used by both the React UI and the prerender script.
