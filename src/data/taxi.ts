@@ -8,6 +8,7 @@ import articlesData from './articles.json'
 // Pages service et clusters SEO : un fichier par cluster dans ./pages/,
 // fusionnés dans destContent en fin de tableau.
 import { medicalPages } from './pages/medical'
+import { arrondissementPages } from './pages/arrondissements'
 
 export const business = {
   legalName: 'Taxi Julien',
@@ -1411,6 +1412,7 @@ export const destContent: DestContent[] = [
     related: ['hyeres', 'toulon', 'la-londe', 'aeroport-marseille-provence'],
   },
   ...medicalPages,
+  ...arrondissementPages,
 ]
 
 // Fast lookup helper used by both the React UI and the prerender script.
