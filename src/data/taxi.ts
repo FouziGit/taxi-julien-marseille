@@ -5,6 +5,9 @@
 // par l'automatisation IA (scripts/article-gen/). On l'importe ici pour garder
 // une seule source de vérité côté app : tout le site lit `articles` depuis taxi.ts.
 import articlesData from './articles.json'
+// Pages service et clusters SEO : un fichier par cluster dans ./pages/,
+// fusionnés dans destContent en fin de tableau.
+import { medicalPages } from './pages/medical'
 
 export const business = {
   legalName: 'Taxi Julien',
@@ -1407,6 +1410,7 @@ export const destContent: DestContent[] = [
     ],
     related: ['hyeres', 'toulon', 'la-londe', 'aeroport-marseille-provence'],
   },
+  ...medicalPages,
 ]
 
 // Fast lookup helper used by both the React UI and the prerender script.

@@ -751,6 +751,8 @@ function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string
     : ''
 
   // JSON-LD: CollectionPage + ItemList of all destinations + breadcrumb.
+  // Les pages service ne sont pas listées sur le hub : même filtre ici.
+  const listed = destContent.filter(c => c.kind !== 'service')
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
@@ -772,12 +774,12 @@ function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string
       },
       {
         '@type': 'ItemList',
-        numberOfItems: destContent.length,
-        itemListElement: destContent.map((c, i) => ({
+        numberOfItems: listed.length,
+        itemListElement: listed.map((c, i) => ({
           '@type': 'ListItem',
           position: i + 1,
           name: resolveDest(c).name,
-          url: `${SITE_URL}/destinations/${c.id}/`,
+          url: `${SITE_URL}${pagePath(c)}`,
         })),
       },
     ],
