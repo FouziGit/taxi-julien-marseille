@@ -11,6 +11,7 @@ import { medicalPages } from './pages/medical'
 import { arrondissementPages } from './pages/arrondissements'
 import { vanPages } from './pages/van'
 import { hotelPages } from './pages/hotels'
+import { enPages } from './pages/en'
 
 export const business = {
   legalName: 'Taxi Julien',
@@ -1417,6 +1418,7 @@ export const destContent: DestContent[] = [
   ...arrondissementPages,
   ...vanPages,
   ...hotelPages,
+  ...enPages,
 ]
 
 // Fast lookup helper used by both the React UI and the prerender script.

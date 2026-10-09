@@ -77,6 +77,11 @@ const LABELS = {
   },
 } as const
 type Labels = (typeof LABELS)['fr']
+// Chips de catégorie des cartes liées sur les pages anglaises.
+const CATEGORY_EN: Record<string, string> = {
+  'Aéroport': 'Airport', 'Gare': 'Station', 'Port': 'Port', 'Ville': 'City', 'Site': 'Place', 'Hôpital': 'Hospital',
+}
+
 function labelsFor(c: DestContent): Labels {
   return LABELS[c.lang ?? 'fr'] as Labels
 }
@@ -250,10 +255,11 @@ function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): 
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: L.home, item: SITE_URL + '/' },
-      { '@type': 'ListItem', position: 2, name: parent.label, item: SITE_URL + parent.path },
-      { '@type': 'ListItem', position: 3, name: dest.name, item: pageUrl },
-    ],
+      { name: L.home, item: SITE_URL + '/' },
+      // Parent = accueil (pages EN) : pas de doublon « Home › Home ».
+      ...(parent.path === '/' ? [] : [{ name: parent.label, item: SITE_URL + parent.path }]),
+      { name: dest.name, item: pageUrl },
+    ].map((c, i) => ({ '@type': 'ListItem', position: i + 1, ...c })),
   }
 
   const webPage = {
@@ -383,8 +389,8 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
         <!-- Breadcrumb -->
         <nav aria-label="Fil d'ariane" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-[12px] text-[var(--color-silver-deep)]">
             <a href="/" class="hover:text-[var(--color-cream)] transition">${L.home}</a>
-            <span aria-hidden> › </span>
-            <a href="${parent.path}" class="hover:text-[var(--color-cream)] transition">${esc(parent.label)}</a>
+            ${parent.path === '/' ? '' : `<span aria-hidden> › </span>
+            <a href="${parent.path}" class="hover:text-[var(--color-cream)] transition">${esc(parent.label)}</a>`}
             <span aria-hidden> › </span>
             <span class="text-[var(--color-cream)]">${esc(dest.name)}</span>
         </nav>
@@ -558,7 +564,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
                 ${related.map(r => `
                 <li>
                     <a href="${pagePath(r.c)}" class="block rounded-2xl bg-[var(--color-charcoal)] hairline p-5 hover:bg-[var(--color-line-soft)] transition">
-                        <div class="text-[10px] uppercase tracking-[0.18em] font-bold text-[var(--color-mute)]">${esc(r.d.category)}</div>
+                        <div class="text-[10px] uppercase tracking-[0.18em] font-bold text-[var(--color-mute)]">${esc(content.lang === 'en' ? (CATEGORY_EN[r.d.category] ?? r.d.category) : r.d.category)}</div>
                         <div class="font-display font-semibold text-[var(--color-cream)] text-[16px] tracking-tight mt-1">${r.c.kind === 'service' ? esc(r.d.name) : `Marseille → ${esc(r.d.shortName || r.d.name)}`}</div>
                         <div class="text-[13px] text-[var(--color-silver-deep)] mt-1 flex items-center gap-1">${L.seeFare} <span aria-hidden>→</span></div>
                     </a>
