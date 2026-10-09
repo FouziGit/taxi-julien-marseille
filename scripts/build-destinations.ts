@@ -90,8 +90,8 @@ function labelsFor(c: DestContent): Labels {
 // Plausible (analytics sans cookie) + suivi des clics d'appel, identique à
 // l'accueil (index.html / src/lib/track.ts). Les pages statiques n'importent
 // aucun module : la règle href → événement est répétée en ligne.
-const PLAUSIBLE_SNIPPET = `<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
-    <script defer data-domain="taxijulien.com" src="https://plausible.io/js/script.js"></script>
+const PLAUSIBLE_SNIPPET = `<script async src="https://plausible.io/js/pa-gkqG4bvLeGgVCtpQvE1JN.js"></script>
+    <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
     <script>document.addEventListener('click',function(e){var a=e.target&&e.target.closest('a');if(!a)return;if(a.href.indexOf('tel:')===0)plausible('Appel');else if(a.href.indexOf('wa.me')!==-1)plausible('WhatsApp')})</script>`
 
 // ---------------------------------------------------------------------------

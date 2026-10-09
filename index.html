@@ -203,11 +203,15 @@
       ]
     }
     </script>
-    <!-- Plausible : analytics sans cookie (pas de bannière). Événements personnalisés
-         via window.plausible() ; la file d'attente ci-dessous absorbe les clics
-         survenant avant le chargement du script. -->
-    <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
-    <script defer data-domain="taxijulien.com" src="https://plausible.io/js/script.js"></script>
+    <!-- Plausible : analytics sans cookie (pas de bannière). Snippet fourni par le
+         tableau de bord Plausible du site ; événements personnalisés via
+         window.plausible(), la file d'attente absorbe les clics survenant avant
+         le chargement du script. -->
+    <script async src="https://plausible.io/js/pa-gkqG4bvLeGgVCtpQvE1JN.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
   </head>
   <body>
     <a href="#contenu" class="skip-link">Aller au contenu</a>
