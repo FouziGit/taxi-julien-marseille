@@ -1,5 +1,5 @@
 import { m, AnimatePresence } from 'motion/react'
-import { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { destinations, departures, destContent, type Destination } from '../data/taxi'
 import { ChevronIcon, PinIcon, ClockIcon, CardIcon } from '../components/Icons'
 import Pic from '../components/Pic'
@@ -122,7 +122,7 @@ export default function Destinations({ onPick }: Props) {
                       const sites = grouped['Site'] ?? []
                       const ski = grouped['Site-ski'] ?? []
                       return (
-                        <>
+                        <Fragment key="sites-ski">
                           {sites.length > 0 && (
                             <optgroup key="sites" label="Sites & calanques">
                               {sites.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
@@ -133,7 +133,7 @@ export default function Destinations({ onPick }: Props) {
                               {ski.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
                             </optgroup>
                           )}
-                        </>
+                        </Fragment>
                       )
                     }
                     const list = grouped[cat] ?? []
