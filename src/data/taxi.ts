@@ -1254,7 +1254,7 @@ export const destContent: DestContent[] = [
     deptCode: '13',
     deptName: 'Bouches-du-Rhône',
     geo: { lat: 43.4360, lng: 5.2140 },
-    seoTitle: 'Taxi Aéroport Marseille Provence : forfait 70-110 € | Taxi Julien',
+    seoTitle: 'Taxi Aéroport Marseille Provence : 70-110 € | Taxi Julien',
     seoDescription: 'Taxi Marseille → Aéroport Marseille Provence (Marignane). Forfait fixe 70-110 €. Suivi du vol inclus. Mercedes Classe V 7 pax + bagages. 24h/24.',
     h1: 'Taxi Marseille → Aéroport Marseille Provence',
     heroSubtitle: 'Marignane · Suivi du vol · 30 km · ~30 min',
