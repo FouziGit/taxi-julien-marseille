@@ -1,19 +1,9 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { LazyMotion, MotionConfig, domAnimation } from 'motion/react'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import { Root } from './root'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    {/* LazyMotion + domAnimation tree-shakes ~20KB gzipped of unused features.
-     * Pair with `m.*` instead of `motion.*` in components — the lite renderer
-     * only ships transform/opacity/style animations, which is everything we use. */}
-    <LazyMotion features={domAnimation} strict>
-      {/* reducedMotion="user" respects the OS-level prefers-reduced-motion. */}
-      <MotionConfig reducedMotion="user">
-        <App />
-      </MotionConfig>
-    </LazyMotion>
-  </StrictMode>,
-)
+const el = document.getElementById('root')!
+// En production, dist/index.html est prérendu par scripts/prerender-home.tsx :
+// on hydrate. En dev (index.html source, #root vide), on rend normalement.
+if (el.hasChildNodes()) hydrateRoot(el, <Root />)
+else createRoot(el).render(<Root />)
