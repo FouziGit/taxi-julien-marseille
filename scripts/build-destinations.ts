@@ -32,6 +32,7 @@ import {
   fareTables,
   contact,
   business,
+  destinationGroups,
   type DestContent,
   type Destination,
   type DestSpot,
@@ -606,38 +607,8 @@ ${content.faq.map(f => `**Q : ${f.q}**\nR : ${f.a}`).join('\n\n')}
 // Ordered groups for the index. IDs are matched against destContent; any
 // destContent id NOT listed here is collected into a final "Autres" group so
 // no page is ever silently dropped from the index (project rule: no silent caps).
-const INDEX_GROUPS: { title: string; sub: string; ids: string[] }[] = [
-  {
-    title: 'Aéroports, gares & port',
-    sub: 'Transferts avec suivi de vol et accueil',
-    ids: ['aeroport-marseille-provence', 'aeroport-nice', 'aeroport-toulon-hyeres', 'gare-saint-charles', 'gare-aix-tgv', 'gare-avignon-tgv', 'port-croisiere-marseille'],
-  },
-  {
-    title: 'Côte & calanques — Cassis → Toulon',
-    sub: 'Le littoral des Bouches-du-Rhône et du Var ouest',
-    ids: ['cassis', 'la-ciotat', 'saint-cyr', 'bandol', 'sanary', 'embiez', 'six-fours', 'la-seyne', 'toulon', 'hyeres'],
-  },
-  {
-    title: 'Côte des Maures — Hyères → Saint-Tropez',
-    sub: 'La presqu’île et le golfe de Saint-Tropez',
-    ids: ['la-londe', 'bormes-les-mimosas', 'le-lavandou', 'rayol-canadel', 'cavalaire', 'la-croix-valmer', 'cogolin', 'gassin', 'ramatuelle', 'saint-tropez'],
-  },
-  {
-    title: 'Côte d’Azur — Sainte-Maxime → Nice',
-    sub: 'Longue distance vers les Alpes-Maritimes',
-    ids: ['sainte-maxime', 'frejus', 'saint-raphael', 'mandelieu', 'cannes', 'antibes', 'cagnes-sur-mer', 'nice-ville'],
-  },
-  {
-    title: 'Provence intérieure',
-    sub: 'Aix, Avignon, Arles et alentours',
-    ids: ['aix-en-provence', 'avignon', 'arles', 'aubagne'],
-  },
-  {
-    title: 'Stations de ski — Hautes-Alpes',
-    sub: 'Longue distance hivernale, équipement neige inclus',
-    ids: ['ski-pra-loup', 'ski-vars', 'ski-risoul', 'ski-orres'],
-  },
-]
+// Les groupes vivent dans src/data/taxi.ts (destinationGroups), partagés avec
+// le maillage du pied de page de l'accueil.
 
 function resolveDest(content: DestContent): Destination {
   return (
@@ -693,7 +664,7 @@ function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string
 
   // Assign every destContent to a group; collect leftovers into "Autres".
   const assigned = new Set<string>()
-  const groupsHtml = INDEX_GROUPS.map(g => {
+  const groupsHtml = destinationGroups.map(g => {
     const cards = g.ids
       .map(id => destContent.find(c => c.id === id))
       .filter((c): c is DestContent => Boolean(c))

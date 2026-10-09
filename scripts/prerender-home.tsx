@@ -40,3 +40,4 @@ const links = new Set(out.match(/href="\/destinations\/[a-z0-9-]+\/"/g) ?? []).s
 console.log(`  ✓ / prérendu (${words} mots visibles, ${links} liens destinations uniques)`)
 if (words < 1500) throw new Error(`Prérendu trop court : ${words} mots (< 1500)`)
 if (!text.includes('Questions fréquentes')) throw new Error("Prérendu sans la FAQ : une section lazy n'a pas été résolue")
+if (links < 43) throw new Error(`Accueil : ${links} liens destinations (< 43) — le pied de page ne liste pas tout`)

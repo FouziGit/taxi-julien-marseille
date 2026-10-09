@@ -1,4 +1,12 @@
-import { contact, business } from '../data/taxi'
+import { contact, business, destinationGroups, destinations, destContent } from '../data/taxi'
+
+// Libellé court d'une page destination : nom court de destinations[], sinon
+// le nom de la page seule (page-only), sinon l'id.
+function pageLabel(id: string): string {
+  const d = destinations.find(x => x.id === id)
+  if (d) return d.shortName ?? d.name
+  return destContent.find(c => c.id === id)?.destName ?? id
+}
 
 export default function Footer() {
   return (
@@ -61,6 +69,26 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
+        {/* Maillage interne : lien statique vers chaque page destination.
+            Rendu dans le HTML prérendu de l'accueil → découverte au premier crawl. */}
+        <nav aria-label="Toutes nos destinations" className="mt-12 pt-8 border-t border-white/[0.05]">
+          <h3 className="font-display font-semibold text-[var(--color-cream)] mb-4 text-[13px] uppercase tracking-[0.18em]">Nos destinations depuis Marseille</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-[13px]">
+            {destinationGroups.map(g => (
+              <div key={g.title}>
+                <div className="text-[var(--color-silver-deep)] font-semibold mb-2">{g.title}</div>
+                <ul className="flex flex-wrap gap-x-3 gap-y-1 text-[var(--color-silver-2)]">
+                  {g.ids.map(id => (
+                    <li key={id}>
+                      <a className="hover:text-[var(--color-cream)] transition" href={`/destinations/${id}/`}>{pageLabel(id)}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </nav>
 
         <div className="mt-12 pt-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-[var(--color-mute)]">
           <div>© {new Date().getFullYear()} {business.legalName}. Tous droits réservés.</div>

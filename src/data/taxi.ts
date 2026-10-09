@@ -1959,3 +1959,38 @@ export function buildRouteMapUrl(city: string): string | null {
   const n = Math.max(MARSEILLE_COORDS.lat, c.lat) + pad
   return `https://www.openstreetmap.org/export/embed.html?bbox=${w}%2C${s}%2C${e}%2C${n}&layer=mapnik&marker=${c.lat}%2C${c.lng}`
 }
+
+// Groupes de destinations — source unique pour le hub /destinations/ (builder)
+// et le maillage du pied de page (accueil). Chaque id doit exister dans destContent.
+export const destinationGroups: { title: string; sub: string; ids: string[] }[] = [
+  {
+    title: 'Aéroports, gares & port',
+    sub: 'Transferts avec suivi de vol et accueil',
+    ids: ['aeroport-marseille-provence', 'aeroport-nice', 'aeroport-toulon-hyeres', 'gare-saint-charles', 'gare-aix-tgv', 'gare-avignon-tgv', 'port-croisiere-marseille'],
+  },
+  {
+    title: 'Côte & calanques — Cassis → Toulon',
+    sub: 'Le littoral des Bouches-du-Rhône et du Var ouest',
+    ids: ['cassis', 'la-ciotat', 'saint-cyr', 'bandol', 'sanary', 'embiez', 'six-fours', 'la-seyne', 'toulon', 'hyeres'],
+  },
+  {
+    title: 'Côte des Maures — Hyères → Saint-Tropez',
+    sub: 'La presqu’île et le golfe de Saint-Tropez',
+    ids: ['la-londe', 'bormes-les-mimosas', 'le-lavandou', 'rayol-canadel', 'cavalaire', 'la-croix-valmer', 'cogolin', 'gassin', 'ramatuelle', 'saint-tropez'],
+  },
+  {
+    title: 'Côte d’Azur — Sainte-Maxime → Nice',
+    sub: 'Longue distance vers les Alpes-Maritimes',
+    ids: ['sainte-maxime', 'frejus', 'saint-raphael', 'mandelieu', 'cannes', 'antibes', 'cagnes-sur-mer', 'nice-ville'],
+  },
+  {
+    title: 'Provence intérieure',
+    sub: 'Aix, Avignon, Arles et alentours',
+    ids: ['aix-en-provence', 'avignon', 'arles', 'aubagne'],
+  },
+  {
+    title: 'Stations de ski — Hautes-Alpes',
+    sub: 'Longue distance hivernale, équipement neige inclus',
+    ids: ['ski-pra-loup', 'ski-vars', 'ski-risoul', 'ski-orres'],
+  },
+]
