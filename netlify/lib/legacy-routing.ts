@@ -7,6 +7,9 @@
 //   anglais → médical → hôtels → arrondissement → événements → gares →
 //   aéroports Nice/Toulon → port → villes → ski → aéroport Marseille →
 //   van/groupes → génériques → accueil.
+//
+// Hors de netlify/edge-functions/ : Netlify y traite chaque fichier comme une
+// fonction (export default obligatoire) et refuse ce module utilitaire.
 
 const D = (slug: string) => `/destinations/${slug}/`
 const MEDICAL = '/transport-medical-conventionne/'

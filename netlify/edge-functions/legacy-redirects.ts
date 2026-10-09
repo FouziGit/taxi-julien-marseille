@@ -1,7 +1,7 @@
 // 301 des anciennes URLs Jalis vers la page la plus pertinente. La logique
 // de routage vit dans legacy-routing.ts (testée sous Node). Les edge
 // functions s'exécutent avant les [[redirects]] de netlify.toml.
-import { resolveLegacy } from "./legacy-routing.ts";
+import { resolveLegacy } from "../lib/legacy-routing.ts";
 
 export default async (request: Request) => {
   const url = new URL(request.url);

@@ -1,7 +1,7 @@
 // Routage des anciennes URLs Jalis (edge function). Lancer : npm test
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { resolveLegacy } from '../netlify/edge-functions/legacy-routing.ts'
+import { resolveLegacy } from '../netlify/lib/legacy-routing.ts'
 
 const cases: [string, string | null][] = [
   // Anglais avant tout
