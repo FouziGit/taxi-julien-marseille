@@ -51,6 +51,11 @@ export default function Footer() {
               <li><a className="hover:text-[var(--color-cream)] transition" href="#flotte">Flotte</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="#galerie">Galerie</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="#faq">FAQ</a></li>
+              <li><a className="hover:text-[var(--color-cream)] transition" href="/transport-medical-conventionne/">Taxi conventionné CPAM</a></li>
+              <li><a className="hover:text-[var(--color-cream)] transition" href="/van-7-places-groupes/">Van 7 places & groupes</a></li>
+              <li><a className="hover:text-[var(--color-cream)] transition" href="/hotels/">Hôtels de Marseille</a></li>
+              <li><a className="hover:text-[var(--color-cream)] transition" href="/evenements/">Événements</a></li>
+              <li><a className="hover:text-[var(--color-cream)] transition" href="/en/marseille-airport-taxi/" hrefLang="en">English</a></li>
             </ul>
           </div>
 
@@ -87,6 +92,16 @@ export default function Footer() {
                 </ul>
               </div>
             ))}
+          </div>
+          <div className="mt-6 text-[13px]">
+            <div className="text-[var(--color-silver-deep)] font-semibold mb-2">Aéroport Marseille Provence depuis votre arrondissement</div>
+            <ul className="flex flex-wrap gap-x-3 gap-y-1 text-[var(--color-silver-2)]">
+              {Array.from({ length: 16 }, (_, i) => i + 1).map(n => (
+                <li key={n}>
+                  <a className="hover:text-[var(--color-cream)] transition" href={`/aeroport/130${String(n).padStart(2, '0')}/`}>{n === 1 ? '1er' : `${n}e`}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </nav>
 
