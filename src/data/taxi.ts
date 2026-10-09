@@ -13,6 +13,7 @@ import { vanPages } from './pages/van'
 import { hotelPages } from './pages/hotels'
 import { enPages } from './pages/en'
 import { evenementPages } from './pages/evenements'
+import { villesPages } from './pages/villes'
 
 export const business = {
   legalName: 'Taxi Julien',
@@ -1421,6 +1422,7 @@ export const destContent: DestContent[] = [
   ...hotelPages,
   ...enPages,
   ...evenementPages,
+  ...villesPages,
 ]
 
 // Fast lookup helper used by both the React UI and the prerender script.
@@ -2024,7 +2026,12 @@ export const destinationGroups: { title: string; sub: string; ids: string[] }[] 
   {
     title: 'Provence intérieure',
     sub: 'Aix, Avignon, Arles et alentours',
-    ids: ['aix-en-provence', 'avignon', 'arles', 'aubagne'],
+    ids: ['aix-en-provence', 'avignon', 'arles', 'aubagne', 'gemenos', 'carnoux', 'pertuis'],
+  },
+  {
+    title: 'Var intérieur et agglomération toulonnaise',
+    sub: 'De la Sainte-Baume au centre Var',
+    ids: ['ollioules', 'la-valette', 'le-pradet', 'carqueiranne', 'le-beausset', 'cuers', 'brignoles', 'le-luc', 'vidauban', 'saint-maximin'],
   },
   {
     title: 'Stations de ski — Hautes-Alpes',
