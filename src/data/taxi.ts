@@ -1756,7 +1756,7 @@ export type Testimonial = {
   author: string
   text: string
   context: string
-  rating: 5
+  rating: number // 1-5 ; les avis Google en direct peuvent être < 5
 }
 
 export const testimonials: Testimonial[] = [

@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "gen:article": "tsx scripts/article-gen/cli.mts",
     "gen:article:dry": "tsx scripts/article-gen/cli.mts --dry-run",
-    "test": "tsx --test tests/track.test.ts tests/legacy-routing.test.ts"
+    "test": "tsx --test tests/track.test.ts tests/legacy-routing.test.ts tests/reviews.test.ts"
   },
   "dependencies": {
     "motion": "^12.38.0",

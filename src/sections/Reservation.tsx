@@ -2,6 +2,8 @@ import { type FormEvent } from 'react'
 import { m } from 'motion/react'
 import { contact } from '../data/taxi'
 import { WhatsAppIcon, PhoneIcon } from '../components/Icons'
+import ReviewsMarquee from '../components/ReviewsMarquee'
+import { useGoogleReviews } from '../lib/useGoogleReviews'
 
 export type ReservationFields = {
   from: string
@@ -16,6 +18,7 @@ type Props = {
 }
 
 export default function Reservation({ prefill, setPrefill, formRef, dateRef }: Props) {
+  const { items: reviews } = useGoogleReviews()
   function getData(form: HTMLFormElement) {
     const fd = new FormData(form)
     return {
@@ -183,6 +186,12 @@ export default function Reservation({ prefill, setPrefill, formRef, dateRef }: P
             En envoyant ce formulaire, vous êtes recontacté par WhatsApp ou au {contact.phoneDisplay}. Aucun paiement en ligne, aucune donnée stockée sur ce site.
           </p>
         </form>
+
+        {/* Avis Google sous le formulaire : rassure au moment de réserver. */}
+        <div className="mt-12 overflow-hidden">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--color-silver-deep)] text-center mb-4">— Ils ont réservé</p>
+          <ReviewsMarquee items={reviews} compact />
+        </div>
       </div>
     </section>
   )
