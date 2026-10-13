@@ -38,9 +38,9 @@ function json(body: unknown, status = 200, cacheSeconds = 0): Response {
 export default async (): Promise<Response> => {
   const key = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;
-  // 503 mis en cache 1 h par le CDN : aucun appel Google tant que la fiche
-  // n'est pas identifiable.
-  if (!key || !placeId) return json({ error: "not_configured" }, 503, 3600);
+  // Charge utile vide (200, cache CDN 1 h) tant que la fiche n'est pas
+  // identifiable : aucun appel Google, aucune erreur dans la console du visiteur.
+  if (!key || !placeId) return json({ score: null, count: null, url: null, reviews: [] } satisfies Payload, 200, 3600);
 
   if (warmCache && Date.now() - warmCache.at < WARM_TTL_MS) {
     return json(warmCache.body, 200, 21600);
