@@ -48,6 +48,6 @@ export const vanPages: DestContent[] = [
       { q: 'Avez-vous un siège bébé ?', a: 'Oui : siège bébé, siège auto ou rehausseur, fournis sur demande à la réservation, sans supplément.' },
       { q: 'Peut-on réserver plusieurs navettes pour un événement ?', a: "Oui. Pour un mariage, un séminaire ou un salon, nous organisons les rotations à l'avance et envoyons un devis écrit." },
     ],
-    related: ['aeroport-marseille-provence', 'port-croisiere-marseille', 'gare-saint-charles', 'cassis'],
+    related: ['aeroport-marseille-provence', 'gare-aix-tgv', 'gare-saint-charles', 'port-croisiere-marseille'],
   },
 ]
