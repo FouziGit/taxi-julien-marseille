@@ -298,7 +298,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
   const gareFare = findFareInTable(names, 'gare')    // price from Marseille Saint-Charles
   const airportFare = findFareInTable(names, 'airport') // price from the airport
   const skiFare = findFareInTable(names, 'ski')      // ski stations ("à partir de")
-  const ogImage = dest.photo ? SITE_URL + dest.photo : SITE_URL + '/og-image.jpg'
+  const ogImage = dest.photo ? SITE_URL + dest.photo : SITE_URL + '/og-image-noir.jpg'
   const jsonLd = buildJsonLd(content, dest, pageUrl)
 
   // Resolve related destinations for the internal-linking block.
@@ -685,7 +685,7 @@ function indexCard(content: DestContent): string {
   const dest = resolveDest(content)
   const fare = findFare([dest.name, dest.shortName ?? ''])
   const fareLabel = fare?.day ?? fare?.from ?? 'Sur devis'
-  const photo = dest.photo ?? content.destPhoto ?? '/photos/v8.jpg'
+  const photo = dest.photo ?? content.destPhoto ?? '/photos/noir-terminal1.jpg'
   const photoSm = dest.photoSm ?? content.destPhotoSm ?? photo
   const webp = (p: string) => p.replace(/\.(jpe?g|png)$/i, '.webp')
 
@@ -808,7 +808,7 @@ function buildIndexHtml(assets: { css: string; preloadFonts: string[] }): string
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(description)}" />
     <meta property="og:url" content="${pageUrl}" />
-    <meta property="og:image" content="${SITE_URL}/og-image.jpg" />
+    <meta property="og:image" content="${SITE_URL}/og-image-noir.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />

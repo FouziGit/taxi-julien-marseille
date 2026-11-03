@@ -1,9 +1,9 @@
 import type { ImgHTMLAttributes } from 'react'
 
 type Props = {
-  /** Large source path (e.g. /photos/v8.jpg) — used on desktop ≥ 768px */
+  /** Large source path (e.g. /photos/noir-terminal1.jpg) — used on desktop ≥ 768px */
   src: string
-  /** Small source path (e.g. /photos/v8-sm.jpg) — used on mobile */
+  /** Small source path (e.g. /photos/noir-terminal1-sm.jpg) — used on mobile */
   srcSm?: string
   /** Eager-load this image (use for above-the-fold LCP candidate) */
   eager?: boolean

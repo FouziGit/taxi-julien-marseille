@@ -1444,9 +1444,9 @@ export const departures: Departure[] = [
 
 export const destinations: Destination[] = [
   // Aéroports
-  { id: 'aeroport-marseille-provence', name: 'Aéroport Marseille Provence', shortName: 'Marseille Provence', category: 'Aéroport', priceFrom: 70, priceTo: 110, duration: '~30 min', tagline: 'Forfait fixe · suivi du vol', photo: '/photos/hero.jpg', photoSm: '/photos/hero-sm.jpg' },
+  { id: 'aeroport-marseille-provence', name: 'Aéroport Marseille Provence', shortName: 'Marseille Provence', category: 'Aéroport', priceFrom: 70, priceTo: 110, duration: '~30 min', tagline: 'Forfait fixe · suivi du vol', photo: '/photos/noir-terminal1.jpg', photoSm: '/photos/noir-terminal1-sm.jpg' },
   { id: 'aeroport-nice', name: "Aéroport Nice Côte d'Azur", shortName: 'Nice', category: 'Aéroport', duration: '~2h', note: 'Sur devis', tagline: 'Direct par autoroute', photo: '/photos/dest-nice.jpg', photoSm: '/photos/dest-nice-sm.jpg' },
-  { id: 'aeroport-toulon-hyeres', name: 'Aéroport Toulon-Hyères', shortName: 'Toulon-Hyères', category: 'Aéroport', duration: '~1h', note: 'Sur devis', tagline: 'Côte varoise', photo: '/photos/v3.jpg', photoSm: '/photos/v3-sm.jpg' },
+  { id: 'aeroport-toulon-hyeres', name: 'Aéroport Toulon-Hyères', shortName: 'Toulon-Hyères', category: 'Aéroport', duration: '~1h', note: 'Sur devis', tagline: 'Côte varoise', photo: '/photos/noir-taxis.jpg', photoSm: '/photos/noir-taxis-sm.jpg' },
 
   // Gares
   { id: 'gare-saint-charles', name: 'Gare Saint-Charles', shortName: 'Saint-Charles', category: 'Gare', note: 'Sur devis', tagline: 'Accueil sur le quai', photo: '/photos/dest-gare.jpg', photoSm: '/photos/dest-gare-sm.jpg' },
@@ -1454,7 +1454,7 @@ export const destinations: Destination[] = [
   { id: 'gare-avignon-tgv', name: "Gare TGV d'Avignon", shortName: 'Avignon TGV', category: 'Gare', note: 'Sur devis', tagline: 'Provence — terre des papes', photo: '/photos/dest-gare.jpg', photoSm: '/photos/dest-gare-sm.jpg' },
 
   // Ports — photo réelle : Taxi Julien devant MSC
-  { id: 'port-croisiere-marseille', name: 'Port de croisière Marseille', shortName: 'Croisière Marseille', category: 'Port', note: 'Sur devis', tagline: 'Costa · MSC · bagages XL', photo: '/photos/v5-2.jpg', photoSm: '/photos/v5-2-sm.jpg' },
+  { id: 'port-croisiere-marseille', name: 'Port de croisière Marseille', shortName: 'Croisière Marseille', category: 'Port', note: 'Sur devis', tagline: 'Costa · MSC · bagages XL', photo: '/photos/noir-msc.jpg', photoSm: '/photos/noir-msc-sm.jpg' },
 
   // Côte & calanques
   { id: 'cassis', name: 'Cassis & Calanques', shortName: 'Cassis', category: 'Site', duration: '~45 min', note: 'Sur devis', tagline: 'Falaises blanches · eau turquoise', photo: '/photos/dest-cassis.jpg', photoSm: '/photos/dest-cassis-sm.jpg' },
@@ -1664,8 +1664,8 @@ export const fleet: Vehicle[] = [
   {
     model: 'Mercedes Classe V',
     seats: 7,
-    image: '/photos/v0-2.jpg',
-    imageSm: '/photos/v0-2-sm.jpg',
+    image: '/photos/noir-taxis.jpg',
+    imageSm: '/photos/noir-taxis-sm.jpg',
     features: [
       'Van extra-long avec grand coffre',
       'Sièges enfant et rehausseurs',
@@ -1677,7 +1677,7 @@ export const fleet: Vehicle[] = [
   },
 ]
 
-// Vraies photos du Mercedes Classe V de Taxi Julien — chacune dans un contexte d'usage.
+// Vraies photos du Mercedes Classe V noir de Taxi Julien (véhicule actuel, nov. 2026) — chacune dans un contexte d'usage.
 export type GalleryPhoto = {
   src: string
   srcSm: string
@@ -1688,59 +1688,45 @@ export type GalleryPhoto = {
 
 export const gallery: GalleryPhoto[] = [
   {
-    src: '/photos/v1.jpg',
-    srcSm: '/photos/v1-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien devant un hôtel avec bagages',
-    caption: 'Bagages XL — chargement hôtel',
-    context: 'Hôtel',
-  },
-  {
-    src: '/photos/v11.jpg',
-    srcSm: '/photos/v11-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien devant un paquebot Costa',
-    caption: 'Port de croisière — Costa',
-    context: 'Port',
-  },
-  {
-    src: '/photos/v5-2.jpg',
-    srcSm: '/photos/v5-2-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien devant un navire MSC',
+    src: '/photos/noir-msc.jpg',
+    srcSm: '/photos/noir-msc-sm.jpg',
+    alt: 'Mercedes Classe V noire de Taxi Julien devant un navire MSC',
     caption: 'Port de croisière — MSC',
     context: 'Port',
   },
   {
-    src: '/photos/v4.jpg',
-    srcSm: '/photos/v4-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien en montagne, neige et sommets',
-    caption: 'Montagne — neige & sommets',
-    context: 'Montagne',
+    src: '/photos/noir-hotel.jpg',
+    srcSm: '/photos/noir-hotel-sm.jpg',
+    alt: 'Mercedes Classe V noire de Taxi Julien devant un hôtel avec bagages',
+    caption: 'Bagages XL — chargement hôtel',
+    context: 'Hôtel',
   },
   {
-    src: '/photos/v10.jpg',
-    srcSm: '/photos/v10-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien devant le Terminal 1 de l\'aéroport Marseille Provence, de jour',
+    src: '/photos/noir-terminal1.jpg',
+    srcSm: '/photos/noir-terminal1-sm.jpg',
+    alt: 'Mercedes Classe V noire de Taxi Julien devant le Terminal 1 de l\'aéroport Marseille Provence, de jour',
     caption: 'Terminal 1 — accueil de jour',
     context: 'Aéroport',
   },
   {
-    src: '/photos/v2-2.jpg',
-    srcSm: '/photos/v2-2-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien sur une zone taxi à Marseille',
+    src: '/photos/noir-costa.jpg',
+    srcSm: '/photos/noir-costa-sm.jpg',
+    alt: 'Mercedes Classe V noire de Taxi Julien devant un paquebot Costa',
+    caption: 'Port de croisière — Costa',
+    context: 'Port',
+  },
+  {
+    src: '/photos/noir-montagne.jpg',
+    srcSm: '/photos/noir-montagne-sm.jpg',
+    alt: 'Mercedes Classe V noire de Taxi Julien en montagne, neige et sommets',
+    caption: 'Montagne — neige & sommets',
+    context: 'Montagne',
+  },
+  {
+    src: '/photos/noir-taxis.jpg',
+    srcSm: '/photos/noir-taxis-sm.jpg',
+    alt: 'Mercedes Classe V noire de Taxi Julien sur une zone taxi à Marseille',
     caption: 'Zone taxi — Marseille',
-    context: 'Marseille',
-  },
-  {
-    src: '/photos/v6.jpg',
-    srcSm: '/photos/v6-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien en ville arborée',
-    caption: 'En ville — accueil clients',
-    context: 'Marseille',
-  },
-  {
-    src: '/photos/v0-2.jpg',
-    srcSm: '/photos/v0-2-sm.jpg',
-    alt: 'Mercedes Classe V Taxi Julien plein cadre',
-    caption: "Mercedes Classe V — vue d'ensemble",
     context: 'Marseille',
   },
 ]

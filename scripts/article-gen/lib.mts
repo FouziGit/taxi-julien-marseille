@@ -193,7 +193,7 @@ function smVariant(photo: string): string {
  * sinon photo générique de l'aéroport (service principal).
  */
 export function pickHero(ctaDestinationId?: string | null): { hero: string; heroSm: string } {
-  let hero = '/photos/hero.jpg'
+  let hero = '/photos/noir-terminal1.jpg'
   if (ctaDestinationId) {
     const d = destinations.find((x) => x.id === ctaDestinationId)
     if (d?.photo) hero = d.photo

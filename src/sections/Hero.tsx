@@ -131,7 +131,7 @@ export default function Hero() {
               <div className="absolute inset-0">
                 <video
                   className="w-full h-full object-cover reveal"
-                  poster="/photos/hero-poster.webp"
+                  poster="/photos/hero-noir-poster.webp"
                   autoPlay
                   muted
                   loop
@@ -141,9 +141,9 @@ export default function Hero() {
                   width={1200}
                   height={900}
                 >
-                  <source src="/photos/hero-video.mp4" type="video/mp4" />
+                  <source src="/photos/hero-noir.mp4" type="video/mp4" />
                   <img
-                    src="/photos/hero-poster.webp"
+                    src="/photos/hero-noir-poster.webp"
                     alt="Mercedes Classe V Taxi Julien — vue d'ensemble du véhicule"
                     className="w-full h-full object-cover"
                     width={1200}
