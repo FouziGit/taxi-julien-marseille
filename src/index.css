@@ -217,15 +217,8 @@
   50%      { transform: scale(2.2); opacity: 0; }
 }
 
-/* Image reveal */
-@keyframes reveal {
-  0% { clip-path: inset(0 100% 0 0); }
-  100% { clip-path: inset(0 0 0 0); }
-}
-.reveal { animation: reveal 1s cubic-bezier(.2,.8,.2,1) both; }
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .marquee, .pulse-live, .reveal { animation: none !important; }
+  .marquee, .pulse-live { animation: none !important; }
   .sheen::before { transition: none !important; }
 }

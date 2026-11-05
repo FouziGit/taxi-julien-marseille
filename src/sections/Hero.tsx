@@ -115,13 +115,9 @@ export default function Hero() {
             </m.div>
           </div>
 
-          {/* RIGHT — real Mercedes photo with parallax + reveal */}
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="relative order-first lg:order-last"
-          >
+          {/* RIGHT — real Mercedes photo. No entrance animation: this is the
+           * LCP element, hiding it until JS runs pushed LCP to 3.4 s on mobile. */}
+          <div className="relative order-first lg:order-last">
             <div className="relative rounded-[28px] overflow-hidden hairline aspect-[5/4] sm:aspect-[16/11] bg-[var(--color-graphite)]">
               {/* Fond vidéo du véhicule — boucle fluide (boomerang), muet,
                * lecture auto. Le poster s'affiche instantanément (= image LCP,
@@ -130,7 +126,7 @@ export default function Hero() {
                * rares navigateurs sans <video>. */}
               <div className="absolute inset-0">
                 <video
-                  className="w-full h-full object-cover reveal"
+                  className="w-full h-full object-cover"
                   poster="/photos/hero-noir-poster.webp"
                   autoPlay
                   muted
@@ -189,7 +185,7 @@ export default function Hero() {
                 </div>
               </m.div>
             </div>
-          </m.div>
+          </div>
         </div>
       </div>
 
