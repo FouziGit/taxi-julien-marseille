@@ -135,13 +135,6 @@
 # AND missed the "-z"/"-y" URLs, which then returned 200 homepage = duplicate.
 # -----------------------------------------------------------------------------
 
-# Trailing-slash enforcement for destination pages — Google indexes the
-# canonical (with slash), so /destinations/cassis (no slash) gets a clean 301.
-[[redirects]]
-  from = "/destinations/:slug"
-  to = "/destinations/:slug/"
-  status = 301
-
 # -----------------------------------------------------------------------------
 # Not found — must come LAST so it doesn't preempt the 301s above. Only applies
 # when no file matches. The site has no client-side routes, so an unknown URL
