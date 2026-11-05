@@ -1026,6 +1026,53 @@ function buildLegalPage(assets: { css: string; preloadFonts: string[] }): string
 </html>`
 }
 
+// Not found page — dist/404.html, served by netlify.toml with a real 404
+// status. noindex, and points lost visitors to the main pages and the phone.
+function buildNotFoundPage(assets: { css: string; preloadFonts: string[] }): string {
+  const fontPreloads = assets.preloadFonts
+    .map(f => `<link rel="preload" as="font" href="${f}" type="font/woff2" crossorigin />`)
+    .join('\n    ')
+  const links: [string, string][] = [
+    ['/', 'Accueil et réservation'],
+    ['/destinations/', 'Toutes les destinations'],
+    ['/destinations/aeroport-marseille-provence/', 'Taxi aéroport Marseille Provence'],
+    ['/destinations/gare-saint-charles/', 'Taxi gare Saint-Charles'],
+    ['/destinations/port-croisiere-marseille/', 'Taxi port de croisière'],
+  ]
+
+  return `<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0c" />
+    <title>Page introuvable | Taxi Julien Marseille</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="${assets.css}" />
+    ${PLAUSIBLE_SNIPPET}
+    <script>plausible('404', { props: { path: location.pathname } })</script>
+    ${fontPreloads}
+</head>
+<body>
+    <main class="bg-[var(--color-ink)] min-h-screen">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
+            <a href="/" class="inline-flex items-center gap-2.5" aria-label="Taxi Julien — accueil">
+                <span class="grid place-items-center w-9 h-9 rounded-lg bg-white text-[var(--color-ink)] font-bold text-sm font-display">TJ</span>
+                <span class="font-display font-semibold text-[var(--color-cream)] text-[15px] tracking-tight">Taxi Julien</span>
+            </a>
+            <h1 class="mt-10 font-display text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--color-cream)]">Page introuvable</h1>
+            <p class="mt-3 text-[15px] text-[var(--color-silver-2)] leading-relaxed">Cette adresse n'existe pas ou plus. Pour réserver un taxi, appelez-nous 24h/24 ou choisissez une page ci-dessous.</p>
+            <a href="tel:${contact.phoneTel}" class="mt-6 inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-[var(--color-ink)] font-semibold text-[14px]">📞 ${contact.phoneDisplay}</a>
+            <ul class="mt-8 space-y-3 text-[15px]">
+                ${links.map(([href, label]) => `<li><a href="${href}" class="text-[var(--color-cream)] underline decoration-[var(--color-line)] hover:decoration-[var(--color-cream)]">${label} →</a></li>`).join('\n                ')}
+            </ul>
+        </div>
+    </main>
+</body>
+</html>`
+}
+
 function main() {
   const mainHtml = readMainHtml()
   const cssHref = extractAssetHash(mainHtml, 'index', 'css')
@@ -1083,6 +1130,9 @@ function main() {
   fs.mkdirSync(legalDir, { recursive: true })
   fs.writeFileSync(path.join(legalDir, 'index.html'), legalHtml, 'utf8')
   console.log(`  ✓ /mentions-legales/ (HTML ${(legalHtml.length / 1024).toFixed(1)} KB)`)
+
+  fs.writeFileSync(path.join(DIST, '404.html'), buildNotFoundPage({ css: cssHref, preloadFonts: fonts }), 'utf8')
+  console.log('  ✓ /404.html')
 
   // Sitemap généré depuis la même source que les pages : impossible d'oublier
   // une page ou d'en lister une qui n'existe pas. Pas de lastmod : une date

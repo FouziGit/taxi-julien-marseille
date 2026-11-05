@@ -143,11 +143,12 @@
   status = 301
 
 # -----------------------------------------------------------------------------
-# SPA fallback — must come LAST so it doesn't preempt the 301s above.
-# Sends any other unmatched route to index.html with a 200 so React Router
-# (or future client-side nav) can handle it.
+# Not found — must come LAST so it doesn't preempt the 301s above. Only applies
+# when no file matches. The site has no client-side routes, so an unknown URL
+# gets a real 404 (generated 404.html) instead of the homepage with a 200,
+# which Google treats as a soft 404 / duplicate of the homepage.
 # -----------------------------------------------------------------------------
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
