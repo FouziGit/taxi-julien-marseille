@@ -291,7 +291,7 @@ function buildJsonLd(content: DestContent, dest: Destination, pageUrl: string): 
 // match what the main SPA uses, so a visitor moving between / and
 // /destinations/[id]/ gets the same look without a flash.
 // ---------------------------------------------------------------------------
-function buildHtml(content: DestContent, dest: Destination, assets: { css: string; preloadFonts: string[] }): string {
+export function buildHtml(content: DestContent, dest: Destination, assets: { css: string; preloadFonts: string[] }): string {
   const pageUrl = SITE_URL + pagePath(content)
   const L = labelsFor(content)
   const isService = content.kind === 'service'
@@ -670,7 +670,7 @@ ${content.faq.map(f => `**Q : ${f.q}**\nR : ${f.a}`).join('\n\n')}
 // Les groupes vivent dans src/data/taxi.ts (destinationGroups), partagés avec
 // le maillage du pied de page de l'accueil.
 
-function resolveDest(content: DestContent): Destination {
+export function resolveDest(content: DestContent): Destination {
   return (
     destinations.find(d => d.id === content.id) ?? {
       id: content.id,
@@ -1350,4 +1350,6 @@ function main() {
   if (pageOnly) console.log(`   (${pageOnly} of them are page-only — no entry in destinations[])`)
 }
 
-main()
+// Build only when run as a script (npm run build), not when a test imports
+// buildHtml. realpath on both sides so a symlinked checkout still matches.
+if (process.argv[1] && fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url))) main()
