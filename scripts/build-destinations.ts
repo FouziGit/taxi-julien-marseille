@@ -951,7 +951,7 @@ function buildLegalPage(assets: { css: string; preloadFonts: string[] }): string
                     <dt class="${dt}">Enseigne</dt><dd class="${dd}">Taxi Julien</dd>
                     <dt class="${dt}">Forme juridique</dt><dd class="${dd}">EURL (Entreprise Unipersonnelle à Responsabilité Limitée)</dd>
                     <dt class="${dt}">Gérant</dt><dd class="${dd}">Julien BRACHT</dd>
-                    <dt class="${dt}">Siège social</dt><dd class="${dd}">33 Traverse de la Baume Loubière, 13013 Marseille, France</dd>
+                    <dt class="${dt}">Siège social</dt><dd class="${dd}">${esc(business.registeredOffice)}, France</dd>
                     <dt class="${dt}">SIREN</dt><dd class="${dd}">510 291 370</dd>
                     <dt class="${dt}">SIRET</dt><dd class="${dd}">510 291 370 00037</dd>
                     <dt class="${dt}">Téléphone</dt><dd class="${dd}">04 91 95 74 02</dd>

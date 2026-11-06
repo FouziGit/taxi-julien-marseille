@@ -11,7 +11,7 @@
 - **Gérant / chauffeur** : Julien BRACHT
 - **Slogan** : « Une autre idée du transport »
 - **Depuis** : 2009
-- **Base** : Marseille (13008), région Provence-Alpes-Côte d'Azur
+- **Base** : Marseille (13013), région Provence-Alpes-Côte d'Azur
 - **Disponibilité** : 24h/24, 7j/7
 - **Langues** : Français, Anglais
 - **Note Google** : 5,0/5 sur 310 avis (réels, vérifiés)

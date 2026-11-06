@@ -8,8 +8,8 @@
 - **Dirigeant** : Julien BRACHT
 - **SIRET** : 51029137000037
 - **Année de création** : 2009
-- **Ville** : Marseille (13008), Provence-Alpes-Côte d'Azur, France
-- **Géolocalisation** : 43.2722° N, 5.3956° E
+- **Ville** : Marseille (13013), Provence-Alpes-Côte d'Azur, France
+- **Géolocalisation** : 43.353° N, 5.432° E
 - **Téléphone** : 06 35 58 24 72 (international : +33 6 35 58 24 72)
 - **WhatsApp** : +33 6 35 58 24 72
 - **Email** : taxijulien13@gmail.com

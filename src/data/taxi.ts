@@ -26,9 +26,13 @@ export const business = {
   city: 'Marseille',
   region: "Provence-Alpes-Côte d'Azur",
   country: 'France',
-  postalCode: '13008',
-  streetAddress: 'Marseille 13008',
-  geo: { lat: 43.2722, lng: 5.3956 },
+  // Siège inscrit au registre SIRENE (recherche-entreprises.api.gouv.fr) : la
+  // seule adresse sourcée. Code postal et position en dérivent (position
+  // arrondie à ~100 m, géocodage api-adresse.data.gouv.fr).
+  registeredOffice: '33 Traverse de la Baume Loubière, 13013 Marseille',
+  postalCode: '13013',
+  streetAddress: 'Marseille 13013',
+  geo: { lat: 43.353, lng: 5.432 },
   hours: '24h/24 · 7j/7',
   languages: ['Français', 'English'],
   siret: '51029137000037',

@@ -8,6 +8,7 @@ import {
   findFareForCity,
   buildRouteMapUrl,
   destinations,
+  business,
   type Destination,
 } from '../data/taxi'
 import {
@@ -33,7 +34,7 @@ const hubs: { key: HubKey; label: string; Icon: typeof PlaneIcon; items: readonl
 ]
 
 // Default map (no city selected) — wide bbox over the whole service area.
-const DEFAULT_MAP_SRC = 'https://www.openstreetmap.org/export/embed.html?bbox=4.50%2C42.85%2C7.20%2C44.30&layer=mapnik&marker=43.2722%2C5.3956'
+const DEFAULT_MAP_SRC = `https://www.openstreetmap.org/export/embed.html?bbox=4.50%2C42.85%2C7.20%2C44.30&layer=mapnik&marker=${business.geo.lat}%2C${business.geo.lng}`
 
 type Props = {
   onPickDestination?: (d: Destination) => void
