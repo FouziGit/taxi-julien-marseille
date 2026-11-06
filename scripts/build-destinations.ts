@@ -366,7 +366,7 @@ function buildHtml(content: DestContent, dest: Destination, assets: { css: strin
     <script type="application/ld+json">${jsonLd}</script>
 </head>
 <body>
-    <a href="/#contenu" class="skip-link">${L.skip}</a>
+    <a href="#contenu" class="skip-link">${L.skip}</a>
 
     <!-- Top bar — static version, links back to the SPA -->
     <header class="sticky top-0 z-50 bg-[var(--color-ink)]/85 backdrop-blur-md border-b border-white/[0.06]">
