@@ -44,6 +44,11 @@ export default function Hero() {
               id="hero-heading"
               className="font-display font-semibold tracking-tight text-balance text-[clamp(2.4rem,8vw,5.2rem)] leading-[1.02]"
             >
+              {/* Le H1 doit nommer le service et la ville (contrôlé au
+               * prérendu) : discrète ligne d'en-tête, slogan inchangé. */}
+              <span className="block font-sans text-[13px] sm:text-[14px] font-bold uppercase tracking-[0.2em] text-[var(--color-silver-2)] mb-3 sm:mb-4">
+                Taxi à Marseille · 24h/24
+              </span>
               <span className="block text-[var(--color-cream)]">{split(headline)}</span>
               <span className="block silver-text">{split(headline2)}</span>
             </h1>

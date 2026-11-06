@@ -43,6 +43,10 @@ const links = new Set(out.match(/href="\/destinations\/[a-z0-9-]+\/"/g) ?? []).s
 console.log(`  ✓ / prérendu (${words} mots visibles, ${links} liens destinations uniques)`)
 if (words < 1500) throw new Error(`Prérendu trop court : ${words} mots (< 1500)`)
 if (!text.includes('Questions fréquentes')) throw new Error("Prérendu sans la FAQ : une section lazy n'a pas été résolue")
+// Le H1 doit nommer le service et la ville : le slogan seul (« Une autre idée
+// du transport. ») a fait glisser « taxi marseille » de la position 8 à 16.
+const h1 = (out.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+if (!/taxi/i.test(h1) || !/marseille/i.test(h1)) throw new Error(`H1 de l'accueil sans « taxi » et « Marseille » : « ${h1} »`)
 const expectedLinks = destinationGroups.reduce((n, g) => n + g.ids.length, 0)
 if (links < expectedLinks) throw new Error(`Accueil : ${links} liens destinations (< ${expectedLinks}) — le pied de page ne liste pas tout`)
 // Les sections Suspense doivent être à leur place dans le HTML, pas dans des
