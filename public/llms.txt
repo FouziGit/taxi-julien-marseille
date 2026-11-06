@@ -74,7 +74,7 @@ Chaque page = forfait, distance, durée, spots à visiter, FAQ par destination.
 ## Sections du site principal
 
 - [Formulaire de réservation](https://taxijulien.com/#reservation)
-- [Tarifs réglementés + 3 tableaux de forfaits](https://taxijulien.com/#tarifs)
+- [Tarifs réglementés + 3 tableaux de forfaits](https://taxijulien.com/tarifs/)
 - [Avis Google (5/5)](https://taxijulien.com/#avis)
 - [FAQ](https://taxijulien.com/#faq)
 - [Guides et articles de blog](https://taxijulien.com/#blog)

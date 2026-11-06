@@ -17,7 +17,7 @@ export const config = {
   path: "/*",
   excludedPath: [
     "/.netlify/*", "/assets/*", "/photos/*", "/fonts/*", "/destinations/*", "/mentions-legales/*",
-    "/transport-medical-conventionne/*", "/aeroport/*", "/hotels/*", "/van-7-places-groupes/*", "/en/*", "/evenements/*",
+    "/transport-medical-conventionne/*", "/aeroport/*", "/hotels/*", "/van-7-places-groupes/*", "/en/*", "/evenements/*", "/tarifs/*",
     "/og*", "/favicon.svg", "/*.txt", "/*.xml", "/*.webmanifest", "/*.md", "/*.json",
   ],
 };

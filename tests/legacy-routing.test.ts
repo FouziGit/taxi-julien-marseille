@@ -34,8 +34,13 @@ const cases: [string, string | null][] = [
   ['/details-tarif+taxi+van+de+1+a+5+6+7+personnes+de+l+aeroport+marseille+provence+marignane+vers+brignoles+dans+le+var+83170-135.html', '/destinations/brignoles/'],
   // Génériques et exacts
   ['/transport-prive-transfert-aeroport-w9.html', '/destinations/aeroport-marseille-provence/'],
-  ['/tarifs', '/'],
   ['/-w1.html', '/'],
+  // Ancienne page tarifs (1 850 impressions/mois en juin 2026) → page tarifs, pas l'accueil
+  ['/tarifs', '/tarifs/'],
+  ['/tarifs.html', '/tarifs/'],
+  ['/prix+taxi+marseille-z12', '/tarifs/'],
+  ['/tarifs/', null], // la page elle-même : pas de boucle
+  ['/tarif+taxi+marseille+13008-z3', '/aeroport/13008/'], // l'arrondissement prime sur « tarif »
   // Arrondissement + ville ou gare : l'intention est la ville, pas l'aéroport
   ['/details-taxi+van+de+marseille+13007+vers+cassis-1.html', '/destinations/cassis/'],
   ['/details-taxi+marseille+8eme+vers+gare+saint+charles-2.html', '/destinations/gare-saint-charles/'],

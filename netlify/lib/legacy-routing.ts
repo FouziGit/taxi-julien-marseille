@@ -6,7 +6,7 @@
 // correspond gagne. L'ordre encode les priorités d'intention :
 //   anglais → médical → hôtels → arrondissement → événements → gares →
 //   aéroports Nice/Toulon → port → villes → ski → aéroport Marseille →
-//   van/groupes → génériques → accueil.
+//   van/groupes → génériques → tarifs → accueil.
 //
 // Hors de netlify/edge-functions/ : Netlify y traite chaque fichier comme une
 // fonction (export default obligatoire) et refuse ce module utilitaire.
@@ -19,6 +19,7 @@ const EVENTS = '/evenements/'
 const EN_AIRPORT = '/en/marseille-airport-taxi/'
 const EN_CRUISE = '/en/marseille-cruise-port-taxi/'
 const EN_STATION = '/en/marseille-train-station-taxi/'
+const TARIFS = '/tarifs/'
 
 export const RULES: [string, string][] = [
   // Anglais
@@ -69,7 +70,7 @@ export const RULES: [string, string][] = [
 ]
 
 // Chemins nus exposés par l'ancien CMS.
-export const EXACT: Record<string, string> = { '/accueil': '/', '/tarifs': '/', '/contact': '/' }
+export const EXACT: Record<string, string> = { '/accueil': '/', '/tarifs': TARIFS, '/contact': '/' }
 
 // Une URL Jalis : « + » pour les espaces, suffixe -z##/-y#/-w#, .html, ou
 // préfixe connu. Les nouvelles URLs ne correspondent à aucun de ces motifs.
@@ -122,7 +123,9 @@ export function targetFor(pathname: string): string {
   for (const [needle, target] of RULES) {
     if (norm.includes(' ' + needle + ' ')) return target
   }
-  return arr ?? '/'
+  // Dernier recours avant l'accueil : une URL de prix sans lieu reconnu
+  // (l'ancienne tarifs.html) va à la page tarifs.
+  return arr ?? (/ (tarifs?|prix) /.test(norm) ? TARIFS : '/')
 }
 
 export function resolveLegacy(pathname: string): string | null {

@@ -47,7 +47,7 @@ export default function Footer() {
               <li><a className="hover:text-[var(--color-cream)] transition" href="#destinations">Destinations</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="#reservation">Réservation</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="#services">Services</a></li>
-              <li><a className="hover:text-[var(--color-cream)] transition" href="#tarifs">Tarifs</a></li>
+              <li><a className="hover:text-[var(--color-cream)] transition" href="/tarifs/">Tarifs taxi Marseille</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="#flotte">Flotte</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="#galerie">Galerie</a></li>
               <li><a className="hover:text-[var(--color-cream)] transition" href="#faq">FAQ</a></li>

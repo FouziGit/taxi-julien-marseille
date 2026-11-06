@@ -29,6 +29,8 @@ import {
   destContent,
   destinations,
   fareTables,
+  pricing,
+  paymentMethods,
   contact,
   business,
   destinationGroups,
@@ -1026,6 +1028,197 @@ function buildLegalPage(assets: { css: string; preloadFonts: string[] }): string
 </html>`
 }
 
+// ---------------------------------------------------------------------------
+// Page tarifs — dist/tarifs/index.html. L'ancien site avait une page tarifs
+// (1 850 impressions/mois en juin 2026, redirigée vers l'accueil depuis) ; les
+// onglets de l'accueil ne montrent qu'une grille à la fois, celle-ci les
+// montre toutes. Données : pricing, fareTables, paymentMethods, rien d'autre.
+// ---------------------------------------------------------------------------
+function buildTarifsPage(assets: { css: string; preloadFonts: string[] }): string {
+  const pageUrl = `${SITE_URL}/tarifs/`
+  const title = 'Tarifs taxi Marseille : prix et forfaits fixes | Taxi Julien'
+  const airport = pricing.packages.find(p => p.route === 'Marseille ↔ Aéroport Marseille Provence')
+  if (!airport) throw new Error('/tarifs/ : forfait aéroport absent de pricing.packages')
+  const description = `Prix du taxi à Marseille : tarif réglementé au compteur et forfaits fixes depuis la gare Saint-Charles, l'aéroport (${airport.price}) et vers le ski.`
+  if (title.length > 60 || description.length > 155) throw new Error(`/tarifs/ : titre ${title.length}/60, description ${description.length}/155`)
+  const rate = (label: string) => {
+    const r = pricing.rates.find(x => x.label === label)
+    if (!r) throw new Error(`/tarifs/ : tarif « ${label} » absent de pricing.rates`)
+    return r.value
+  }
+  const lowerFirst = (s: string) => s.charAt(0).toLowerCase() + s.slice(1)
+
+  const faq = [
+    { q: 'Combien coûte un taxi à Marseille ?', a: `Au compteur, au tarif réglementé : prise en charge ${rate('Prise en charge')}, puis ${rate('Tarif jour (7h–19h)')} de 7h à 19h, ${rate('Tarif nuit (19h–7h)')} de 19h à 7h et ${rate('Dimanches & jours fériés')} les dimanches et jours fériés. Course minimum ${rate('Course minimum')}. Pour un trajet connu (gare, aéroport, longue distance), un forfait fixe est annoncé à la réservation.` },
+    { q: "Quel est le prix d'un taxi entre Marseille et l'aéroport ?", a: `Forfait fixe de ${airport.price} selon le véhicule et le nombre de passagers, annoncé à la réservation.` },
+    { q: 'Y a-t-il des suppléments ?', a: pricing.surcharges.map((s, i) => `${i ? lowerFirst(s.label) : s.label} : ${s.value.toLowerCase()}`).join(' ; ') + '.' },
+    { q: 'Peut-on avoir une facture ?', a: `Oui. ${pricing.invoiceNote}` },
+    { q: 'Comment payer la course ?', a: paymentMethods.map((m, i) => (i ? lowerFirst(m) : m)).join(', ') + '.' },
+  ]
+
+  // Ville du tableau → sa page destination, quand elle existe (maillage interne).
+  const pageOf = new Map<string, string>()
+  for (const c of destContent) {
+    if (c.kind === 'service') continue
+    const d = resolveDest(c)
+    for (const n of [d.name, d.shortName]) if (n && !pageOf.has(n)) pageOf.set(n, pagePath(c))
+  }
+  const destCell = (name: string) => {
+    const href = pageOf.get(name)
+    return href ? `<a href="${href}" class="underline decoration-white/20 underline-offset-4 hover:text-[var(--color-cream)]">${esc(name)}</a>` : esc(name)
+  }
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Tarifs', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      },
+    ],
+  })
+  const fontPreloads = assets.preloadFonts
+    .map(f => `<link rel="preload" as="font" href="${f}" type="font/woff2" crossorigin />`)
+    .join('\n    ')
+
+  const h2 = 'font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight'
+  const sub = 'mt-2 text-[14px] text-[var(--color-silver-deep)]'
+  const card = 'mt-5 rounded-2xl bg-[var(--color-charcoal)] hairline overflow-x-auto'
+  const thCol = 'py-3 px-4 sm:px-6 text-[10px] uppercase tracking-[0.18em] text-[var(--color-silver-deep)] font-bold'
+  const thRow = 'text-left py-3 px-4 sm:px-6 text-[var(--color-silver-2)] font-normal'
+  const td = 'py-3 px-4 sm:px-6 text-right font-display font-semibold text-[var(--color-cream)] tabular-nums whitespace-nowrap'
+  const kvTable = (rows: readonly { label: string; value: string }[], labelledBy: string) => `
+            <div class="${card}">
+                <table class="w-full text-[14px]" aria-labelledby="${labelledBy}">
+                    <tbody>${rows.map(r => `
+                        <tr class="border-t border-white/[0.04] first:border-0"><th scope="row" class="${thRow}">${esc(r.label)}</th><td class="${td}">${esc(r.value)}</td></tr>`).join('')}
+                    </tbody>
+                </table>
+            </div>`
+
+  return `<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0c" />
+    <title>${esc(title)}</title>
+    <meta name="description" content="${esc(description)}" />
+    <link rel="canonical" href="${pageUrl}" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Taxi Julien" />
+    <meta property="og:title" content="${esc(title)}" />
+    <meta property="og:description" content="${esc(description)}" />
+    <meta property="og:url" content="${pageUrl}" />
+    <meta property="og:image" content="${SITE_URL}/og-image-noir.jpg" />
+    <link rel="stylesheet" href="${assets.css}" />
+    ${PLAUSIBLE_SNIPPET}
+    ${fontPreloads}
+    <script type="application/ld+json">${jsonLd}</script>
+</head>
+<body>
+    <a href="#contenu" class="skip-link">Aller au contenu</a>
+
+    <header class="sticky top-0 z-50 bg-[var(--color-ink)]/85 backdrop-blur-md border-b border-white/[0.06]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2.5" aria-label="Taxi Julien — accueil">
+                <span class="grid place-items-center w-9 h-9 rounded-lg bg-white text-[var(--color-ink)] font-bold text-sm font-display">TJ</span>
+                <span class="font-display font-semibold text-[var(--color-cream)] text-[15px] tracking-tight">Taxi Julien</span>
+            </a>
+            <a href="tel:${contact.phoneTel}" class="flex items-center gap-2 px-4 h-10 rounded-full bg-white text-[var(--color-ink)] font-semibold text-sm">📞 ${contact.phoneDisplay}</a>
+        </div>
+    </header>
+
+    <main id="contenu" class="bg-[var(--color-ink)] min-h-screen">
+        <nav aria-label="Fil d'ariane" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-[12px] text-[var(--color-silver-deep)]">
+            <a href="/" class="hover:text-[var(--color-cream)] transition">Accueil</a>
+            <span class="mx-1.5" aria-hidden="true">›</span>
+            <span class="text-[var(--color-silver-2)]">Tarifs</span>
+        </nav>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+            <p class="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[var(--color-silver-deep)]">— Prix & forfaits</p>
+            <h1 class="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight text-[var(--color-cream)] text-balance">Tarifs taxi Marseille</h1>
+            <p class="mt-5 text-[15px] sm:text-base text-[var(--color-silver-2)] leading-relaxed max-w-2xl">Deux façons de payer une course avec Taxi Julien : au compteur, au tarif réglementé des taxis des Bouches-du-Rhône, ou au forfait fixe annoncé à la réservation. <strong class="text-[var(--color-cream)] font-semibold">Tarif Jour</strong> de 7h à 19h, <strong class="text-[var(--color-cream)] font-semibold">Tarif Nuit</strong> de 19h à 7h, les dimanches et jours fériés.</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+                <a href="tel:${contact.phoneTel}" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-white text-[var(--color-ink)] font-semibold text-[14px]">📞 ${contact.phoneDisplay}</a>
+                <a href="https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappBaseText + ' Je voudrais un prix pour un trajet.')}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-[var(--color-whatsapp)] text-[var(--color-ink)] font-semibold text-[14px]">💬 Demander un prix</a>
+            </div>
+
+            <section class="mt-12">
+                <h2 id="compteur" class="${h2}">Au compteur : tarif réglementé</h2>
+                <p class="${sub}">Tarifs réglementés des taxis des Bouches-du-Rhône.</p>
+                ${kvTable(pricing.rates, 'compteur')}
+            </section>
+
+            <section class="mt-12">
+                <h2 id="supplements" class="${h2}">Suppléments</h2>
+                ${kvTable(pricing.surcharges, 'supplements')}
+            </section>
+
+            <section class="mt-12">
+                <h2 id="forfaits" class="${h2}">Forfaits fixes</h2>
+                <div class="${card}">
+                    <table class="w-full text-[14px]" aria-labelledby="forfaits">
+                        <tbody>${pricing.packages.filter(p => /\d/.test(p.price)).map(p => `
+                            <tr class="border-t border-white/[0.04] first:border-0"><th scope="row" class="${thRow}">${esc(p.route)}<span class="block text-[12.5px] text-[var(--color-silver-deep)]">${esc(p.note)}</span></th><td class="${td}">${esc(p.price)}</td></tr>`).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+${fareTables.map(t => `
+            <section class="mt-12">
+                <h2 id="grille-${t.key}" class="${h2}">${esc(t.title)}</h2>
+                <p class="${sub}">${esc(t.subtitle)}</p>
+                <div class="${card}">
+                    <table class="w-full text-[13.5px] sm:text-[14px]" aria-labelledby="grille-${t.key}">
+                        <thead class="bg-[var(--color-ink)]/40"><tr><th scope="col" class="text-left ${thCol}">Destination</th>${t.hasNight ? `<th scope="col" class="text-right ${thCol}">Tarif Jour</th><th scope="col" class="text-right ${thCol}">Tarif Nuit</th>` : `<th scope="col" class="text-right ${thCol}">À partir de</th>`}</tr></thead>
+                        <tbody>${t.rows.map(r => `
+                            <tr class="border-t border-white/[0.04]"><th scope="row" class="${thRow}">${destCell(r.dest)}</th>${t.hasNight ? `<td class="${td}">${esc(r.day ?? '')}</td><td class="${td} !text-[var(--color-silver-2)]">${esc(r.night ?? '')}</td>` : `<td class="${td}">${esc(r.from ?? '')}</td>`}</tr>`).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </section>`).join('')}
+
+            <section class="mt-12">
+                <h2 class="${h2}">Questions fréquentes</h2>
+                <ul class="mt-5 space-y-3">${faq.map(f => `
+                    <li class="rounded-2xl bg-[var(--color-charcoal)] hairline p-5 sm:p-6">
+                        <h3 class="font-display font-semibold text-[var(--color-cream)] text-[16px] sm:text-[17px] tracking-tight">${esc(f.q)}</h3>
+                        <p class="mt-2 text-[var(--color-silver-2)] text-[14.5px] leading-relaxed">${esc(f.a)}</p>
+                    </li>`).join('')}
+                </ul>
+            </section>
+
+            <div class="mt-12 rounded-3xl bg-white text-[var(--color-ink)] p-8 text-center">
+                <h2 class="font-display font-semibold text-2xl sm:text-3xl tracking-tight">Une destination absente des grilles ?</h2>
+                <p class="mt-3 text-gray-700 text-[15px]">Forfait fixe communiqué à la réservation, par téléphone ou WhatsApp.</p>
+                <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+                    <a href="tel:${contact.phoneTel}" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-[var(--color-ink)] text-white font-semibold text-[14px]">📞 ${contact.phoneDisplay}</a>
+                    <a href="/destinations/" class="inline-flex items-center gap-2 h-12 px-6 rounded-xl border border-gray-300 text-[var(--color-ink)] font-semibold text-[14px]">Toutes les destinations</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-[var(--color-ink)] border-t border-white/[0.05] py-8 text-center text-[12px] text-[var(--color-mute)]">
+        <a href="/" class="text-[var(--color-cream)] font-semibold hover:underline">← Retour à l'accueil</a>
+        <p class="mt-3">SIRET ${business.siret} · ${business.legalName}, ${business.streetAddress} · <a href="/mentions-legales/" class="hover:underline">Mentions légales</a></p>
+    </footer>
+</body>
+</html>`
+}
+
 // Not found page — dist/404.html, served by netlify.toml with a real 404
 // status. noindex, and points lost visitors to the main pages and the phone.
 function buildNotFoundPage(assets: { css: string; preloadFonts: string[] }): string {
@@ -1131,6 +1324,11 @@ function main() {
   fs.writeFileSync(path.join(legalDir, 'index.html'), legalHtml, 'utf8')
   console.log(`  ✓ /mentions-legales/ (HTML ${(legalHtml.length / 1024).toFixed(1)} KB)`)
 
+  const tarifsHtml = buildTarifsPage({ css: cssHref, preloadFonts: fonts })
+  fs.mkdirSync(path.join(DIST, 'tarifs'), { recursive: true })
+  fs.writeFileSync(path.join(DIST, 'tarifs', 'index.html'), tarifsHtml, 'utf8')
+  console.log(`  ✓ /tarifs/ (HTML ${(tarifsHtml.length / 1024).toFixed(1)} KB)`)
+
   fs.writeFileSync(path.join(DIST, '404.html'), buildNotFoundPage({ css: cssHref, preloadFonts: fonts }), 'utf8')
   console.log('  ✓ /404.html')
 
@@ -1140,6 +1338,7 @@ function main() {
   const urls = [
     `${SITE_URL}/`,
     `${SITE_URL}/destinations/`,
+    `${SITE_URL}/tarifs/`,
     ...destContent.map(c => SITE_URL + pagePath(c)),
     `${SITE_URL}/mentions-legales/`,
   ]

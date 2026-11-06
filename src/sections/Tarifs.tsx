@@ -28,7 +28,7 @@ export default function Tarifs() {
         >
           <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[var(--color-silver-deep)]">— Tarifs</p>
           <h2 id="tarifs-heading" className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold mt-3 text-balance tracking-tight">
-            Forfaits affichés. Sans surprise.
+            Prix taxi Marseille. Sans surprise.
           </h2>
           <p className="mt-4 text-[var(--color-silver-deep)] text-[15px] sm:text-base max-w-2xl mx-auto">
             Tarifs taxi réglementés Marseille + forfaits longue distance fixes,
@@ -220,6 +220,13 @@ export default function Tarifs() {
             <p className="mt-3 text-[12px] text-[var(--color-mute)]">{pricing.legalNote}</p>
           </div>
         </div>
+
+        {/* Les onglets ne montrent qu'une grille : la page /tarifs/ les donne toutes. */}
+        <p className="mt-6 text-center">
+          <a href="/tarifs/" className="inline-flex items-center gap-2 h-11 px-5 rounded-full hairline-strong text-[var(--color-cream)] font-semibold text-[14px] hover:bg-white/[0.06] transition">
+            Tous les tarifs : gare, aéroport, stations de ski →
+          </a>
+        </p>
       </div>
     </section>
   )
