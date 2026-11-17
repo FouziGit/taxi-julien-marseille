@@ -1349,10 +1349,13 @@ export const destContent: DestContent[] = [
     deptCode: '13',
     deptName: 'Bouches-du-Rhône',
     geo: { lat: 43.4548, lng: 5.3175 },
-    seoTitle: 'Taxi Gare Aix-en-Provence TGV 24h/24 | Taxi Julien',
-    seoDescription: 'Taxi gare Aix TGV : accueil sur le quai, Mercedes Classe V 7 places, 24h/24. Vers Marseille, l\'aéroport ou Aix. Forfait fixe annoncé à la réservation.',
-    h1: 'Taxi Gare Aix-en-Provence TGV',
-    heroSubtitle: 'Accueil sur le quai · Marseille 25 km · Aix 15 km · 24h/24',
+    // Titre et en-tête d'avant le 3 nov. 2026 : la version « Taxi Gare
+    // Aix-en-Provence TGV 24h/24 » a fait passer la page de ~25 à ~45 en deux
+    // semaines sur toutes ses requêtes. Le contenu corrigé reste.
+    seoTitle: 'Taxi Marseille → Gare Aix TGV | Taxi Julien',
+    seoDescription: 'Taxi Marseille → Gare Aix TGV (25 km, 25 min). Mercedes Classe V 7 pax. TGV directs Paris, Bruxelles, Lille. Accueil quai.',
+    h1: 'Taxi Marseille → Gare Aix TGV',
+    heroSubtitle: 'TGV Provence · Méditerranée · 25 km · ~25 min',
     lead: 'La gare d\'Aix-en-Provence TGV se trouve sur le plateau de l\'Arbois, entre Aix et Vitrolles : 25 km de Marseille, 15 km du centre d\'Aix. TGV directs pour Paris (environ 3h), Lyon, Lille et Bruxelles. Nous vous attendons sur le quai à l\'arrivée de votre train, ou vous déposons pour votre départ, 24h/24. Forfait fixe annoncé à la réservation selon votre adresse.',
     tripNotes: 'Depuis Marseille, trajet par l\'A7 puis l\'A51, environ 25 min hors heures de pointe. Indiquez votre numéro de train à la réservation : la prise en charge se cale sur son heure d\'arrivée.',
     spots: [
