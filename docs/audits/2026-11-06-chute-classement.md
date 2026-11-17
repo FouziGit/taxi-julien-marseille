@@ -52,3 +52,18 @@ Les changements de fiche mettent jusqu'à 48 h à apparaître.
 
 - Fiche Maps : refaire « taxi van marseille » et « taxi marseille » sur Google Maps centré sur Marseille une semaine après les changements de Julien.
 - Search Console vers le 20 novembre : position de « taxi marseille » (page `https://taxijulien.com/`), impressions de `/tarifs/`.
+
+## Suivi au 17 novembre (données Search Console jusqu'au 16)
+
+| Indicateur | Avant (20 oct. – 2 nov.) | Après (9 – 16 nov.) |
+|---|---|---|
+| Clics par semaine, tout le site | 15 à 16 | 23 |
+| Accueil : clics par jour | 1,0 | 2,2 |
+| Page aéroport (position) | 36,4 | 16,5 |
+| Port de croisière (position) | 11,4 | 9,8 |
+| Saint-Tropez (position) | 10,2 | 7,7 |
+| `/tarifs/` | n'existait pas | 151 impressions, position 42,6 |
+| Aix TGV (position) | ~25 | ~45 |
+| Fiche Maps de Julien | Ribeyret, sans horaires | inchangée |
+
+Aix TGV : chute nette le jour du nouveau titre (3 nov.), deux semaines sans reprise, aucune autre page ne prend le relais. Titre, description, H1 et sous-titre d'avant le 3 novembre remis le 17 (`c7dc46b`), contenu corrigé conservé ; indexation redemandée. À relire vers le 1er décembre.
