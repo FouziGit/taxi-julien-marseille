@@ -67,3 +67,17 @@ Les changements de fiche mettent jusqu'à 48 h à apparaître.
 | Fiche Maps de Julien | Ribeyret, sans horaires | inchangée |
 
 Aix TGV : chute nette le jour du nouveau titre (3 nov.), deux semaines sans reprise, aucune autre page ne prend le relais. Titre, description, H1 et sous-titre d'avant le 3 novembre remis le 17 (`c7dc46b`), contenu corrigé conservé ; indexation redemandée. À relire vers le 1er décembre.
+
+## Suivi au 24 novembre (données jusqu'au 23)
+
+| Indicateur | Avant (20 oct. – 2 nov.) | 10 – 16 nov. | 17 – 23 nov. |
+|---|---|---|---|
+| Clics par semaine, tout le site | 15 à 16 | 23 | 19 |
+| Accueil (position) | 12,9 | 13,4 | 11,3 |
+| « taxi marseille » | ~5 impr./jour, 0 clic | ~18 impr./jour | 257 impr., 3 clics, position 8,1 |
+| Aix TGV (position) | ~25 | ~45 | 21,4 et 4 clics (titre d'origine remis le 17) |
+| `/tarifs/` (position) | — | 42,6 | 32,1, premier clic |
+| Aéroport (position) | 36,4 | 16,5 | 18,5 |
+| Fiche Maps de Julien | Ribeyret, sans horaires | inchangée | inchangée |
+
+« taxi marseille » : Google a testé l'accueil en position 4 à 6 du 16 au 19 novembre (~65 impressions/jour), puis l'a ramené vers 22 à partir du 21. Pas encore acquis. Le retour au titre d'origine d'Aix TGV est validé.
