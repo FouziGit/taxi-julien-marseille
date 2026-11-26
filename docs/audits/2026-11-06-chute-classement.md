@@ -81,3 +81,24 @@ Aix TGV : chute nette le jour du nouveau titre (3 nov.), deux semaines sans repr
 | Fiche Maps de Julien | Ribeyret, sans horaires | inchangée | inchangée |
 
 « taxi marseille » : Google a testé l'accueil en position 4 à 6 du 16 au 19 novembre (~65 impressions/jour), puis l'a ramené vers 22 à partir du 21. Pas encore acquis. Le retour au titre d'origine d'Aix TGV est validé.
+
+## Lot 2 — 26 novembre
+
+En ligne le 26 novembre (`d849d54`, `fac770b`, `e4f2cd4`), indexation redemandée pour les 6 pages.
+
+- Page aéroport : bloc « Forfait aéroport depuis votre arrondissement » avec des liens vers les 16 pages `/aeroport/130xx/` (jusqu'ici liées seulement depuis le pied de page de l'accueil).
+- Titres au format Saint-Tropez (« Marseille X : N km, D en taxi ») sur 5 pages en page 1 sans clic, dont les recherches portent sur la distance. H1 inchangés. Nice et Toulon (recherches « taxi + ville », titre avec prix) non modifiées.
+- Distance de Sainte-Maxime corrigée : 143 km, 1h40 (Google Maps), au lieu de 135 km copiés de Saint-Tropez. Carte « Saint-Cyr » de l'accueil : ~40 min au lieu de ~55 (Google Maps : 42,9 km, 37 min).
+
+Positions de départ (Search Console, 27 oct. – 25 nov.) pour juger chaque page :
+
+| Page | Impressions | Position |
+|---|---|---|
+| Carqueiranne | 154 | 9,1 |
+| Pra Loup | 245 | 9,0 |
+| Le Pradet | 68 | 9,5 |
+| Sainte-Maxime | 60 | 13,4 |
+| Saint-Cyr-sur-Mer | 235 | 15,0 |
+| Aéroport (17 – 23 nov.) | 280 | 18,5 |
+
+Règle : une page qui perd plus de 5 places pendant deux semaines reprend son ancien titre (comme Aix TGV). Bilan vers le 10 décembre.
