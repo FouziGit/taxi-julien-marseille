@@ -829,16 +829,18 @@ export const destContent: DestContent[] = [
     destCategory: 'Ville',
     destPhoto: '/photos/dest-sainte-maxime.jpg',
     destPhotoSm: '/photos/dest-sainte-maxime-sm.jpg',
-    distanceKm: 135,
-    durationReal: '~1h45',
+    // Distance : Google Maps 143 km / 1h39 par l'A8 (itinéraire le plus rapide), 2026-11.
+    // L'ancien 135 km reprenait par erreur la distance de Saint-Tropez.
+    distanceKm: 143,
+    durationReal: '~1h40',
     deptCode: '83',
     deptName: 'Var',
     geo: { lat: 43.3083, lng: 6.6383 },
-    seoTitle: 'Marseille Sainte-Maxime : 135 km, 1h45 en taxi | Taxi Julien',
-    seoDescription: 'Distance Marseille → Sainte-Maxime : 135 km, environ 1h45. Taxi au forfait fixe dès 335 €, van 7 places, dépose promenade des Marines, 24h/24.',
+    seoTitle: 'Marseille Sainte-Maxime : 143 km, 1h40 en taxi | Taxi Julien',
+    seoDescription: 'Distance Marseille → Sainte-Maxime : 143 km, environ 1h40. Taxi au forfait fixe dès 335 €, van 7 places, dépose promenade des Marines, 24h/24.',
     h1: 'Taxi Marseille → Sainte-Maxime',
-    heroSubtitle: 'Plages familiales · Face à Saint-Tropez · 135 km · ~1h45',
-    lead: 'Sainte-Maxime est à 135 km de Marseille, face à Saint-Tropez de l\'autre côté du golfe. Station balnéaire familiale plus calme que sa voisine, avec 11 km de plages et une promenade en bord de mer.',
+    heroSubtitle: 'Plages familiales · Face à Saint-Tropez · 143 km · ~1h40',
+    lead: 'Sainte-Maxime est à 143 km de Marseille, face à Saint-Tropez de l\'autre côté du golfe. Station balnéaire familiale plus calme que sa voisine, avec 11 km de plages et une promenade en bord de mer.',
     spots: [
       { name: 'Plage de la Nartelle', blurb: 'Plage de sable fin de 1,5 km, face à Saint-Tropez. Eau peu profonde, idéale familles.', type: 'beach' },
       { name: 'Promenade des Marines', blurb: 'Promenade piétonne face au port, terrasses, restaurants face au golfe.', type: 'monument' },
@@ -1488,7 +1490,7 @@ export const destinations: Destination[] = [
   // Côte & calanques
   { id: 'cassis', name: 'Cassis & Calanques', shortName: 'Cassis', category: 'Site', duration: '~45 min', note: 'Sur devis', tagline: 'Falaises blanches · eau turquoise', photo: '/photos/dest-cassis.jpg', photoSm: '/photos/dest-cassis-sm.jpg' },
   { id: 'la-ciotat', name: 'La Ciotat', shortName: 'La Ciotat', category: 'Ville', duration: '~50 min', note: 'Sur devis', tagline: 'Calanques de Figuerolles', photo: '/photos/dest-laciotat.jpg', photoSm: '/photos/dest-laciotat-sm.jpg' },
-  { id: 'saint-cyr', name: 'Saint-Cyr-sur-Mer', shortName: 'Saint-Cyr', category: 'Ville', duration: '~55 min', tagline: 'Plage des Lecques', photo: '/photos/dest-saintcyr.jpg', photoSm: '/photos/dest-saintcyr-sm.jpg' },
+  { id: 'saint-cyr', name: 'Saint-Cyr-sur-Mer', shortName: 'Saint-Cyr', category: 'Ville', duration: '~40 min', tagline: 'Plage des Lecques', photo: '/photos/dest-saintcyr.jpg', photoSm: '/photos/dest-saintcyr-sm.jpg' },
   { id: 'bandol', name: 'Bandol', shortName: 'Bandol', category: 'Ville', duration: '~1h', tagline: 'Vignobles & port', photo: '/photos/dest-bandol.jpg', photoSm: '/photos/dest-bandol-sm.jpg' },
   { id: 'sanary', name: 'Sanary-sur-Mer', shortName: 'Sanary-sur-Mer', category: 'Ville', duration: '~1h', tagline: 'Pointus colorés', photo: '/photos/dest-sanary.jpg', photoSm: '/photos/dest-sanary-sm.jpg' },
   { id: 'embiez', name: 'Embarcadère du Brusc / Les Embiez', shortName: 'Les Embiez', category: 'Site', priceFrom: 160, priceTo: 210, duration: '~1h15', tagline: 'Île du Brusc', photo: '/photos/dest-embiez.jpg', photoSm: '/photos/dest-embiez-sm.jpg' },

@@ -48,7 +48,7 @@ Chaque page = forfait, distance, durée, spots à visiter, FAQ par destination.
 
 ### Côte d'Azur (Sainte-Maxime → Nice)
 
-- [Sainte-Maxime](https://taxijulien.com/destinations/sainte-maxime/) : 135 km, 1h45, 335 € jour
+- [Sainte-Maxime](https://taxijulien.com/destinations/sainte-maxime/) : 143 km, 1h40, 335 € jour
 - [Fréjus](https://taxijulien.com/destinations/frejus/) : 150 km, 1h55, 325 € jour
 - [Saint-Raphaël](https://taxijulien.com/destinations/saint-raphael/) : 153 km, 2h, 335 € jour
 - [Mandelieu-la-Napoule](https://taxijulien.com/destinations/mandelieu/) : 158 km, 2h05, 385 € jour
