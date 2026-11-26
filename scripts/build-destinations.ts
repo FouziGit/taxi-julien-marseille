@@ -308,6 +308,9 @@ export function buildHtml(content: DestContent, dest: Destination, assets: { css
     .map(id => destContent.find(c => c.id === id))
     .filter((c): c is DestContent => Boolean(c))
     .map(c => ({ c, d: resolveDest(c) }))
+  const linkList = (content.linkList?.ids ?? [])
+    .map(id => destContent.find(c => c.id === id))
+    .filter((c): c is DestContent => Boolean(c))
 
   const fontPreloads = assets.preloadFonts
     .map(f => `<link rel="preload" as="font" href="${f}" type="font/woff2" crossorigin />`)
@@ -541,6 +544,16 @@ export function buildHtml(content: DestContent, dest: Destination, assets: { css
                     <span>${esc(u)}</span>
                 </li>
                 `).join('')}
+            </ul>
+        </section>
+        ` : ''}
+
+        ${linkList.length ? `
+        <!-- Link list -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-white/[0.05]">
+            <h2 class="font-display font-semibold text-2xl sm:text-3xl text-[var(--color-cream)] tracking-tight">${esc(content.linkList!.title)}</h2>
+            <ul class="mt-6 flex flex-wrap gap-2 max-w-4xl">
+                ${linkList.map(c => `<li><a href="${pagePath(c)}" class="inline-flex items-center h-10 px-4 rounded-full bg-[var(--color-charcoal)] hairline text-[14px] text-[var(--color-silver-2)] hover:text-[var(--color-cream)] transition">${esc(c.destName ?? c.h1)}</a></li>`).join('')}
             </ul>
         </section>
         ` : ''}

@@ -5,7 +5,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
-import { business } from '../src/data/taxi.ts'
+import { business, destContent } from '../src/data/taxi.ts'
+import { buildHtml, resolveDest } from '../scripts/build-destinations.ts'
 
 test("le code postal déclaré est celui du siège", () => {
   assert.ok(
@@ -20,4 +21,15 @@ test("le JSON-LD de l'accueil reprend l'adresse et la position de business", () 
   const local = blocks.map(m => JSON.parse(m[1])).find(x => x['@type'] === 'LocalBusiness')
   assert.equal(local.address.postalCode, business.postalCode)
   assert.deepEqual([local.geo.latitude, local.geo.longitude], [business.geo.lat, business.geo.lng])
+})
+
+// Les 16 pages « aéroport depuis l'arrondissement » n'étaient liées que depuis
+// le pied de page de l'accueil : la page aéroport (page 2 de Google, ~280
+// impressions/semaine) doit toutes les lier.
+test("la page aéroport lie chacune des 16 pages arrondissement", () => {
+  const airport = destContent.find(c => c.id === 'aeroport-marseille-provence')!
+  const html = buildHtml(airport, resolveDest(airport), { css: '/assets/index.css', preloadFonts: [] })
+  const arrondissements = destContent.filter(c => c.path?.startsWith('/aeroport/'))
+  assert.equal(arrondissements.length, 16)
+  for (const c of arrondissements) assert.ok(html.includes(`href="${c.path}"`), `${c.path} absent de la page aéroport`)
 })

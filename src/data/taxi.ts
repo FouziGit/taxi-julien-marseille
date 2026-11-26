@@ -124,6 +124,9 @@ export type DestContent = {
   faq: DestFAQ[]
   /** IDs of 3-4 nearby destinations for internal linking. */
   related: string[]
+  /** Liste compacte de liens (sans photo) vers d'autres pages, ex. les 16 pages
+   *  arrondissement depuis la page aéroport. */
+  linkList?: { title: string; ids: string[] }
   /** 'service' = page thématique (médical, hôtels, van, anglais, événements…) :
    *  pas de bloc TouristDestination, pas de bloc distance/durée, libellés dédiés.
    *  Défaut 'destination'. */
@@ -1284,6 +1287,7 @@ export const destContent: DestContent[] = [
       { q: 'Distance et durée ?', a: '30 km de Marseille centre, 30 min en heure creuse. Aux heures de pointe (7h30-9h30, 17h-19h), prévoir 45 min.' },
     ],
     related: ['gare-saint-charles', 'gare-aix-tgv', 'aix-en-provence', 'port-croisiere-marseille'],
+    linkList: { title: 'Forfait aéroport depuis votre arrondissement', ids: arrondissementPages.map(p => p.id) },
   },
   {
     id: 'port-croisiere-marseille',
